@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
+#    By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by noalexan          #+#    #+#              #
-#    Updated: 2022/07/04 16:23:49 by noalexan         ###   ########.fr        #
+#    Updated: 2022/07/05 11:11:01 by noahalexand      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRC		:=	src/main.c
 
 OBJ		:= $(SRC:.c=.o)
 
-LIB	:=
+LIB		:=	src/libft/libft.a
 
 INCL	:=	include/minishell.h
 
@@ -40,6 +40,7 @@ TEST    := 100
 
 $(NAME): $(OBJ)
 	@printf $(GREEN)"\r\033[KObjects compiled succesfully ✅\n"$(RESET)
+	@make -C src/libft
 	@printf $(CYAN)"\r\033[KCompiling '$(NAME)'... ⏳"$(RESET)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIB) -I include/ -o $(NAME)
 	@printf $(GREEN)"\r\033[KSuccess compiling '$(NAME)' ✅\n"$(RESET)
@@ -93,11 +94,13 @@ load:
 clean:
 	@printf $(CYAN)"\r\033[KErasing objects... "$(RESET)"⏳ "
 	@$(RM) $(OBJ)
+	@make -C src/libft clean
 	@printf $(GREEN)"\r\033[Kcleaned 🗑\n"$(RESET)
 
 fclean:
 	@printf $(CYAN)"\r\033[KErasing objects... "$(RESET)"⏳ "
 	@$(RM) $(OBJ)
+	@make -C src/libft fclean
 	@printf $(CYAN)"\r\033[KErasing binary file... "$(RESET)"⏳ "
 	@$(RM) $(NAME) test_parser
 	@printf $(GREEN)"\r\033[KForce cleaned 🗑\n"$(RESET)
