@@ -14,47 +14,43 @@
 
 static int end;
 
-t_input	parse_input(char *line)
-{
-	t_input input;
-
-	input.cmds = ft_calloc(1, sizeof(t_cmd));
-	input.cmds->cmd = line;
-	input.cmds->next = NULL;
-	return (input);
-}
-
-
-void	execute(t_input input, char **env)
+void	execute(char **cmd, char **env)
 {
 	int	i;
 
 	i = -1;
-	if (!strcmp(input.cmds->cmd, "exit"))
+	if (!strcmp(cmd[0], "exit"))
 		end = 1;
-	else if (!strcmp(input.cmds->cmd, "env")
-		|| !strcmp(input.cmds->cmd, "ENV"))
+	else if (!strcmp(ft_tolower(cmd[0]), "env"))
 		while (env[++i])
 			printf("%s\n", env[i]);
+	else if (!strcmp(ft_tolower(cmd[0]), "pwd"))
+		printf("%s\n", getenv("PWD"));
 	else
-		printf("minishell: error: command \"%s\" not found\n", input.cmds->cmd);
-	ft_lstclear(input.cmds);
+		printf("minishell: error: command \"%s\" not found\n", cmd[0]);
 }
 
 int	main(int argc, char **argv, char **env)
 {
 	char	*line;
-
+	char	**line_split;
+	int		i;
+	
 	(void) argc;
 	(void) argv;
 	end = 0;
 	while (!end)
 	{
+		i = -1;
 		line = readline(PROMPT);
 		if (line[0])
 		{
 			add_history(line);
-			execute(parse_input(line), env);
+			line_split = ft_split(line, ' ');
+			execute(line_split, env);
+			while (line_split[++i])
+				free(line_split[i]);
+			free(line_split);
 		}
 		free(line);
 	}
