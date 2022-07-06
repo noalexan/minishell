@@ -3,31 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:23:58 by noalexan          #+#    #+#             */
-/*   Updated: 2022/07/05 12:20:10 by noahalexand      ###   ########.fr       */
+/*   Updated: 2022/07/06 13:49:29 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static int end;
+static int	g_end;
 
-void	execute(char **cmd, char **env)
+void	execute(t_input input, char **env)
 {
-	int	i;
-
-	i = -1;
-	if (!strcmp(cmd[0], "exit"))
-		end = 1;
-	else if (!strcmp(ft_tolower(cmd[0]), "env"))
-		while (env[++i])
-			printf("%s\n", env[i]);
-	else if (!strcmp(ft_tolower(cmd[0]), "pwd"))
-		printf("%s\n", getenv("PWD"));
+	if (!input.cmds->cmd)
+		;
+	else if (!strcmp(input.cmds->cmd, "exit"))
+		g_end = TRUE;
 	else
-		printf("minishell: error: command \"%s\" not found\n", cmd[0]);
+	{
+		free(input.cmds->cmd);
+		free(input.cmds);
+	}
+	(void) env;
 }
 
 int	main(int argc, char **argv, char **env)
@@ -35,21 +33,24 @@ int	main(int argc, char **argv, char **env)
 	char	*line;
 	char	**line_split;
 	int		i;
-	
+
 	(void) argc;
 	(void) argv;
-	end = 0;
-	while (!end)
+	g_end = FALSE;
+	while (!g_end)
 	{
 		i = -1;
 		line = readline(PROMPT);
 		if (line[0])
 		{
-			add_history(line);
 			line_split = ft_split(line, ' ');
-			execute(line_split, env);
-			while (line_split[++i])
-				free(line_split[i]);
+			if (line_split[0])
+			{
+				add_history(line);
+				execute(parse(line_split), env);
+				while (line_split[++i])
+					free(line_split[i]);
+			}
 			free(line_split);
 		}
 		free(line);

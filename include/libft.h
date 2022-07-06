@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 10:04:44 by noalexan          #+#    #+#             */
-/*   Updated: 2022/07/05 11:40:30 by noahalexand      ###   ########.fr       */
+/*   Updated: 2022/07/06 13:33:24 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,6 @@ void	ft_putnbr_fd(int n, int fd);
 t_cmd	*ft_lstlast(t_cmd *lst);
 t_cmd	*ft_lst_before_last(t_cmd *lst);
 void	ft_lstadd_back(t_cmd **lst, t_cmd *new);
-void	 ft_lstclear(t_cmd *stack);
+void	ft_lstclear(t_cmd *stack);
 
 #endif

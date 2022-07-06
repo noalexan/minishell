@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+         #
+#    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by noalexan          #+#    #+#              #
-#    Updated: 2022/07/05 11:11:01 by noahalexand      ###   ########.fr        #
+#    Updated: 2022/07/06 13:20:42 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,14 @@ OFLAGS	:= -Werror -Wextra -Wall
 
 NAME	:= minishell
 
-SRC		:=	src/main.c
+SRC		:=	src/main.c \
+			src/parse.c \
+			src/utils.c \
 
 OBJ		:= $(SRC:.c=.o)
 
-LIB		:=	src/libft/libft.a
+LIB		:=	src/libft/libft.a \
+			src/printf/printf.a \
 
 INCL	:=	include/minishell.h
 
@@ -41,11 +44,15 @@ TEST    := 100
 $(NAME): $(OBJ)
 	@printf $(GREEN)"\r\033[KObjects compiled succesfully ✅\n"$(RESET)
 	@make -C src/libft
+	@make -C src/printf
 	@printf $(CYAN)"\r\033[KCompiling '$(NAME)'... ⏳"$(RESET)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIB) -I include/ -o $(NAME)
 	@printf $(GREEN)"\r\033[KSuccess compiling '$(NAME)' ✅\n"$(RESET)
 
 all: $(NAME)
+
+run: $(NAME)
+	@/Users/noalexan/Desktop/minishell/$(NAME)
 
 load:
 	@printf '\r █▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ - 0%%\r'
@@ -95,12 +102,14 @@ clean:
 	@printf $(CYAN)"\r\033[KErasing objects... "$(RESET)"⏳ "
 	@$(RM) $(OBJ)
 	@make -C src/libft clean
+	@make -C src/printf clean
 	@printf $(GREEN)"\r\033[Kcleaned 🗑\n"$(RESET)
 
 fclean:
 	@printf $(CYAN)"\r\033[KErasing objects... "$(RESET)"⏳ "
 	@$(RM) $(OBJ)
 	@make -C src/libft fclean
+	@make -C src/printf fclean
 	@printf $(CYAN)"\r\033[KErasing binary file... "$(RESET)"⏳ "
 	@$(RM) $(NAME) test_parser
 	@printf $(GREEN)"\r\033[KForce cleaned 🗑\n"$(RESET)

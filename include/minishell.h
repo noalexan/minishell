@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noalexan          #+#    #+#             */
-/*   Updated: 2022/07/05 11:22:14 by noahalexand      ###   ########.fr       */
+/*   Updated: 2022/07/06 13:20:15 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,22 @@
 # include <readline/history.h>
 
 # include "libft.h"
+# include "ft_printf.h"
 
 # define STDIN 0
 # define STDOUT 1
 # define STDERR 2
-# define PROMPT "\033[1;33mestoMAC\033[0m> "
+
+# define TRUE 1
+# define FALSE 0
+
+# define ACCESS_RIGHT 0
+
+# define PROMPT "\033[1;33mminishell\033[0m> "
+# define ERR_NO_CMD "minishell: \e[1;31merror\e[0m: command \"%s\" not found\n"
+
+t_input	parse(char **split);
+char	**set_slash(char **path);
+char	*find_path(char *cmd);
 
 #endif
