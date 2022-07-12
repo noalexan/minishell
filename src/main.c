@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:23:58 by noalexan          #+#    #+#             */
-/*   Updated: 2022/07/06 13:49:29 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/07/12 09:55:09 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@ static int	g_end;
 
 void	execute(t_input input, char **env)
 {
-	if (!input.cmds->cmd)
-		;
-	else if (!strcmp(input.cmds->cmd, "exit"))
+	if (input.cmds->cmd && (!strcmp(input.cmds->cmd, "exit")
+		|| !strcmp(input.cmds->cmd, "cd") || !strcmp(input.cmds->cmd, "env")
+		|| !strcmp(input.cmds->cmd, "pwd") || !strcmp(input.cmds->cmd, "echo")
+		|| !strcmp(input.cmds->cmd, "unset")
+		|| !strcmp(input.cmds->cmd, "export")))
 		g_end = TRUE;
 	else
 	{
-		free(input.cmds->cmd);
+		if (input.cmds->cmd)
+			free(input.cmds->cmd);
 		free(input.cmds);
 	}
 	(void) env;
