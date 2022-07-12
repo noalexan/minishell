@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 09:38:50 by noalexan          #+#    #+#             */
-/*   Updated: 2022/06/03 10:12:39 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:41:06 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/libft.h"
 
-void ft_lstclear(t_cmd *stack)
+void	ft_lstclear(t_cmd *stack)
 {
 	if (stack)
 	{

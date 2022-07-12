@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:52:27 by noalexan          #+#    #+#             */
-/*   Updated: 2022/06/03 10:13:16 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:24:32 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/libft.h"
 
-void *ft_memmove(void *destination, const void *source, size_t size)
+void	*ft_memmove(void *destination, const void *source, size_t size)
 {
-	size_t i;
-	long sz;
-	unsigned char *d;
-	unsigned char *s;
+	size_t			i;
+	long			sz;
+	unsigned char	*d;
+	unsigned char	*s;
 
 	i = -1;
 	sz = (long)size + 1;

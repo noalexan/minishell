@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 13:15:31 by noalexan          #+#    #+#             */
-/*   Updated: 2022/06/03 10:23:00 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:40:49 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/libft.h"
 
-int ft_memcmp(const void *pointer1, const void *pointer2, size_t size)
+int	ft_memcmp(const void *pointer1, const void *pointer2, size_t size)
 {
-	unsigned long position;
-	int delta;
+	unsigned long	position;
+	int				delta;
 
 	position = -1;
 	while (++position < size)

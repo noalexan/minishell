@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:23:58 by noalexan          #+#    #+#             */
-/*   Updated: 2022/07/12 09:55:09 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:38:03 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ static int	g_end;
 void	execute(t_input input, char **env)
 {
 	if (input.cmds->cmd && (!strcmp(input.cmds->cmd, "exit")
-		|| !strcmp(input.cmds->cmd, "cd") || !strcmp(input.cmds->cmd, "env")
-		|| !strcmp(input.cmds->cmd, "pwd") || !strcmp(input.cmds->cmd, "echo")
-		|| !strcmp(input.cmds->cmd, "unset")
-		|| !strcmp(input.cmds->cmd, "export")))
+			|| !strcmp(input.cmds->cmd, "cd")
+			|| !strcmp(input.cmds->cmd, "env")
+			|| !strcmp(input.cmds->cmd, "pwd")
+			|| !strcmp(input.cmds->cmd, "echo")
+			|| !strcmp(input.cmds->cmd, "unset")
+			|| !strcmp(input.cmds->cmd, "export")))
 		g_end = TRUE;
 	else
 	{
@@ -37,8 +39,7 @@ int	main(int argc, char **argv, char **env)
 	char	**line_split;
 	int		i;
 
-	(void) argc;
-	(void) argv;
+	((void) argc, (void) argv);
 	g_end = FALSE;
 	while (!g_end)
 	{
@@ -58,6 +59,6 @@ int	main(int argc, char **argv, char **env)
 		}
 		free(line);
 	}
-	system("leaks minishell");
 	return (0);
 }
+	// system("leaks minishell");

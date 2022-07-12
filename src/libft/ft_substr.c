@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 13:19:17 by noalexan          #+#    #+#             */
-/*   Updated: 2022/06/03 10:15:47 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:44:05 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/libft.h"
 
-static char *ft_strndup(char *s, size_t n)
+static char	*ft_strndup(char *s, size_t n)
 {
-	char *m;
-	size_t i;
+	char	*m;
+	size_t	i;
 
 	m = malloc(n + 1);
 	if (!m)
@@ -30,7 +30,7 @@ static char *ft_strndup(char *s, size_t n)
 	return (m);
 }
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	if (!s)
 		return (0);

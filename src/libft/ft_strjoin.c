@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:05:48 by noalexan          #+#    #+#             */
-/*   Updated: 2022/06/03 10:16:22 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:42:10 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/libft.h"
 
-static char *ecriture2(char *result, const char *s1, const char *s2)
+static char	*ecriture2(char *result, const char *s1, const char *s2)
 {
-	size_t i;
-	size_t j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;
@@ -34,9 +34,9 @@ static char *ecriture2(char *result, const char *s1, const char *s2)
 	return (result);
 }
 
-static char *ecriture(char *result, const char *s1, const char *s2)
+static char	*ecriture(char *result, const char *s1, const char *s2)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (s1)
@@ -50,9 +50,9 @@ static char *ecriture(char *result, const char *s1, const char *s2)
 	return (ecriture2(result, s1, s2));
 }
 
-char *ft_strjoin(const char *s1, const char *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-	char *result;
+	char	*result;
 
 	if (!s1)
 		result = ft_calloc(ft_strlen(s2) + 1, sizeof(char));

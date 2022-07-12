@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:52:41 by noalexan          #+#    #+#             */
-/*   Updated: 2022/06/03 10:16:36 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:44:16 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/libft.h"
 
-int ft_strncmp(const char *first, const char *second, size_t length)
+int	ft_strncmp(const char *first, const char *second, size_t length)
 {
-	size_t i;
+	size_t	i;
 
 	i = -1;
 	if (!first || !second)

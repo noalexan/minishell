@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:52:33 by noalexan          #+#    #+#             */
-/*   Updated: 2022/06/03 10:12:17 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:41:35 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/libft.h"
 
-char *ft_strchr(const char *string, int searchedChar)
+char	*ft_strchr(const char *string, int searchedChar)
 {
-	size_t i;
+	size_t	i;
 
 	i = -1;
 	if (!string)

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 22:22:32 by noahalexand       #+#    #+#             */
-/*   Updated: 2022/06/03 09:39:57 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:39:53 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/libft.h"
 
-t_stack *ft_lstnew(int value, int index, int order, t_stack *next)
+t_stack	*ft_lstnew(int value, int index, int order, t_stack *next)
 {
-	t_stack *stack;
+	t_stack	*stack;
 
 	stack = malloc(sizeof(t_stack));
 	if (!stack)

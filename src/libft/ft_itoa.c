@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:52:05 by noalexan          #+#    #+#             */
-/*   Updated: 2022/06/03 10:13:57 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:22:44 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/libft.h"
 
-static int ft_nlen(int c)
+static int	ft_nlen(int c)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	if (c < 0)
@@ -27,12 +27,12 @@ static int ft_nlen(int c)
 	return (i);
 }
 
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	long long nb;
-	char *str;
-	int posinega;
-	int len;
+	long long	nb;
+	char		*str;
+	int			posinega;
+	int			len;
 
 	nb = n;
 	len = ft_nlen(nb);
