@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
+#    By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by noalexan          #+#    #+#              #
-#    Updated: 2022/07/14 12:18:24 by noalexan         ###   ########.fr        #
+#    Updated: 2022/07/14 13:44:44 by noahalexand      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ TEST    := 100
 	@printf $(GREEN)"\r\033[KCompiling objects... "$(YELLOW)"<$<> "$(RESET)"⏳ "
 	@$(CC) $(OFLAGS) -c $< -o $(<:.c=.o)
 
-all: load $(NAME) polnareff
+all: $(NAME)
 
 $(NAME): $(OBJ)
 	@printf $(GREEN)"\r\033[KObjects compiled succesfully ✅\n"$(RESET)
@@ -50,6 +50,7 @@ $(NAME): $(OBJ)
 	@printf $(CYAN)"\r\033[KCompiling '$(NAME)'... ⏳"$(RESET)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIB) -I include/ -o $(NAME)
 	@printf $(GREEN)"\r\033[KSuccess compiling '$(NAME)' ✅\n"$(RESET)
+	@printf $(YELLOW)"Minishell polnareff is ready 🕺🏼\n"$(RESET)
 
 run: $(NAME)
 	@$(shell pwd)/$(NAME)
@@ -85,7 +86,7 @@ polnareff:
 	@echo "               ,,,,**,,*/(##(&%###%########%%##(/********/(/((/**,**,,**////(///"
 	@echo "         .......*(**#**/*//((&&#(%%%%##%%%%##(//****,,***/(///*.,,,*,*((/(//((//"
 	@echo "   ..........,,..,#%%##%&&%%&&&&(##@@&&%%%%%#((/****,,****/(/*,*,,,*#(((/((//(/("
-	@printf $(YELLOW)"\nMinishell polnareff is ready 🕺🏼\n"$(RESET)
+	@echo ""
 
 load:
 	@printf '\r █▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ - 0%%\r'

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noalexan          #+#    #+#             */
-/*   Updated: 2022/07/06 13:20:15 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/07/14 15:51:09 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 # define ACCESS_RIGHT 0
 
-# define PROMPT "\033[1;33mminishell\033[0m> "
+# define PROMPT "\033[1;33mminishell polnareff\033[0m> "
 # define ERR_NO_CMD "minishell: \e[1;31merror\e[0m: command \"%s\" not found\n"
 
 t_input	parse(char **split);
