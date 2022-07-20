@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+         #
+#    By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by noalexan          #+#    #+#              #
-#    Updated: 2022/06/17 10:15:36 by noahalexand      ###   ########.fr        #
+#    Updated: 2022/07/20 16:16:50 by mayoub           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ SRCS	:=	ft_atoi.c \
 			ft_putendl_fd.c \
 			ft_lstadd_back.c \
 			ft_lst_before_last.c \
+			ft_isspace.c \
 
 OBJS	:= $(SRCS:.c=.o)
 

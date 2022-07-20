@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/04 16:23:58 by noalexan          #+#    #+#             */
-/*   Updated: 2022/07/19 20:57:47 by noahalexand      ###   ########.fr       */
+/*   Created: 2022/07/04 16:23:58 by Tac               #+#    #+#             */
+/*   Updated: 2022/07/20 16:49:12 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	get_input(const char *prompt, t_input *input)
 
 	i = -1;
 	line = readline(prompt);
+	(*input).tokens = NULL;
 	if (*line)
 	{
 		line_split = ft_split(line, ' ');
@@ -31,8 +32,8 @@ void	get_input(const char *prompt, t_input *input)
 				free(line_split[i]);
 		}
 		free(line_split);
-		free(line);
 	}
+	free(line);
 }
 
 int	ft_minishell(const char *prompt, char **env)
@@ -43,11 +44,14 @@ int	ft_minishell(const char *prompt, char **env)
 	while (1)
 	{
 		get_input(prompt, &input);
-		// printf("\"%s\"\n", input.tokens->content);
-		printf("Here\n");
-		if (!ft_strcmp(input.tokens->content, "leaks"))
-			system("leaks minishell");
-		ft_lstclear(input.tokens);
+		if (input.tokens)
+		{
+			if (!ft_strcmp(input.tokens->content, "exit"))
+				break ;
+			if (!ft_strcmp(input.tokens->content, "leaks"))
+				system("leaks minishell");
+			ft_lstclear(input.tokens);
+		}
 	}
 	return (0);
 }

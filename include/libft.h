@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 10:04:44 by noalexan          #+#    #+#             */
-/*   Updated: 2022/07/19 15:38:05 by noahalexand      ###   ########.fr       */
+/*   Updated: 2022/07/20 16:45:21 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_token {
 typedef struct s_input
 {
 	t_token	*tokens;
+	int		in;
+	int		out;
 }		t_input;
 
 int		ft_isalpha(int character);
@@ -35,6 +37,7 @@ int		ft_isdigit(int character);
 int		ft_isalnum(int character);
 int		ft_isascii(int character);
 int		ft_isprint(int character);
+int		ft_isspace(char c);
 size_t	ft_strlen(const char *str);
 void	*ft_memset(void *pointer, int value, size_t count);
 void	ft_bzero(void *array, size_t size);
