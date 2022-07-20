@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 10:04:44 by noalexan          #+#    #+#             */
-/*   Updated: 2022/07/06 13:33:24 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:38:05 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,14 @@
 # include <unistd.h>
 # include <limits.h>
 
-typedef struct s_cmd
-{
-	char			*cmd;
-	char			**args;
-	struct s_cmd	*next;
-}		t_cmd;
+typedef struct s_token {
+	char			*content;
+	struct s_token	*next;
+}		t_token;
 
 typedef struct s_input
 {
-	t_cmd	*cmds;
+	t_token	*tokens;
 }		t_input;
 
 int		ft_isalpha(int character);
@@ -67,9 +65,9 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-t_cmd	*ft_lstlast(t_cmd *lst);
-t_cmd	*ft_lst_before_last(t_cmd *lst);
-void	ft_lstadd_back(t_cmd **lst, t_cmd *new);
-void	ft_lstclear(t_cmd *stack);
+t_token	*ft_lstlast(t_token *lst);
+t_token	*ft_lst_before_last(t_token *lst);
+void	ft_lstadd_back(t_token **lst, t_token *new);
+void	ft_lstclear(t_token *stack);
 
 #endif

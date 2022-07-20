@@ -6,15 +6,15 @@
 /*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 22:54:11 by noahalexand       #+#    #+#             */
-/*   Updated: 2022/07/12 12:39:32 by noahalexand      ###   ########.fr       */
+/*   Updated: 2022/07/19 15:38:42 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/libft.h"
 
-void	ft_lstadd_back(t_cmd **lst, t_cmd *new)
+void	ft_lstadd_back(t_token **lst, t_token *new)
 {
-	t_cmd	*last;
+	t_token	*last;
 
 	if (*lst != NULL)
 	{

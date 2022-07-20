@@ -6,7 +6,7 @@
 #    By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by noalexan          #+#    #+#              #
-#    Updated: 2022/07/14 13:44:44 by noahalexand      ###   ########.fr        #
+#    Updated: 2022/07/19 13:54:46 by noahalexand      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,7 @@ OFLAGS	:= -Werror -Wextra -Wall
 NAME	:= minishell
 
 SRC		:=	src/main.c \
-			src/parse.c \
-			src/utils.c \
+			src/lexeur/lexeur.c \
 
 OBJ		:= $(SRC:.c=.o)
 

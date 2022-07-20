@@ -6,7 +6,7 @@
 /*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noalexan          #+#    #+#             */
-/*   Updated: 2022/07/14 15:51:09 by noahalexand      ###   ########.fr       */
+/*   Updated: 2022/07/19 13:20:04 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@
 # define PROMPT "\033[1;33mminishell polnareff\033[0m> "
 # define ERR_NO_CMD "minishell: \e[1;31merror\e[0m: command \"%s\" not found\n"
 
-t_input	parse(char **split);
-char	**set_slash(char **path);
-char	*find_path(char *cmd);
+t_input	ft_lexeur(char *line);
 
 #endif

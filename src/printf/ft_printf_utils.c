@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:19:48 by noahalexand       #+#    #+#             */
-/*   Updated: 2022/07/06 11:07:50 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/07/18 10:25:03 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_putstr(char *str, int fd)
 int	ft_putnbr(int nb, int fd)
 {
 	if (nb == -2147483648)
-		return (ft_putnbr(-21474, fd) + ft_putnbr(83648, fd));
+		return (ft_putstr("-2147483648", fd));
 	if (nb < 0)
 		return (ft_putchar('-', fd) + ft_putnbr(nb * -1, fd));
 	else if (nb >= 10)

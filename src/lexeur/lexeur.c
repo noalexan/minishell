@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_before_last.c                               :+:      :+:    :+:   */
+/*   lexeur.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/05 12:44:44 by noalexan          #+#    #+#             */
-/*   Updated: 2022/07/19 15:38:29 by noahalexand      ###   ########.fr       */
+/*   Created: 2022/07/15 13:03:28 by noahalexand       #+#    #+#             */
+/*   Updated: 2022/07/19 20:54:55 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/libft.h"
+#include "../../include/minishell.h"
 
-t_token	*ft_lst_before_last(t_token *lst)
+t_token	*init_tokens(char *line)
 {
-	if (lst && lst->next)
-		while (lst->next->next)
-			lst = lst->next;
-	return (lst);
+	t_token	*token;
+
+	token = ft_calloc(1, sizeof(t_token));
+	token->content = line;
+	token->next = NULL;
+	return (token);
+}
+
+t_input	ft_lexeur(char *line)
+{
+	t_input	lexeur;
+
+	lexeur.tokens = init_tokens(line);
+	return (lexeur);
 }
