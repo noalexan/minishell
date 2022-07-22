@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+         #
+#    By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by noalexan          #+#    #+#              #
-#    Updated: 2022/07/20 16:16:50 by mayoub           ###   ########.fr        #
+#    Updated: 2022/07/22 15:54:31 by noahalexand      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

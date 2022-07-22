@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:23:58 by Tac               #+#    #+#             */
-/*   Updated: 2022/07/22 11:12:52 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:56:00 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,6 @@ int	ft_minishell(const char *prompt, char **env)
 		get_input(prompt, &input);
 		if (input.tokens)
 		{
-			printf("\"%s\"\n", input.tokens->content);
-			while ((input.tokens = input.tokens->next))
-				printf("\"%s\"\n", input.tokens->content);
-			system("leaks minishell");
-			exit(EXIT_SUCCESS);
 			if (!ft_strcmp(input.tokens->content, "leaks"))
 				system("leaks minishell");
 			ft_lstclear(input.tokens);

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/04 09:38:50 by noalexan          #+#    #+#             */
-/*   Updated: 2022/07/22 15:57:15 by noahalexand      ###   ########.fr       */
+/*   Created: 2022/07/22 15:49:28 by noahalexand       #+#    #+#             */
+/*   Updated: 2022/07/22 15:50:24 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/libft.h"
 
-void	ft_lstclear(t_token *token)
+void	ft_lstdelone(t_token *lst, int del(char *))
 {
-	if (token)
+	if (lst)
 	{
-		ft_lstclear(token->next);
-		free(token->content);
-		free(token);
+		del(lst->content);
+		free(lst);
+		lst = NULL;
 	}
 }
