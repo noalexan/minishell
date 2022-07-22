@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:23:58 by Tac               #+#    #+#             */
-/*   Updated: 2022/07/20 16:49:12 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/07/22 11:12:52 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void	get_input(const char *prompt, t_input *input)
 
 	i = -1;
 	line = readline(prompt);
-	(*input).tokens = NULL;
+	input->tokens = NULL;
 	if (*line)
 	{
 		line_split = ft_split(line, ' ');
 		if (*line_split)
 		{
 			add_history(line);
-			*input = ft_lexeur(line);
+			ft_lexeur(input, line);
 			while (line_split[++i])
 				free(line_split[i]);
 		}
@@ -41,19 +41,23 @@ int	ft_minishell(const char *prompt, char **env)
 	t_input	input;
 
 	(void) env;
-	while (1)
+	g_end = FALSE;
+	while (!g_end)
 	{
 		get_input(prompt, &input);
 		if (input.tokens)
 		{
-			if (!ft_strcmp(input.tokens->content, "exit"))
-				break ;
+			printf("\"%s\"\n", input.tokens->content);
+			while ((input.tokens = input.tokens->next))
+				printf("\"%s\"\n", input.tokens->content);
+			system("leaks minishell");
+			exit(EXIT_SUCCESS);
 			if (!ft_strcmp(input.tokens->content, "leaks"))
 				system("leaks minishell");
 			ft_lstclear(input.tokens);
 		}
 	}
-	return (0);
+	return (g_end);
 }
 
 int	main(int argc, char **argv, char **env)
