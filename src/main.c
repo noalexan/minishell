@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:23:58 by tac               #+#    #+#             */
-/*   Updated: 2022/07/26 10:55:56 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/07/26 17:29:20 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,12 @@ void	get_input(const char *prompt, t_input *input)
 	free(line);
 }
 
-int	ft_minishell(const char *prompt, char **env)
+void	ft_minishell(const char *prompt, char **env)
 {
 	t_input	input;
 
 	(void) env;
-	g_end = FALSE;
-	while (!g_end)
+	while (1)
 	{
 		get_input(prompt, &input);
 		if (input.tokens)
@@ -51,7 +50,7 @@ int	ft_minishell(const char *prompt, char **env)
 				system("leaks minishell");
 			if (!ft_strcmp(input.tokens->content, "heredoc"))
 			{
-				int	fd = ft_heredoc(input.tokens->next->content);
+				int	fd = ft_heredoc("end");
 				char *r = ft_calloc(100, sizeof(char));
 				read(fd, r, 100);
 				printf("%s", r);
@@ -60,11 +59,11 @@ int	ft_minishell(const char *prompt, char **env)
 		}
 	}
 	system("leaks minishell");
-	return (g_end);
 }
 
 int	main(int argc, char **argv, char **env)
 {
 	((void) argc, (void) argv);
-	return (ft_minishell(PROMPT, env));
+	ft_minishell(PROMPT, env);
+	return (0);
 }

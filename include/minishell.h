@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noalexan          #+#    #+#             */
-/*   Updated: 2022/07/26 11:05:26 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/07/26 15:38:28 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <signal.h>
 
 # include "libft.h"
 # include "ft_printf.h"
@@ -28,7 +29,7 @@
 # define TRUE 1
 # define FALSE 0
 
-int		g_end;
+int		g_output;
 
 # define ACCESS_RIGHT 0
 

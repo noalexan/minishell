@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 13:03:28 by mtaouil           #+#    #+#             */
-/*   Updated: 2022/07/26 11:05:36 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/07/26 15:24:11 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,11 @@ void	init_tokens(t_input *input, char *line)
 	}
 	line = ft_skip_space(line);
 	getstr = ft_getstr(line);
+	if (!getstr)
+	{
+		free(getstr);
+		printf("minishell: \e[0;33mError synthax\e[0m");
+	}
 	ft_new_token(input, getstr);
 	free(getstr);
 }
