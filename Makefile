@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+         #
+#    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by palmi             #+#    #+#              #
-#    Updated: 2022/07/22 16:02:55 by noahalexand      ###   ########.fr        #
+#    Updated: 2022/07/26 10:23:48 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,10 @@ OFLAGS	:= -Werror -Wextra -Wall
 NAME	:= minishell
 
 SRC		:=	src/main.c \
-			src/lexeur/lexeur.c \
+			src/utils.c \
+			src/heredoc.c \
+			src/lexer/lexer.c \
+			src/builtins/exit.c \
 
 OBJ		:= $(SRC:.c=.o)
 

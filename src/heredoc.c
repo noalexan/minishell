@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/23 09:52:37 by noalexan          #+#    #+#             */
-/*   Updated: 2022/07/26 09:05:35 by noalexan         ###   ########.fr       */
+/*   Created: 2022/07/26 09:27:58 by noalexan          #+#    #+#             */
+/*   Updated: 2022/07/26 09:41:56 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/libft.h"
+#include "../include/minishell.h"
 
-size_t	ft_strlcpy(char *destination, const char *source, size_t size)
+int	ft_heredoc(char *limiter)
 {
-	size_t	i;
-	size_t	j;
+	char	*line;
+	int		fd[2];
 
-	i = -1;
-	j = 0;
-	if (!source || !destination)
-		return (0);
-	if (size > 0)
-		while (source[++i] && i < size - 1)
-			if (source[i] != -1)
-				destination[j++] = source[i];
-	destination[j++] = '\0';
-	return (ft_strlen(source));
+	pipe(fd);
+	line = readline("\e[1;34mheredoc > \e[0m");
+	while (strcmp(line, limiter))
+	{
+		ft_printf(fd[1], "%s\n", line);
+		free(line);
+		line = readline("\e[1;34mheredoc > \e[0m");
+	}
+	free(line);
+	close(fd[1]);
+	return (fd[0]);
 }

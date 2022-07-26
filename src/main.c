@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/04 16:23:58 by Tac               #+#    #+#             */
-/*   Updated: 2022/07/22 15:56:00 by noahalexand      ###   ########.fr       */
+/*   Created: 2022/07/04 16:23:58 by tac               #+#    #+#             */
+/*   Updated: 2022/07/26 10:55:56 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	get_input(const char *prompt, t_input *input)
 		if (*line_split)
 		{
 			add_history(line);
-			ft_lexeur(input, line);
+			ft_lexer(input, line);
 			while (line_split[++i])
 				free(line_split[i]);
 		}
@@ -49,9 +49,17 @@ int	ft_minishell(const char *prompt, char **env)
 		{
 			if (!ft_strcmp(input.tokens->content, "leaks"))
 				system("leaks minishell");
+			if (!ft_strcmp(input.tokens->content, "heredoc"))
+			{
+				int	fd = ft_heredoc(input.tokens->next->content);
+				char *r = ft_calloc(100, sizeof(char));
+				read(fd, r, 100);
+				printf("%s", r);
+			}
 			ft_lstclear(input.tokens);
 		}
 	}
+	system("leaks minishell");
 	return (g_end);
 }
 

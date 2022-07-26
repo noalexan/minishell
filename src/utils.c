@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/23 09:52:37 by noalexan          #+#    #+#             */
-/*   Updated: 2022/07/26 09:05:35 by noalexan         ###   ########.fr       */
+/*   Created: 2022/07/26 08:58:10 by noalexan          #+#    #+#             */
+/*   Updated: 2022/07/26 09:27:53 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/libft.h"
+#include "../include/minishell.h"
 
-size_t	ft_strlcpy(char *destination, const char *source, size_t size)
+char	*ft_skip_space(char *line)
 {
-	size_t	i;
-	size_t	j;
+	while (ft_isspace(*line))
+		line++;
+	return (line);
+}
 
-	i = -1;
-	j = 0;
-	if (!source || !destination)
-		return (0);
-	if (size > 0)
-		while (source[++i] && i < size - 1)
-			if (source[i] != -1)
-				destination[j++] = source[i];
-	destination[j++] = '\0';
-	return (ft_strlen(source));
+int	quote(int value, char *line)
+{
+	*line = -1;
+	return (value);
 }

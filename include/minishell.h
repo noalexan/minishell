@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noalexan          #+#    #+#             */
-/*   Updated: 2022/07/22 09:39:37 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/07/26 11:05:26 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,15 @@ int		g_end;
 # define PROMPT "\033[1;33mminishell polnareff\033[0m> "
 # define ERR_NO_CMD "minishell: \e[1;31merror\e[0m: command \"%s\" not found\n"
 
-void	ft_lexeur(t_input *input, char *line);
+// Lexer
+void	ft_lexer(t_input *input, char *line);
+
+// Utils
+char	*ft_skip_space(char *line);
+int		quote(int value, char *line);
+int		ft_heredoc(char *limiter);
+
+// Builtins
+void	ft_exit(t_input *input);
 
 #endif
