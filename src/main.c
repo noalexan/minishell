@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:23:58 by tac               #+#    #+#             */
-/*   Updated: 2022/07/26 17:29:20 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/07/27 06:34:29 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void	ft_minishell(const char *prompt, char **env)
 		{
 			if (!ft_strcmp(input.tokens->content, "leaks"))
 				system("leaks minishell");
-			if (!ft_strcmp(input.tokens->content, "heredoc"))
-			{
-				int	fd = ft_heredoc("end");
-				char *r = ft_calloc(100, sizeof(char));
-				read(fd, r, 100);
-				printf("%s", r);
-			}
+			// if (!ft_strcmp(input.tokens->content, "heredoc"))
+			// {
+			// 	int	fd = ft_heredoc("end");
+			// 	char *r = ft_calloc(100, sizeof(char));
+			// 	read(fd, r, 100);
+			// 	printf("%s", r);
+			// }
 			ft_lstclear(input.tokens);
 		}
 	}

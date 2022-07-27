@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
+#    By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by palmi             #+#    #+#              #
-#    Updated: 2022/07/26 10:23:48 by noalexan         ###   ########.fr        #
+#    Updated: 2022/07/27 06:53:40 by noahalexand      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC		:=	src/main.c \
 			src/utils.c \
 			src/heredoc.c \
 			src/lexer/lexer.c \
+			src/lexer/redirection.c \
 			src/builtins/exit.c \
 
 OBJ		:= $(SRC:.c=.o)

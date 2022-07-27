@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 13:03:28 by mtaouil           #+#    #+#             */
-/*   Updated: 2022/07/26 15:24:11 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/07/27 15:59:29 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ char	*ft_getstr(char *line)
 	i = -1;
 	d_quote = FALSE;
 	s_quote = FALSE;
+	line = ft_skip_space(line);
 	while (line[++i] && (!ft_isspace(line[i]) || s_quote || d_quote))
 	{
 		if (line[i] == '"' && d_quote && !s_quote)
@@ -36,7 +37,11 @@ char	*ft_getstr(char *line)
 	if (s_quote || d_quote)
 		return (NULL);
 	result = ft_calloc(i + 1, sizeof(char));
-	ft_strlcpy(result, line, i + 1);
+	if (*line)
+	{
+		ft_strlcpy(result, line, i + 1);
+		*line += i;
+	}
 	return (result);
 }
 
@@ -55,22 +60,18 @@ void	init_tokens(t_input *input, char *line)
 {
 	char	*getstr;
 
-	line = ft_skip_space(line);
-	if (*line == '<' && line++)
-	{
-		if (*line == '<' && line++)
-			ft_new_token(input, "<<");
-		else
-			ft_new_token(input, "<");
-	}
-	line = ft_skip_space(line);
+	line = ft_redirection(input, line);
 	getstr = ft_getstr(line);
-	if (!getstr)
+	while (getstr)
 	{
+		printf("\"%s\"\n", line);
+		getstr = ft_getstr(line);
+		if (g_out)
+			printf("minishell: \e[0;33mError synthax\e[0m");
+		else if (getstr)
+			ft_new_token(input, getstr);
 		free(getstr);
-		printf("minishell: \e[0;33mError synthax\e[0m");
 	}
-	ft_new_token(input, getstr);
 	free(getstr);
 }
 

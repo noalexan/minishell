@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noalexan          #+#    #+#             */
-/*   Updated: 2022/07/26 15:38:28 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/07/27 09:46:16 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define TRUE 1
 # define FALSE 0
 
-int		g_output;
+int		g_out;
 
 # define ACCESS_RIGHT 0
 
@@ -38,9 +38,12 @@ int		g_output;
 
 // Lexer
 void	ft_lexer(t_input *input, char *line);
+char	*ft_getstr(char *line);
+char	*ft_redirection(t_input *input, char *line);
 
 // Utils
 char	*ft_skip_space(char *line);
+char	*ft_skip_word(char *line);
 int		quote(int value, char *line);
 int		ft_heredoc(char *limiter);
 
