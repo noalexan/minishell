@@ -6,7 +6,7 @@
 #    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/11/13 15:41:04 by noalexan         ###   ########.fr        #
+#    Updated: 2022/11/13 17:47:25 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ RESET	:= "\033[0m"
 	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 # Compile all .o files
-$(NAME): libs $(OBJ)
+$(NAME): $(OBJ)
 	@printf $(GREEN)"\r\033[KObjects compiled succesfully ✅\n"$(RESET)
 	@make -C src/libft
 	@make -C src/printf
@@ -64,7 +64,15 @@ $(NAME): libs $(OBJ)
 	@printf "\n"
 
 # Default command to launch
-all: update $(NAME)
+all: libs $(NAME)
+
+# Compile and run minishell
+run: all
+	@./$(NAME)
+
+# Vendor
+vendor:
+	@mkdir vendor
 
 # Readline
 vendor/readline: vendor
@@ -76,14 +84,6 @@ readline: vendor/readline
 
 # Library necessary to compile
 libs: readline
-
-# Vendor
-vendor:
-	@mkdir vendor
-
-# Compile and run minishell
-run: $(NAME)
-	@./$(NAME)
 
 # Print our god
 polnareff:
