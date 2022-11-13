@@ -6,7 +6,7 @@
 #    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/11/13 19:02:34 by noalexan         ###   ########.fr        #
+#    Updated: 2022/11/13 19:55:47 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,6 +87,9 @@ readline: vendor/readline
 
 # Library necessary to compile
 libs: readline
+
+shortcut:
+	@open https://www.google.com/search?q=how+to+become+a+good+developer+%3F&rlz=1C5CHFA_enFR1031FR1031&ei=typxY8mBN-yUxc8Pm6CB4Ak&ved=0ahUKEwiJudLQ2Kv7AhVsSvEDHRtQAJwQ4dUDCA8&uact=5&oq=how+to+become+a+good+developer+%3F&gs_lcp=Cgxnd3Mtd2l6LXNlcnAQAzIHCAAQgAQQEzIGCAAQHhATMgYIABAeEBMyBggAEB4QEzIICAAQCBAeEBMyCAgAEAgQHhATMggIABAIEB4QEzIICAAQCBAeEBMyCAgAEAgQHhATMggIABAIEB4QEzoKCAAQRxDWBBCwAzoJCAAQgAQQDRATOggIABAeEA0QEzoICAAQFhAeEBNKBAhNGAFKBAhBGABKBAhGGABQhgpYnDJgvTdoAXABeACAAWaIAe0BkgEDMi4xmAEAoAEByAEIwAEB&sclient=gws-wiz-serp
 
 # Print our god
 polnareff:
