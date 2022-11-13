@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 15:04:03 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/13 19:50:33 by noalexan         ###   ########.fr       */
+/*   Created: 2022/11/13 18:59:11 by noalexan          #+#    #+#             */
+/*   Updated: 2022/11/13 19:03:34 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	main(int argc, char **argv, char **envv)
+int	ft_skip_space(char *line, int i)
 {
-	t_env	*env;
+	int	j;
 
-	((void) argc, (void) argv, (void) envv);
-	env = ft_create_env(envv);
-	ft_minishell(ft_makeprompt(PROMPT, env), env);
-	system("leaks minishell");
-	return (0);
+	j = -1;
+	while (ft_isspace(line[++j + i]))
+		;
+	return (j);
 }

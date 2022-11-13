@@ -6,7 +6,7 @@
 #    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/11/13 17:47:25 by noalexan         ###   ########.fr        #
+#    Updated: 2022/11/13 19:02:34 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,9 @@ NAME	:= minishell
 # All needed files
 SRC		:=	src/env.c \
 			src/main.c \
+			src/utils.c \
+			src/lexer.c \
+			src/minishell.c \
 
 OBJ		:= $(SRC:.c=.o)
 
