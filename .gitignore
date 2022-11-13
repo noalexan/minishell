@@ -1,0 +1,10 @@
+minishell
+vendor/
+.vscode/
+.DS_Store
+*.o
+*.a
+*.dylib
+*test*
+*.out
+*.dSYM
