@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:55 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/13 19:11:24 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/14 11:05:29 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ t_getstr	ft_getstr(char **l, int i, t_env *env)
 			d_q = ft_quote(&((*l)[a.size + i]), TRUE);
 		else if ((*l)[a.size + i] == '\"' && d_q && !s_q)
 			d_q = ft_quote(&((*l)[a.size + i]), FALSE);
-		// else if ((*l)[a.size + i] == '$' && !s_q)
-		// 	(*l) = ft_strdup_and_free(ft_variable(l, a.size + i, env));
+		else if ((*l)[a.size + i] == '$' && !s_q)
+			(*l) = ft_strdup_and_free(ft_variable(l, a.size + i, env));
 	}
 	if (s_q || d_q)
 		g_exitcode = 258;
@@ -71,7 +71,7 @@ t_getstr	ft_getstr(char **l, int i, t_env *env)
 	return (a);
 }
 
-t_token *ft_generate_token(char **line, int i, t_env *env)
+t_token	*ft_generate_token(char **line, int i, t_env *env)
 {
 	t_token		*token;
 	t_getstr	getstr;
@@ -91,7 +91,7 @@ t_token *ft_generate_token(char **line, int i, t_env *env)
 	return (token);
 }
 
-t_token *ft_lexer(char **line, t_env *env)
+t_token	*ft_lexer(char **line, t_env *env)
 {
 	t_token	*token;
 	int		i;

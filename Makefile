@@ -6,7 +6,7 @@
 #    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/11/13 19:55:47 by noalexan         ###   ########.fr        #
+#    Updated: 2022/11/14 10:45:15 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC		:=	src/env.c \
 			src/main.c \
 			src/utils.c \
 			src/lexer.c \
+			src/variable.c \
 			src/minishell.c \
 
 OBJ		:= $(SRC:.c=.o)
@@ -67,7 +68,7 @@ $(NAME): $(OBJ)
 	@printf "\n"
 
 # Default command to launch
-all: libs $(NAME)
+all: vendor/readline $(NAME)
 
 # Compile and run minishell
 run: all
@@ -82,11 +83,6 @@ vendor/readline: vendor
 	@printf $(CYAN)"\r\033[KInstallation of readline... ⏳\n"$(RESET)
 	@sh install_readline.sh
 	@printf $(GREEN)"Readline installed ✅\n"$(RESET)
-
-readline: vendor/readline
-
-# Library necessary to compile
-libs: readline
 
 shortcut:
 	@open https://www.google.com/search?q=how+to+become+a+good+developer+%3F&rlz=1C5CHFA_enFR1031FR1031&ei=typxY8mBN-yUxc8Pm6CB4Ak&ved=0ahUKEwiJudLQ2Kv7AhVsSvEDHRtQAJwQ4dUDCA8&uact=5&oq=how+to+become+a+good+developer+%3F&gs_lcp=Cgxnd3Mtd2l6LXNlcnAQAzIHCAAQgAQQEzIGCAAQHhATMgYIABAeEBMyBggAEB4QEzIICAAQCBAeEBMyCAgAEAgQHhATMggIABAIEB4QEzIICAAQCBAeEBMyCAgAEAgQHhATMggIABAIEB4QEzoKCAAQRxDWBBCwAzoJCAAQgAQQDRATOggIABAeEA0QEzoICAAQFhAeEBNKBAhNGAFKBAhBGABKBAhGGABQhgpYnDJgvTdoAXABeACAAWaIAe0BkgEDMi4xmAEAoAEByAEIwAEB&sclient=gws-wiz-serp
@@ -199,4 +195,4 @@ fclean_readline:
 # Clean all and recompile minishell
 re: fclean all
 
-.PHONY: all clean fclean re libs readline polnareff load fclean_readline run update
+.PHONY: all clean fclean re polnareff load fclean_readline run

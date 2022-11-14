@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/13 19:32:15 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/14 10:23:14 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ int	ft_minishell(const char *prompt, t_env *env)
 	{
 		line = readline(prompt);
 		if (!line)
-		{
-			printf("exit\n");
-			exit(0);
-		}
+			(printf("exit\n"), exit(0));
 		token = ft_lexer(&line, env);
 		if (token && token->content)
 		{

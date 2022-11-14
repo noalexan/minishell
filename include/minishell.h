@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/13 19:16:03 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/14 10:59:39 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,8 @@ t_token	*ft_lexer(char **line, t_env *env);
 
 // src/utils.c
 int		ft_skip_space(char *line, int i);
+
+// src/variable.c
+char	*ft_variable(char **l, int i, t_env *env);
 
 #endif
