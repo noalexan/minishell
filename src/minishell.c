@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/14 10:23:14 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/16 08:11:29 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+int	ft_builtins(t_token	*token, t_env *env)
+{
+	if (!ft_strcmp(token->content, "env"))
+		env_exp(token, env, 0);
+	else if (!ft_strcmp(token->content, "export"))
+		env_exp(token, env, 1);
+	else
+		return (0);
+	return (1);
+}
 
 char	*ft_makeprompt(char *prompt, t_env *env)
 {
@@ -45,7 +56,7 @@ int	ft_minishell(const char *prompt, t_env *env)
 		token = ft_lexer(&line, env);
 		if (token && token->content)
 		{
-			// if (!ft_builtin(token, env, lenv, lexp))
+			ft_builtins(token, env);
 			// 	ft_execute(token);
 			/* =========================================== DEBUG COMMAND ======================================== */
 			/**/	if (!ft_strcmp(token->content, "leaks"))													/**/

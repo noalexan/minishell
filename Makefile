@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
+#    By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/11/14 10:45:15 by noalexan         ###   ########.fr        #
+#    Updated: 2022/11/16 08:11:45 by mayoub           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ SRC		:=	src/env.c \
 			src/lexer.c \
 			src/variable.c \
 			src/minishell.c \
+			src/builtins/env.c \
+			src/builtins/export.c \
 
 OBJ		:= $(SRC:.c=.o)
 

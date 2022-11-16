@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/14 10:59:39 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/16 08:11:11 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_env
 // src/env.c
 t_env	*ft_create_env(char	**env);
 t_env	*ft_get_var(char *name, t_env *env);
+char	*ft_get_content(char *str);
 
 // src/minishell.c
 char	*ft_makeprompt(char *prompt, t_env *env);
@@ -50,6 +51,12 @@ t_token	*ft_lexer(char **line, t_env *env);
 
 // src/utils.c
 int		ft_skip_space(char *line, int i);
+
+// src/builtins/env.c
+void	env_exp(t_token *token, t_env *env, int e);
+
+// src/builtins/export.c
+void	ft_export(t_token *token, t_env *env);
 
 // src/variable.c
 char	*ft_variable(char **l, int i, t_env *env);
