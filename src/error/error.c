@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 22:54:11 by noahalexand       #+#    #+#             */
-/*   Updated: 2022/11/16 17:48:37 by mayoub           ###   ########.fr       */
+/*   Created: 2022/11/17 13:50:42 by UwU               #+#    #+#             */
+/*   Updated: 2022/11/17 13:56:01 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/libft.h"
+#include "../../include/minishell.h"
 
-void	ft_lstadd_back(t_token **lst, t_token *new)
+void	error_export(char *str)
 {
-	t_token	*last;
-
-	if (!lst)
-		return ;
-	else if (*lst)
-	{
-		last = ft_lstlast(*lst);
-		last->next = new;
-	}
-	else
-		*lst = new;
+	printf("\e[31;1m[minishell]: export: `%s", str);
+	printf("': not a valid identifier\n\e[0m");
 }

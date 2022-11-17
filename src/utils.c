@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 18:59:11 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/13 19:03:34 by noalexan         ###   ########.fr       */
+/*   Created: 2022/11/13 18:59:11 by sspina          #+#    #+#             */
+/*   Updated: 2022/11/16 18:01:49 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,27 @@ int	ft_skip_space(char *line, int i)
 	while (ft_isspace(line[++j + i]))
 		;
 	return (j);
+}
+
+t_env	*ft_lstlast_env(t_env *lst)
+{
+	if (lst)
+		while (lst->next)
+			lst = lst->next;
+	return (lst);
+}
+
+void	ft_lstadd_back_env(t_env **lst, t_env *new)
+{
+	t_env	*last;
+
+	if (!lst)
+		return ;
+	else if (*lst)
+	{
+		last = ft_lstlast_env(*lst);
+		last->next = new;
+	}
+	else
+		*lst = new;
 }

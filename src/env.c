@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:39:14 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/14 11:22:07 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/16 19:22:31 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_env	*ft_create_env_variable(char *name, char *content)
 	var = ft_calloc(1, sizeof(t_env));
 	var->name = ft_strdup_and_free(name);
 	var->content = ft_strdup_and_free(content);
+	var->type = 1;
 	var->next = NULL;
 	return (var);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 18:37:29 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/16 08:11:29 by mayoub           ###   ########.fr       */
+/*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
+/*   Updated: 2022/11/17 14:22:34 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,6 @@ int	ft_minishell(const char *prompt, t_env *env)
 			/**/	{																							/**/
 			/**/		system("make fclean run");																/**/
 			/**/		exit(EXIT_SUCCESS);																		/**/
-			/**/	}																							/**/
-			/**/	else if (!ft_strcmp(token->content, "-env"))												/**/
-			/**/	{																							/**/
-			/**/		t_env *tmp = env;																		/**/
-			/**/		while (tmp)																				/**/
-			/**/		{																						/**/
-			/**/			printf("%s=%s\n", tmp->name, tmp->content);											/**/
-			/**/			tmp = tmp->next;																	/**/
-			/**/		}																						/**/
 			/**/	}																							/**/
 			/**/	else if (!ft_strcmp(token->content, "colors"))												/**/
 			/**/	{																							/**/
