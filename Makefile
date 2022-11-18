@@ -6,7 +6,7 @@
 #    By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/11/17 13:55:42 by mayoub           ###   ########.fr        #
+#    Updated: 2022/11/17 16:16:54 by mayoub           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,10 @@ SRC		:=	src/env.c \
 			src/utils.c \
 			src/lexer.c \
 			src/variable.c \
+			src/signal.c \
 			src/minishell.c \
 			src/error/error.c \
+			src/builtins/echo.c \
 			src/builtins/env.c \
 			src/builtins/export.c \
 

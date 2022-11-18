@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/11/17 14:10:41 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/17 16:19:42 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdio.h>
 # include <readline/history.h>
+# include <signal.h>
+# include <termios.h>
 
 # include "libft.h"
 # include "ft_printf.h"
@@ -55,6 +57,14 @@ t_token	*ft_lexer(char **line, t_env *env);
 int		ft_skip_space(char *line, int i);
 void	ft_lstadd_back_env(t_env **lst, t_env *new);
 t_env	*ft_lstlast_env(t_env *lst);
+
+// src/signal.c
+void	rl_replace_line(const char *text, int clear_undo);
+void	clavier(int sig_num);
+void	echo_control_seq(int c);
+
+// src/builtins/echo.c
+void	ft_echo(t_token *token);
 
 // src/builtins/env.c
 void	env_exp(t_token *token, t_env *env, int e);

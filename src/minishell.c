@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/11/17 14:22:34 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/17 16:20:27 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_builtins(t_token	*token, t_env *env)
 		env_exp(token, env, 0);
 	else if (!ft_strcmp(token->content, "export"))
 		env_exp(token, env, 1);
+	else if (!ft_strcmp(token->content, "echo"))
+		ft_echo(token->next);
 	else
 		return (0);
 	return (1);

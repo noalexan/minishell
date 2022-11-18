@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:04:03 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/13 19:50:33 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/17 16:11:48 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int argc, char **argv, char **envv)
 
 	((void) argc, (void) argv, (void) envv);
 	env = ft_create_env(envv);
+	echo_control_seq(0);
+	signal(SIGINT, clavier);
 	ft_minishell(ft_makeprompt(PROMPT, env), env);
 	system("leaks minishell");
 	return (0);
