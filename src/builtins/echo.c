@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:14:49 by César             #+#    #+#             */
-/*   Updated: 2022/11/18 11:22:42 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/18 11:30:11 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,8 @@ void	ft_echo(t_token *token)
 		return ((void)printf("\n"));
 	if (!ft_strcmp(tmp->content, "$?"))
 		printf("%d\n", g_exitcode);
-	while (where_is_n(tmp->content) && tmp->next)
-	{
-		n++;
+	while (where_is_n(tmp->content) && tmp->next && ++n)
 		tmp = tmp->next;
-	}
 	if (where_is_n(tmp->content))
 		return ;
 	while (tmp)
