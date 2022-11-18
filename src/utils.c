@@ -22,6 +22,20 @@ int	ft_skip_space(char *line, int i)
 	return (j);
 }
 
+int	is_equal(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '=')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 t_env	*ft_lstlast_env(t_env *lst)
 {
 	if (lst)

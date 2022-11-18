@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/11/17 16:19:42 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/18 13:56:57 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_token	*ft_lexer(char **line, t_env *env);
 int		ft_skip_space(char *line, int i);
 void	ft_lstadd_back_env(t_env **lst, t_env *new);
 t_env	*ft_lstlast_env(t_env *lst);
+int		is_equal(char *str);
 
 // src/signal.c
 void	rl_replace_line(const char *text, int clear_undo);

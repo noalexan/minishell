@@ -6,25 +6,11 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:00:00 by Tac               #+#    #+#             */
-/*   Updated: 2022/11/17 14:20:05 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/18 17:30:48 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-int	is_equal(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '=')
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 int	parse_export(char *str)
 {
@@ -49,16 +35,22 @@ void	ft_export(t_token *token, t_env *env)
 {
 	t_env	*tmp;
 	t_token	*tkn;
+	char	*str;
 
 	tmp = env;
 	tkn = token;
-	while (env)
+	while (tkn)
 	{
+		str = ft_get_name(tkn->content);
 		if (!parse_export(tkn->content))
 			return (error_export(tkn->content));
-		if (!ft_strcmp(ft_get_name(tkn->content), env->name)
+		if (!ft_strcmp(str, env->name)
 			&& is_equal(tkn->content) && env->type == 1)
+		{
+			free(env->content);
 			env->content = ft_get_content(tkn->content);
+		}
+		free(str);
 		env = env->next;
 	}
 	env = tmp;
