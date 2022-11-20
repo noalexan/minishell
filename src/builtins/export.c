@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:00:00 by Tac               #+#    #+#             */
-/*   Updated: 2022/11/18 21:32:06 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/20 12:17:21 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,19 @@ void	ft_export(t_token *token, t_env *env)
 	tkn = token;
 	while (env)
 	{
-		str = ft_get_name(tkn->content);
-		if (!parse_export(tkn->content))
-			return (error_export(tkn->content));
+		if (!parse_export(token->content))
+			return (error_export(token->content));
+		str = ft_get_name(token->content);
 		if (!ft_strcmp(str, env->name)
-			&& is_equal(tkn->content) && env->type == 1)
+			&& is_equal(token->content) && env->type == 1)
 		{
 			free(env->content);
-			env->content = ft_get_content(tkn->content);
+			env->content = ft_get_content(token->content);
 		}
 		free(str);
 		env = env->next;
+		if (token->next)
+			ft_export(token->next, env);
 	}
 	env = tmp;
 }
