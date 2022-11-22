@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/11/22 15:44:38 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/22 19:51:39 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_env
 {
 	char			*name;
 	char			*content;
-	int				type;
 	struct s_env	*next;
 }		t_env;
 
@@ -61,6 +60,7 @@ t_env	*ft_lstlast_env(t_env *lst);
 int		is_equal(char *str);
 t_env	*ft_lstnew_env(void *content);
 void	ft_free(void *a);
+void	ft_lst_delone_env(t_env *env, t_env *del);
 
 // src/signal.c
 void	rl_replace_line(const char *text, int clear_undo);
@@ -75,11 +75,17 @@ void	env_exp(t_token *token, t_env *env, int e);
 
 // src/builtins/export.c
 void	ft_export(t_token *token, t_env *env);
+int		parse_export(char *str);
+
+// src/builtins/unset.c
+void	ft_lst_delete(t_env *e, char *name);
+void	ft_unset(t_token *token, t_env *env);
 
 // src/variable.c
 char	*ft_variable(char **l, int i, t_env *env);
 
 // src/error/error.c
-void	error_export(char *str);
+void	error_export(char *s1, char *s2);
+int		error_unknown(char *str);
 
 #endif

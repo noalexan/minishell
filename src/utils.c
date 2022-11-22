@@ -48,7 +48,6 @@ t_env	*ft_lstadd_back_env(t_env **lst, t_env *new)
 {
 	t_env	*last;
 
-	printf("%s????????????????????????\n", new->content);
 	if (!lst)
 		return (NULL);
 	else if (*lst)
@@ -57,10 +56,7 @@ t_env	*ft_lstadd_back_env(t_env **lst, t_env *new)
 		last->next = new;
 	}
 	else
-	{
 		*lst = new;
-		printf("%s!!!!!!!!!!!!!!!!!!!!!!!\n", (*lst)->name);
-	}
 	return (new);
 }
 
@@ -72,19 +68,26 @@ t_env	*ft_lstnew_env(void *content)
 	if (new_element == NULL)
 		return (NULL);
 	if (!is_equal(content))
-	{
 		new_element->content = NULL;
-		new_element->type = 0;
-	}
 	else
-	{
-		printf("lol\n");
 		new_element->content = ft_get_content(content);
-		new_element->type = 1;
-	}
 	new_element->name = ft_get_name(content);
 	new_element->next = NULL;
 	return (new_element);
+}
+
+void	ft_lst_delone_env(t_env *env, t_env *unset)
+{
+	t_env	*tmp;
+
+	tmp = env;
+	while (env->next != unset)
+		env = env->next;
+	free(unset->content);
+	free(unset->name);
+	free(unset);
+	env->next = unset->next;
+	env = tmp;
 }
 
 void	ft_free(void *a)

@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:00:00 by Tac               #+#    #+#             */
-/*   Updated: 2022/11/22 17:33:39 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/22 19:51:39 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	parse_export(char *str)
 		return (0);
 	while (str[i])
 	{
-		if ((str[i] >= 0 && str[i] <= 31) || (str[i] >= 33 && str[i] <= 47)
+		if ((str[i] >= 0 && str[i] <= 31) || (str[i] >= 35 && str[i] <= 47)
 			|| (str[i] >= 58 && str[i] <= 60)
 			|| (str[i] >= 62 && str[i] <= 64)
-			|| (str[i] >= 123 && str[i] <= 127))
+			|| (str[i] >= 123 && str[i] <= 127) || (str[i] == 33))
 			return (0);
 		i++;
 	}
@@ -41,7 +41,8 @@ void	ft_export(t_token *token, t_env *e)
 	if (token)
 	{
 		if (!parse_export(token->content))
-			return (error_export(token->content), ft_export(token->next, e));
+			return (error_export("export", token->content),
+				ft_export(token->next, e));
 		n = ft_get_name(token->content);
 		content = ft_get_content(token->content);
 		v = ft_get_var(n, e);

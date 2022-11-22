@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 18:43:55 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/21 15:31:08 by mayoub           ###   ########.fr       */
+/*   Created: 2022/11/13 18:43:55 by tle               #+#    #+#             */
+/*   Updated: 2022/11/22 19:51:39 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,6 @@ void	ft_new_token(t_token **token, char *content)
 	ft_lstadd_back(token, new);
 }
 
-// else if ((*line)[a.size + i + 1] == '>' || ((*line)[a.size + i] == '>'))
-// {
-//      a.size++;
-//      break ;
-// }
-
 t_getstr	ft_getstr(char **l, int i, t_env *env)
 {
 	t_getstr	a;
@@ -50,17 +44,16 @@ t_getstr	ft_getstr(char **l, int i, t_env *env)
 	s_q = FALSE;
 	d_q = FALSE;
 	a.size = -1;
-	(void) env;
 	while ((*l)[++a.size + i] && (s_q || d_q || !ft_isspace((*l)[a.size + i])))
 	{
 		if ((*l)[a.size + i] == '\'' && !s_q && !d_q)
-			s_q = ft_quote(&((*l)[a.size + i]), TRUE);
+			s_q = TRUE;
 		else if ((*l)[a.size + i] == '\'' && s_q && !d_q)
-			s_q = ft_quote(&((*l)[a.size + i]), FALSE);
+			s_q = FALSE;
 		else if ((*l)[a.size + i] == '\"' && !d_q && !s_q)
-			d_q = ft_quote(&((*l)[a.size + i]), TRUE);
+			d_q = TRUE;
 		else if ((*l)[a.size + i] == '\"' && d_q && !s_q)
-			d_q = ft_quote(&((*l)[a.size + i]), FALSE);
+			d_q = FALSE;
 		else if ((*l)[a.size + i] == '$' && !s_q)
 			(*l) = ft_strdup_and_free(ft_variable(l, a.size + i, env));
 	}

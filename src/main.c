@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 15:04:03 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/17 16:11:48 by mayoub           ###   ########.fr       */
+/*   Created: 2022/11/13 15:04:03 by flemaitr          #+#    #+#             */
+/*   Updated: 2022/11/22 20:03:58 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,3 +24,9 @@ int	main(int argc, char **argv, char **envv)
 	system("leaks minishell");
 	return (0);
 }
+
+// Version : 1.0.0
+// Author : Marwan Ayoub, Noah Alexandre
+
+// ! S'OCCUPER DU EXIT_CODE
+// ! S'OCCUPER DU '$?'

@@ -6,7 +6,7 @@
 #    By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/11/22 15:53:37 by mayoub           ###   ########.fr        #
+#    Updated: 2022/11/22 18:32:46 by mayoub           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC		:=	src/env.c \
 			src/builtins/echo.c \
 			src/builtins/env.c \
 			src/builtins/export.c \
+			src/builtins/unset.c \
 
 OBJ		:= $(SRC:.c=.o)
 

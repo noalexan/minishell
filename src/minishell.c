@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/11/22 17:32:30 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/22 20:13:02 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ int	ft_builtins(t_token	*token, t_env *env)
 		env_exp(token, env, 0);
 	else if (!ft_strcmp(token->content, "export"))
 		env_exp(token, env, 1);
+	else if (!ft_strcmp(token->content, "unset"))
+		env_exp(token, env, 2);
 	else if (!ft_strcmp(token->content, "echo"))
 		ft_echo(token->next);
 	else
-		return (0);
+		return (error_unknown(token->content));
 	return (1);
 }
 
@@ -65,11 +67,15 @@ int	ft_minishell(const char *prompt, t_env *env)
 			/**/	if (!ft_strcmp(token->content, "leaks"))													/**/
 			/**/		system("leaks minishell");																/**/
 			/**/	else if (!strcmp(token->content, "exit"))													/**/
-			/**/		exit(0);																				/**/
+			/**/		(printf("exit\n"), exit(0));																				/**/
 			/**/	else if (!ft_strcmp(token->content, "re"))													/**/
 			/**/	{																							/**/
 			/**/		system("make run");																		/**/
 			/**/		exit(EXIT_SUCCESS);																		/**/
+			/**/	}																							/**/
+			/**/	else if (!ft_strcmp(token->content, "del"))													/**/
+			/**/	{																							/**/
+			/**/		ft_lst_delete(env, "USER");																/**/
 			/**/	}																							/**/
 			/**/	else if (!ft_strcmp(token->content, "fre"))													/**/
 			/**/	{																							/**/

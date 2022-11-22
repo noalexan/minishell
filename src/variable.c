@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variable.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 10:38:30 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/14 14:55:45 by noalexan         ###   ########.fr       */
+/*   Created: 2022/11/14 10:38:30 by cjunker           #+#    #+#             */
+/*   Updated: 2022/11/22 19:51:40 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,16 @@ char	*ft_variable(char **l, int i, t_env *env)
 		line = ft_strldup((*l), i);
 		tmp = ft_strjoin(line, variable->content);
 		free(line);
-		line = ft_strjoin(tmp, (*l) + i + ++j);
-		printf("i=%d, j=%d, tmp=%s, name=%s, content=%s, line=%s, after=%s, result=%s\n", i, j, tmp, variable->name, variable->content, (*l), (*l) + i + j + 1, line);
+		line = ft_strjoin(tmp, (*l) + i + j + 1);
+		printf("\e[34;1m[DEBUG]: \e[35;1m[variable]: name = \"%s\", content = \"%s\"\n\e[0m", variable->name, variable->content);
 		free(tmp);
 		free(*l);
 		return (line);
 	}
 	else
-		return ("");
+	{
+		printf("tmp = '%s'\n", tmp);
+		free(*l);
+		return (ft_strdup("dsfsdghsdfdsfdfdgsdgsdfgsdgsdgdsfdgdsfgdfsgdfsffdfgdfgfdgdfgdrggdr"));
+	}
 }
