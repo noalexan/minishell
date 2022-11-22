@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/11/18 21:54:40 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/22 15:44:38 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_env
 
 // src/env.c
 t_env	*ft_create_env(char	**env);
+t_env	*ft_create_env_var(char *name, char *content);
 t_env	*ft_get_var(char *name, t_env *env);
 char	*ft_get_name(char *str);
 char	*ft_get_content(char *str);
@@ -55,9 +56,11 @@ t_token	*ft_lexer(char **line, t_env *env);
 
 // src/utils.c
 int		ft_skip_space(char *line, int i);
-void	ft_lstadd_back_env(t_env **lst, t_env *new);
+t_env	*ft_lstadd_back_env(t_env **lst, t_env *new);
 t_env	*ft_lstlast_env(t_env *lst);
 int		is_equal(char *str);
+t_env	*ft_lstnew_env(void *content);
+void	ft_free(void *a);
 
 // src/signal.c
 void	rl_replace_line(const char *text, int clear_undo);

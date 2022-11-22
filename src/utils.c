@@ -44,17 +44,51 @@ t_env	*ft_lstlast_env(t_env *lst)
 	return (lst);
 }
 
-void	ft_lstadd_back_env(t_env **lst, t_env *new)
+t_env	*ft_lstadd_back_env(t_env **lst, t_env *new)
 {
 	t_env	*last;
 
+	printf("%s????????????????????????\n", new->content);
 	if (!lst)
-		return ;
+		return (NULL);
 	else if (*lst)
 	{
 		last = ft_lstlast_env(*lst);
 		last->next = new;
 	}
 	else
+	{
 		*lst = new;
+		printf("%s!!!!!!!!!!!!!!!!!!!!!!!\n", (*lst)->name);
+	}
+	return (new);
+}
+
+t_env	*ft_lstnew_env(void *content)
+{
+	t_env	*new_element;
+
+	new_element = (t_env *)malloc(1 * sizeof(t_env));
+	if (new_element == NULL)
+		return (NULL);
+	if (!is_equal(content))
+	{
+		new_element->content = NULL;
+		new_element->type = 0;
+	}
+	else
+	{
+		printf("lol\n");
+		new_element->content = ft_get_content(content);
+		new_element->type = 1;
+	}
+	new_element->name = ft_get_name(content);
+	new_element->next = NULL;
+	return (new_element);
+}
+
+void	ft_free(void *a)
+{
+	if (a)
+		free(a);
 }

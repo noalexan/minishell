@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/11/18 17:40:44 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/22 17:32:30 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	ft_minishell(const char *prompt, t_env *env)
 
 	while (1)
 	{
+		g_exitcode = 0;
 		line = readline(prompt);
 		if (!line)
 			(printf("exit\n"), exit(0));

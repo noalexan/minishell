@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 13:08:18 by noalexan          #+#    #+#             */
-/*   Updated: 2022/08/18 13:04:00 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:31:58 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ char	*ft_strdup_and_free(char *source)
 	if (!copy)
 		return (NULL);
 	ft_memcpy(copy, source, ft_strlen(source));
-	free(source);
+	if (source)
+		free(source);
 	return (copy);
 }
 
