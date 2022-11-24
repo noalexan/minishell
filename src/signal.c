@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 16:27:04 by Mel               #+#    #+#             */
-/*   Updated: 2022/11/05 18:40:03 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/23 10:40:35 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	clavier(int sig_num)
 		rl_on_new_line();
 		rl_redisplay();
 	}
+	g_exitcode = 1;
 }
 
 void	echo_control_seq(int c)

@@ -6,7 +6,7 @@
 #    By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/11/22 18:32:46 by mayoub           ###   ########.fr        #
+#    Updated: 2022/11/23 08:40:01 by mayoub           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ $(NAME): $(OBJ)
 	@printf "\n"
 
 # Default command to launch
-all: vendor/readline $(NAME)
+all: $(NAME)
 
 # Compile and run minishell
 run: all

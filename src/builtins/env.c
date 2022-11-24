@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:20:14 by mhug              #+#    #+#             */
-/*   Updated: 2022/11/22 19:51:39 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/23 10:22:03 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,5 @@ void	env_exp(t_token *token, t_env *env, int e)
 			printf("%s=%s\n", tmp->name, tmp->content);
 		tmp = tmp->next;
 	}
+	g_exitcode = 0;
 }

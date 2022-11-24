@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/11/22 20:13:02 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/23 10:59:15 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	ft_builtins(t_token	*token, t_env *env)
 		env_exp(token, env, 2);
 	else if (!ft_strcmp(token->content, "echo"))
 		ft_echo(token->next);
+	else if (!ft_strcmp(token->content, "exitcode"))
+		(printf("%d\n", g_exitcode), g_exitcode = 0);
 	else
 		return (error_unknown(token->content));
 	return (1);
@@ -54,7 +56,6 @@ int	ft_minishell(const char *prompt, t_env *env)
 
 	while (1)
 	{
-		g_exitcode = 0;
 		line = readline(prompt);
 		if (!line)
 			(printf("exit\n"), exit(0));
