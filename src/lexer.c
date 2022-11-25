@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:55 by tle               #+#    #+#             */
-/*   Updated: 2022/11/25 00:32:25 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/25 02:01:45 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_getstr	ft_getstr(char **l, int i)
 		else if ((*l)[a.size + i] == '\"' && d_q && !s_q)
 			d_q = FALSE;
 		else if ((*l)[a.size + i] == '$' && !s_q)
-			(*l) = ft_strdup_and_free(ft_variable(l, a.size + i));
+			(*l) = ft_strdup_and_free(ft_expender(l, a.size + i));
 	}
 	if (s_q || d_q)
 		g_minishell.exitcode = 258;

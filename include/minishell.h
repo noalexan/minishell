@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/11/25 00:26:32 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/25 02:01:34 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void	rl_replace_line(const char *text, int clear_undo);
 void	clavier(int sig_num);
 void	echo_control_seq(int c);
 
-// src/variable.c
-char	*ft_variable(char **l, int i);
+// src/expender.c
+char	*ft_expender(char **l, int i);
 
 // src/builtins/echo.c
 void	ft_echo(t_token *token);
