@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 16:27:04 by Mel               #+#    #+#             */
-/*   Updated: 2022/11/24 23:51:41 by noalexan         ###   ########.fr       */
+/*   Created: 2022/04/19 12:08:33 by noalexan          #+#    #+#             */
+/*   Updated: 2022/11/25 00:16:45 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/get_next_line.h"
 
-void	clavier(int sig_num)
+char	*get_next_line(int fd)
 {
-	if (sig_num == SIGINT)
+	static char	*save[OPEN_MAX];
+	char		buffer[BUFFER_SIZE + 1];
+	int			bytes;
+
+	bytes = read(fd, buffer, BUFFER_SIZE);
+	while (bytes > 0)
 	{
-		printf("\n");
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
+		buffer[bytes] = '\0';
+		add_buffer(&save[fd], buffer);
+		if (there_is_a_end_of_line(save[fd]) != -1)
+			return (get_line(&save[fd]));
+		bytes = read(fd, buffer, BUFFER_SIZE);
 	}
-	g_minishell.exitcode = 1;
-}
-
-void	echo_control_seq(int c)
-{
-	struct termios	conf;
-
-	ioctl(ttyslot(), TIOCGETA, &conf);
-	if (c == 1)
-		conf.c_lflag |= ECHOCTL;
-	else if (c == 0)
-		conf.c_lflag &= ~(ECHOCTL);
-	ioctl(ttyslot(), TIOCSETA, &conf);
+	return (get_line(&save[fd]));
 }

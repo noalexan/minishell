@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:20:14 by mhug              #+#    #+#             */
-/*   Updated: 2022/11/23 10:22:03 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/24 23:58:19 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	env_exp(t_token *token, t_env *env, int e)
+void	env_exp(t_token *token, int e)
 {
 	t_env	*tmp;
 
-	tmp = env;
+	tmp = g_minishell.env;
 	if (e == 2 && token->next)
-		return (ft_unset(token->next, env));
+		return (ft_unset(token->next));
 	else if (e == 1 && token->next)
-		return (ft_export(token->next, env));
+		return (ft_export(token->next));
 	while (tmp)
 	{
 		if (e == 1 && tmp->content == NULL)
@@ -31,5 +31,4 @@ void	env_exp(t_token *token, t_env *env, int e)
 			printf("%s=%s\n", tmp->name, tmp->content);
 		tmp = tmp->next;
 	}
-	g_exitcode = 0;
 }

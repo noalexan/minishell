@@ -3,22 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:39:14 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/22 15:53:08 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/24 23:41:41 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-t_env	*ft_get_var(char *name, t_env *env)
+t_env	*ft_get_var(char *name)
 {
-	while (env)
+	t_env	*tmp;
+
+	tmp = g_minishell.env;
+	while (tmp)
 	{
-		if (!ft_strcmp(env->name, name))
-			return (env);
-		env = env->next;
+		if (!ft_strcmp(tmp->name, name))
+			return (tmp);
+		tmp = tmp->next;
 	}
 	return (NULL);
 }

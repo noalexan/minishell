@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   variable.c                                         :+:      :+:    :+:   */
+/*   expender.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:38:30 by cjunker           #+#    #+#             */
-/*   Updated: 2022/11/22 19:51:40 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/25 00:20:19 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_size_of_name(char *str)
 	return (i);
 }
 
-char	*ft_variable(char **l, int i, t_env *env)
+char	*ft_variable(char **l, int i)
 {
 	char	*line;
 	char	*tmp;
@@ -50,7 +50,7 @@ char	*ft_variable(char **l, int i, t_env *env)
 
 	j = ft_size_of_name((*l) + i + 1);
 	tmp = ft_strldup((*l) + i + 1, j);
-	variable = ft_get_var(tmp, env);
+	variable = ft_get_var(tmp);
 	free(tmp);
 	if (variable && variable->content)
 	{

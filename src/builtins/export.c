@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:00:00 by Tac               #+#    #+#             */
-/*   Updated: 2022/11/22 19:51:39 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/24 23:59:06 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	parse_export(char *str)
 	return (1);
 }
 
-void	ft_export(t_token *token, t_env *e)
+void	ft_export(t_token *token)
 {
 	t_env	*v;
 	char	*n;
@@ -42,21 +42,21 @@ void	ft_export(t_token *token, t_env *e)
 	{
 		if (!parse_export(token->content))
 			return (error_export("export", token->content),
-				ft_export(token->next, e));
+				ft_export(token->next));
 		n = ft_get_name(token->content);
 		content = ft_get_content(token->content);
-		v = ft_get_var(n, e);
+		v = ft_get_var(n);
 		if (v)
 		{
 			if (content != NULL)
 				ft_free(v->content);
 		}
 		else
-			v = ft_lstadd_back_env(&e, ft_create_env_var(ft_strdup(n), NULL));
+			v = ft_lstadd_back_env(ft_create_env_var(ft_strdup(n), NULL));
 		if (content)
 			v->content = ft_strdup(content);
 		else if (content != NULL)
 			v->content = ft_strdup("");
-		(ft_free(content), ft_free(n), ft_export(token->next, e));
+		(ft_free(content), ft_free(n), ft_export(token->next));
 	}
 }

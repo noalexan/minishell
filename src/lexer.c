@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:55 by tle               #+#    #+#             */
-/*   Updated: 2022/11/22 19:51:39 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/25 00:32:25 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_new_token(t_token **token, char *content)
 	ft_lstadd_back(token, new);
 }
 
-t_getstr	ft_getstr(char **l, int i, t_env *env)
+t_getstr	ft_getstr(char **l, int i)
 {
 	t_getstr	a;
 	int			s_q;
@@ -55,16 +55,16 @@ t_getstr	ft_getstr(char **l, int i, t_env *env)
 		else if ((*l)[a.size + i] == '\"' && d_q && !s_q)
 			d_q = FALSE;
 		else if ((*l)[a.size + i] == '$' && !s_q)
-			(*l) = ft_strdup_and_free(ft_variable(l, a.size + i, env));
+			(*l) = ft_strdup_and_free(ft_variable(l, a.size + i));
 	}
 	if (s_q || d_q)
-		g_exitcode = 258;
+		g_minishell.exitcode = 258;
 	a.line = ft_calloc(a.size + 1, sizeof(char));
 	ft_strlcpy(a.line, *l + i, a.size);
 	return (a);
 }
 
-t_token	*ft_generate_token(char **line, int i, t_env *env)
+t_token	*ft_generate_token(char **line, int i)
 {
 	t_token		*token;
 	t_getstr	getstr;
@@ -75,16 +75,16 @@ t_token	*ft_generate_token(char **line, int i, t_env *env)
 		i += ft_skip_space((*line), i);
 		if ((*line)[i])
 		{
-			getstr = ft_getstr(line, i, env);
+			getstr = ft_getstr(line, i);
 			ft_new_token(&token, getstr.line);
 			free(getstr.line);
-			token->next = ft_generate_token(line, i + getstr.size, env);
+			token->next = ft_generate_token(line, i + getstr.size);
 		}
 	}
 	return (token);
 }
 
-t_token	*ft_lexer(char **line, t_env *env)
+t_token	*ft_lexer(char **line)
 {
 	t_token	*token;
 	int		i;
@@ -92,15 +92,15 @@ t_token	*ft_lexer(char **line, t_env *env)
 	token = NULL;
 	if ((*line) && (*line)[0])
 	{
+		ft_addhistory(*line);
 		i = ft_skip_space((*line), 0);
 		if ((*line)[i])
 		{
 			printf("\e[34;1m[DEBUG]\e[0m: line\t  -> \"%s\"\n", (*line));
-			add_history((*line));
-			token = ft_generate_token(line, i, env);
+			token = ft_generate_token(line, i);
 		}
 	}
-	if (g_exitcode == 258)
+	if (g_minishell.exitcode == 258)
 	{
 		ft_printf(2, "\e[31;1m[minishell]: Error syntax\n\e[0m");
 		ft_lstclear(token);

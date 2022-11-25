@@ -36,27 +36,22 @@ int	is_equal(char *str)
 	return (0);
 }
 
-t_env	*ft_lstlast_env(t_env *lst)
+t_env	*ft_lstlast_env(void)
 {
-	if (lst)
-		while (lst->next)
-			lst = lst->next;
-	return (lst);
+	t_env	*tmp;
+
+	tmp = g_minishell.env;
+	if (tmp)
+		while (tmp->next)
+			tmp = tmp->next;
+	return (tmp);
 }
 
-t_env	*ft_lstadd_back_env(t_env **lst, t_env *new)
+t_env	*ft_lstadd_back_env(t_env *new)
 {
-	t_env	*last;
-
-	if (!lst)
+	if (!g_minishell.env)
 		return (NULL);
-	else if (*lst)
-	{
-		last = ft_lstlast_env(*lst);
-		last->next = new;
-	}
-	else
-		*lst = new;
+	ft_lstlast_env()->next = new;
 	return (new);
 }
 
@@ -76,18 +71,18 @@ t_env	*ft_lstnew_env(void *content)
 	return (new_element);
 }
 
-void	ft_lst_delone_env(t_env *env, t_env *unset)
+void	ft_lst_delone_env(t_env *unset)
 {
 	t_env	*tmp;
 
-	tmp = env;
-	while (env->next != unset)
-		env = env->next;
+	tmp = g_minishell.env;
+	while (g_minishell.env->next != unset)
+		g_minishell.env = g_minishell.env->next;
 	free(unset->content);
 	free(unset->name);
 	free(unset);
-	env->next = unset->next;
-	env = tmp;
+	g_minishell.env->next = unset->next;
+	g_minishell.env = tmp;
 }
 
 void	ft_free(void *a)
