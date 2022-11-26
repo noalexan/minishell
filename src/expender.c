@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:38:30 by cjunker           #+#    #+#             */
-/*   Updated: 2022/11/26 22:32:03 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/26 22:52:10 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	ft_expender(char *l, int i)
 	else
 	{
 		printf("no var\n");
+		printf("i: %d\n", i);
 		printf("line: %s\n", l);
 		ft_replace_segment(l, "", i, len_of_name + 1);
 		printf("line: %s\n", l);

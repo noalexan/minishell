@@ -87,14 +87,14 @@ void	ft_lst_delone_env(t_env *unset)
 
 void	ft_replace_segment(char *str, char *seg, int s, int l)
 {
-	char	*tmp;
+	char	*tmp1;
 	char	*tmp2;
 	char	*tmp3;
 
-	tmp = ft_strldup(str, s);
-	tmp3 = ft_strjoin(tmp, seg);
-	tmp2 = ft_strdup(str + s + l);
+	tmp1 = ft_strldup(str, s);
+	tmp2 = ft_strjoin(tmp1, seg);
+	tmp3 = ft_strdup(str + s + l);
 	free(str);
-	str = ft_strjoin(tmp3, tmp2);
-	(free(tmp), free(tmp2), free(tmp3));
+	str = ft_strjoin(tmp2, tmp3);
+	(free(tmp1), free(tmp2), free(tmp3));
 }

@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:04:03 by flemaitr          #+#    #+#             */
-/*   Updated: 2022/11/25 04:52:37 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/26 23:24:31 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ int	main(int argc, char **argv, char **envv)
 // Version : 0.1.0
 // Authors : Marwan Ayoub, Noah Alexandre
 
-// ! S'OCCUPER DU EXIT_CODE
-// ! S'OCCUPER DU '$?'
-// ! "env -i ./minishell" : segfault
+/*
+
+S'OCCUPER DU EXIT_CODE
+S'OCCUPER DU '$?'
+"env -i ./minishell" : segfault
+""" et "'": segfault
+expender: not work
+ft_replace_segment: bancal sa mere
+voir si on peut retirer des fonction dans src/utils.c
+(et pas les deplacés hein mais vrm les supprimer)
+
+*/

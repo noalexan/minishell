@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:55 by tle               #+#    #+#             */
-/*   Updated: 2022/11/26 22:28:44 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/26 23:19:54 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	ft_new_token(t_token **token, char *content)
 		new = ft_calloc(1, sizeof(t_token));
 		new->content = ft_strdup(content);
 		new->next = NULL;
-		printf("\e[34;1m[DEBUG]\e[0m: \e[1;32m[lexer]: New token: \"%s\"\e[0m\n", content);
+		printf("\e[34;1m[DEBUG]\e[0m: \e[1;32m[lexer]: New token: \"%s\"\e[0m\n",
+			content);
 		ft_lstadd_back(token, new);
 	}
 }
@@ -49,16 +50,14 @@ char	*ft_getstr(char *l, int i)
 	j = -1;
 	while (l[++j + i] && (s_q || d_q || !ft_isspace(l[j + i])))
 	{
-		if (l[i] == '\'' && !s_q && !d_q)
+		if (l[i + j] == '\'' && !s_q && !d_q)
 			s_q = ft_quote(TRUE, l, i + j--);
 		else if (l[i + j] == '\'' && s_q && !d_q)
 			s_q = ft_quote(FALSE, l, i + j--);
-		else if (l[i + j] == '\"' && !d_q && !s_q)
+		else if (l[i + j] == '"' && !d_q && !s_q)
 			d_q = ft_quote(TRUE, l, i + j--);
-		else if (l[i + j] == '\"' && d_q && !s_q)
+		else if (l[i + j] == '"' && d_q && !s_q)
 			d_q = ft_quote(FALSE, l, i + j--);
-		else if (l[i + j] == '$' && !s_q)
-			j += ft_expender(l, i + j);
 	}
 	if (s_q || d_q)
 		g_minishell.exitcode = 258;
