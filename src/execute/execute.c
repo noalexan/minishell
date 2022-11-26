@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution.c                                        :+:      :+:    :+:   */
+/*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 04:01:34 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/25 16:36:34 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/26 21:47:10 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
 char	*ft_convert_env_util(t_env *var)
 {
@@ -52,12 +52,16 @@ char	**ft_convert_argv(t_token *token)
 	t_token	*tmp;
 	int		i;
 
-	i = -1;
+	i = 0;
 	tmp = token;
 	while (tmp && ++i)
 		tmp = tmp->next;
 	argv = ft_calloc(i + 1, sizeof(char *));
+	if (!argv)
+		return (NULL);
+	printf("malloc: %d\n", i + 1);
 	tmp = token;
+	i = -1;
 	while (tmp)
 	{
 		argv[++i] = ft_strdup(tmp->content);
@@ -67,14 +71,79 @@ char	**ft_convert_argv(t_token *token)
 	return (argv);
 }
 
+void	ft_free_execute(char **env, char **argv, char **path)
+{
+	int	i;
+
+	i = -1;
+	while (env[++i])
+		free(env[i]);
+	free(env);
+	i = -1;
+	while (argv[++i])
+		free(argv[i]);
+	free(argv);
+	i = -1;
+	while (path[++i])
+		free(path[i]);
+	free(path);
+}
+
+char	**ft_get_path(void)
+{
+	int		i;
+	int		j;
+	char	**path;
+
+	i = -1;
+	path = ft_split(ft_get_var("PATH")->content, ':');
+	while (path[++i])
+	{
+		j = -1;
+		while (path[i][++j])
+			;
+		if (path[i][j - 1] != '/')
+			path[i][j] = '/';
+	}
+	return (path);
+}
+
+char	*ft_find_path(char **path, char *cmd)
+{
+	int		i;
+	char	*path_cmd;
+
+	i = -1;
+	if (!access(cmd, 00100))
+		return (cmd);
+	else
+	{
+		while (path[++i])
+		{
+			path_cmd = ft_strjoin(path[i], cmd);
+			if (!access(path_cmd, 00100))
+				return (path_cmd);
+			free(path_cmd);
+		}
+	}
+	return (NULL);
+}
+
 int	ft_execute(t_token *token)
 {
-	char	**argv;
-	char	**env;
+	char		**argv;
+	char		**env;
+	char		**path;
 
 	return (0);
+	((void) argv, (void) env, (void) path, (void) token);
 	env = ft_convert_env();
 	argv = ft_convert_argv(token);
-	execve("/bin/ls", argv, env);
-	return (1);
+	path = ft_get_path();
+	free(argv[0]);
+	argv[0] = ft_find_path(path, token->content);
+	printf("%s\n", argv[0]);
+	printf("OK\n");
+	// ft_free_execute(env, argv, path);
+	return (0);
 }

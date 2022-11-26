@@ -6,22 +6,11 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:38:30 by cjunker           #+#    #+#             */
-/*   Updated: 2022/11/25 02:48:46 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/26 22:32:03 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-char	*ft_change_space(char *str)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i])
-		if (ft_isspace(str[i]))
-			str[i] = -5;
-	return (str);
-}
 
 int	ft_isforbidden(char s)
 {
@@ -31,42 +20,40 @@ int	ft_isforbidden(char s)
 	return (0);
 }
 
-int	ft_size_of_name(char *str)
+int	ft_sizeof_name(char *l)
 {
 	int	i;
 
-	i = -1;
-	while (!ft_isforbidden(str[++i]))
-		;
+	i = 0;
+	while (l[i] && !ft_isforbidden(l[i]))
+		i++;
 	return (i);
 }
 
-char	*ft_expender(char **l, int i)
+int	ft_expender(char *l, int i)
 {
-	char	*line;
-	char	*tmp;
-	int		j;
-	t_env	*variable;
+	char	*name;
+	int		len_of_name;
+	t_env	*var;
 
-	j = ft_size_of_name((*l) + i + 1);
-	tmp = ft_strldup((*l) + i + 1, j);
-	variable = ft_get_var(tmp);
-	free(tmp);
-	if (variable && variable->content)
+	len_of_name = ft_sizeof_name(l + i + 1);
+	name = ft_strldup(l + i + 1, len_of_name);
+	printf("name: %s, len: %d\n", name, len_of_name);
+	var = ft_get_var(name);
+	free(name);
+	if (var)
 	{
-		line = ft_strldup((*l), i);
-		tmp = ft_strjoin(line, variable->content);
-		free(line);
-		line = ft_strjoin(tmp, (*l) + i + j + 1);
-		printf("\e[34;1m[DEBUG]: \e[35;1m[variable]: name = \"%s\", conte\
-nt = \"%s\"\n\e[0m", variable->name, variable->content);
-		(free(tmp), free(*l));
-		return (line);
+		printf("var content: %s\n", var->content);
+		ft_replace_segment(l, var->content, i, len_of_name + 1);
+		return (ft_strlen(var->content));
 	}
 	else
 	{
-		printf("tmp = '%s'\n", tmp);
-		free(*l);
-		return (ft_strdup("dsfsdghsdfdsfdfdgsdgsdfgsdgdfgdfgfdgdfgdrggdr"));
+		printf("no var\n");
+		printf("line: %s\n", l);
+		ft_replace_segment(l, "", i, len_of_name + 1);
+		printf("line: %s\n", l);
+		return (0);
 	}
+	return (0);
 }

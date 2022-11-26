@@ -6,7 +6,7 @@
 #    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/11/25 14:28:01 by noalexan         ###   ########.fr        #
+#    Updated: 2022/11/26 18:50:28 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,14 +26,15 @@ SRC		:=	src/env.c \
 			src/signal.c \
 			src/history.c \
 			src/expender.c \
-			src/execution.c \
 			src/minishell.c \
 			src/error/error.c \
 			src/builtins/cd.c \
 			src/builtins/env.c \
 			src/builtins/echo.c \
+			src/builtins/exit.c \
 			src/builtins/unset.c \
 			src/builtins/export.c \
+			src/execute/execute.c \
 
 OBJ		:= $(SRC:.c=.o)
 

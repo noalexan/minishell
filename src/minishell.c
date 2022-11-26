@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/11/25 04:07:22 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/26 21:32:47 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ int	ft_builtins(t_token	*token)
 		ft_echo(token->next);
 	else if (!ft_strcmp(token->content, "cd"))
 		ft_cd(token->next);
+	else if (!ft_strcmp(token->content, "pwd"))
+		printf("%s\n", ft_get_var("PWD")->content);
+	else if (!ft_strcmp(token->content, "exit"))
+		ft_exit(token->next);
 	else
 		return (0);
 	return (1);
@@ -60,17 +64,12 @@ int	ft_minishell(const char *prompt)
 		line = readline(prompt);
 		if (!line)
 			(printf("exit\n"), close(g_minishell.history_fd), exit(0));
-		token = ft_lexer(&line);
+		token = ft_lexer(line);
 		if (token && token->content)
 		{
-			if (!ft_builtins(token))
-				if (!ft_execute(token))
-					error_unknown(token->content);
 			/* =========================================== DEBUG COMMAND ======================================== */
 			/**/	if (!ft_strcmp(token->content, "leaks"))													/**/
 			/**/		system("leaks minishell");																/**/
-			/**/	else if (!strcmp(token->content, "exit"))													/**/
-			/**/		(printf("exit\n"), exit(0));															/**/
 			/**/	else if (!ft_strcmp(token->content, "exitcode"))											/**/
 			/**/		printf("exitcode= %d\n", g_minishell.exitcode);											/**/
 			/**/	else if (!ft_strcmp(token->content, "re"))													/**/
@@ -106,7 +105,11 @@ int	ft_minishell(const char *prompt)
 			/**/			);																					/**/
 			/**/		}																						/**/
 			/**/	}																							/**/
+			/**/	else																						/**/
 			/* ================================================================================================== */
+			 if (!ft_builtins(token))
+				if (!ft_execute(token))
+					error_unknown(token->content);
 			ft_lstclear(token);
 		}
 		free(line);

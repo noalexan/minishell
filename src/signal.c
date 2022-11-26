@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 16:27:04 by Mel               #+#    #+#             */
-/*   Updated: 2022/11/24 23:51:41 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/26 20:11:20 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	clavier(int sig_num)
 		rl_on_new_line();
 		rl_redisplay();
 	}
-	g_minishell.exitcode = 1;
+	g_minishell.exitcode = 130;
 }
 
 void	echo_control_seq(int c)

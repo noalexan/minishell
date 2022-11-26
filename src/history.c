@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:13:29 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/25 01:55:44 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/26 16:38:27 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	ft_sethistory(void)
 
 void	ft_addhistory(const char *str)
 {
-	printf("Adding \"%s\" to history...\n", str);
 	ft_printf(g_minishell.history_fd, "%s\n", str);
 	add_history(str);
 }

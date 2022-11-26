@@ -3,13 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 11:11:59 by M.Chanselme       #+#    #+#             */
-/*   Updated: 2022/11/24 11:16:39 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/26 16:36:13 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-
+void	ft_exit(t_token *token)
+{
+	(void) token;
+	exit(0);
+}

@@ -12,14 +12,14 @@
 
 #include "../include/minishell.h"
 
-int	ft_skip_space(char *line, int i)
+int	ft_skip_space(char *line)
 {
-	int	j;
+	int	i;
 
-	j = -1;
-	while (ft_isspace(line[++j + i]))
+	i = -1;
+	while (ft_isspace(line[++i]))
 		;
-	return (j);
+	return (i);
 }
 
 int	is_equal(char *str)
@@ -85,8 +85,16 @@ void	ft_lst_delone_env(t_env *unset)
 	g_minishell.env = tmp;
 }
 
-void	ft_free(void *a)
+void	ft_replace_segment(char *str, char *seg, int s, int l)
 {
-	if (a)
-		free(a);
+	char	*tmp;
+	char	*tmp2;
+	char	*tmp3;
+
+	tmp = ft_strldup(str, s);
+	tmp3 = ft_strjoin(tmp, seg);
+	tmp2 = ft_strdup(str + s + l);
+	free(str);
+	str = ft_strjoin(tmp3, tmp2);
+	(free(tmp), free(tmp2), free(tmp3));
 }

@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/11/25 16:32:49 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/26 22:01:24 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,19 @@ char	*ft_makeprompt(char *prompt);
 int		ft_minishell(const char *prompt);
 
 // src/lexer.c
-t_token	*ft_lexer(char **line);
+t_token	*ft_lexer(char *line);
 
 // src/execution.c
 int		ft_execute(t_token *token);
 
 // src/utils.c
-int		ft_skip_space(char *line, int i);
+int		ft_skip_space(char *line);
 t_env	*ft_lstadd_back_env(t_env *new);
 t_env	*ft_lstlast_env(void);
 int		is_equal(char *str);
 t_env	*ft_lstnew_env(void *content);
 void	ft_lst_delone_env(t_env *del);
+void	ft_replace_segment(char *str, char *seg, int s, int l);
 
 // src/signal.c
 void	rl_replace_line(const char *text, int clear_undo);
@@ -84,7 +85,7 @@ void	clavier(int sig_num);
 void	echo_control_seq(int c);
 
 // src/expender.c
-char	*ft_expender(char **l, int i);
+int		ft_expender(char *l, int i);
 
 // src/builtins/echo.c
 void	ft_echo(t_token *token);
@@ -102,6 +103,9 @@ void	ft_unset(t_token *token);
 
 // src/builtins/cd.c
 void	ft_cd(t_token *token);
+
+// src/builtins/exit.c
+void	ft_exit(t_token *token);
 
 // src/error/error.c
 void	error_export(char *s1, char *s2);
