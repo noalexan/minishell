@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:00:00 by Tac               #+#    #+#             */
-/*   Updated: 2022/11/24 23:59:06 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/25 16:33:51 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_export(t_token *token)
 		if (v)
 		{
 			if (content != NULL)
-				ft_free(v->content);
+				free(v->content);
 		}
 		else
 			v = ft_lstadd_back_env(ft_create_env_var(ft_strdup(n), NULL));
@@ -57,6 +57,6 @@ void	ft_export(t_token *token)
 			v->content = ft_strdup(content);
 		else if (content != NULL)
 			v->content = ft_strdup("");
-		(ft_free(content), ft_free(n), ft_export(token->next));
+		(free(content), free(n), ft_export(token->next));
 	}
 }

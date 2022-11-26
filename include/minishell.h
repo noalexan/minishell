@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/11/25 02:01:34 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/25 16:32:49 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,15 @@ int		ft_minishell(const char *prompt);
 // src/lexer.c
 t_token	*ft_lexer(char **line);
 
+// src/execution.c
+int		ft_execute(t_token *token);
+
 // src/utils.c
 int		ft_skip_space(char *line, int i);
 t_env	*ft_lstadd_back_env(t_env *new);
 t_env	*ft_lstlast_env(void);
 int		is_equal(char *str);
 t_env	*ft_lstnew_env(void *content);
-void	ft_free(void *a);
 void	ft_lst_delone_env(t_env *del);
 
 // src/signal.c
@@ -97,6 +99,9 @@ int		parse_export(char *str);
 // src/builtins/unset.c
 void	ft_lst_delete(t_env *e, char *name);
 void	ft_unset(t_token *token);
+
+// src/builtins/cd.c
+void	ft_cd(t_token *token);
 
 // src/error/error.c
 void	error_export(char *s1, char *s2);

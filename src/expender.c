@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:38:30 by cjunker           #+#    #+#             */
-/*   Updated: 2022/11/25 02:01:22 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/25 02:48:46 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ char	*ft_expender(char **l, int i)
 		line = ft_strjoin(tmp, (*l) + i + j + 1);
 		printf("\e[34;1m[DEBUG]: \e[35;1m[variable]: name = \"%s\", conte\
 nt = \"%s\"\n\e[0m", variable->name, variable->content);
-		free(tmp);
-		free(*l);
+		(free(tmp), free(*l));
 		return (line);
 	}
 	else

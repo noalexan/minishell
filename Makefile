@@ -6,7 +6,7 @@
 #    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/11/25 01:20:26 by noalexan         ###   ########.fr        #
+#    Updated: 2022/11/25 14:28:01 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,10 @@ SRC		:=	src/env.c \
 			src/signal.c \
 			src/history.c \
 			src/expender.c \
+			src/execution.c \
 			src/minishell.c \
 			src/error/error.c \
+			src/builtins/cd.c \
 			src/builtins/env.c \
 			src/builtins/echo.c \
 			src/builtins/unset.c \
@@ -52,7 +54,7 @@ RESET	:= "\033[0m"
 	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 # Compile all .o files
-$(NAME): $(OBJ)
+$(NAME): vendor/readline $(OBJ)
 	@printf $(GREEN)"\r\033[KObjects compiled succesfully ✅\n"$(RESET)
 	@make -C src/libft
 	@make -C src/printf
@@ -76,22 +78,24 @@ $(NAME): $(OBJ)
 	@printf "╚═╝      ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝\n"
 	@printf "\n"
 
+# Readline
+vendor/readline: vendor
+	@if [ ! -d "vendor/readline" ]; then \
+		printf $(CYAN)"\r\033[KInstallation of readline... ⏳\n"$(RESET); \
+		curl https://raw.githubusercontent.com/noalexan/minishell/stable/install_readline.sh | sh; \
+	fi
+	@printf $(GREEN)"Readline installed ✅\n"$(RESET)
+
+# Vendor
+vendor:
+	@mkdir vendor
+
 # Default command to launch
 all: $(NAME)
 
 # Compile and run minishell
 run: all
 	@./$(NAME)
-
-# Vendor
-vendor:
-	@mkdir vendor
-
-# Readline
-vendor/readline: vendor
-	@printf $(CYAN)"\r\033[KInstallation of readline... ⏳\n"$(RESET)
-	@sh install_readline.sh
-	@printf $(GREEN)"Readline installed ✅\n"$(RESET)
 
 shortcut:
 	@open https://www.google.com/search?q=how+to+become+a+good+developer+%3\
@@ -213,4 +217,4 @@ fclean_readline:
 # Clean all and recompile minishell
 re: fclean all
 
-.PHONY: all clean fclean re polnareff load fclean_readline run
+.PHONY: all clean fclean re polnareff load fclean_readline run readline

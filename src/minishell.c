@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/11/25 01:45:11 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/25 04:07:22 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	ft_builtins(t_token	*token)
 		env_exp(token, 2);
 	else if (!ft_strcmp(token->content, "echo"))
 		ft_echo(token->next);
+	else if (!ft_strcmp(token->content, "cd"))
+		ft_cd(token->next);
 	else
 		return (0);
 	return (1);
@@ -62,8 +64,8 @@ int	ft_minishell(const char *prompt)
 		if (token && token->content)
 		{
 			if (!ft_builtins(token))
-				error_unknown(token->content);
-			// 	ft_execute(token);
+				if (!ft_execute(token))
+					error_unknown(token->content);
 			/* =========================================== DEBUG COMMAND ======================================== */
 			/**/	if (!ft_strcmp(token->content, "leaks"))													/**/
 			/**/		system("leaks minishell");																/**/
