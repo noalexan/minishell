@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/11/27 16:45:30 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/27 23:20:16 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,12 @@ int	ft_minishell(const char *prompt)
 	t_token	*token;
 	char	*line;
 
-	g_minishell.exitcode = 0;
 	while (1)
 	{
 		line = readline(prompt);
 		if (!line)
 			(printf("exit\n"), close(g_minishell.history_fd), exit(0));
-		token = ft_lexer(line);
+		token = ft_lexer(ft_strdup(line));
 		if (token && token->content)
 		{
 			/* =========================================== DEBUG COMMAND ======================================== */
@@ -107,7 +106,7 @@ int	ft_minishell(const char *prompt)
 			/**/	}																							/**/
 			/**/	else																						/**/
 			/* ================================================================================================== */
-			 if (!ft_builtins(token))
+			if (!ft_builtins(token))
 				if (!ft_execute(token))
 					error_unknown(token->content);
 			ft_lstclear(token);

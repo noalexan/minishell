@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 04:01:34 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/26 21:47:10 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/27 23:07:10 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,9 @@ int	ft_execute(t_token *token)
 	char		**argv;
 	char		**env;
 	char		**path;
+	int			pid;
 
-	return (0);
+	// return (0);
 	((void) argv, (void) env, (void) path, (void) token);
 	env = ft_convert_env();
 	argv = ft_convert_argv(token);
@@ -143,7 +144,19 @@ int	ft_execute(t_token *token)
 	free(argv[0]);
 	argv[0] = ft_find_path(path, token->content);
 	printf("%s\n", argv[0]);
-	printf("OK\n");
-	// ft_free_execute(env, argv, path);
-	return (0);
+	if (!argv[0])
+	{
+		ft_free_execute(env, argv, path);
+		return (0);
+	}
+	pid = fork();
+	if (pid == 0)
+		execve(argv[0], argv, env);
+	else if (pid == -1)
+		printf("Error while fork\n");
+	printf("pid: %d\n", pid);
+	waitpid(pid, NULL, 0);
+	ft_free_execute(env, argv, path);
+	g_minishell.exitcode = 0;
+	return (1);
 }

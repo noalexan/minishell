@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:38:30 by cjunker           #+#    #+#             */
-/*   Updated: 2022/11/26 22:52:10 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/27 23:37:44 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,34 @@ int	ft_sizeof_name(char *l)
 
 int	ft_expender(char *l, int i)
 {
-	char	*name;
+	char	*tmp;
 	int		len_of_name;
 	t_env	*var;
 
 	len_of_name = ft_sizeof_name(l + i + 1);
-	name = ft_strldup(l + i + 1, len_of_name);
-	printf("name: %s, len: %d\n", name, len_of_name);
-	var = ft_get_var(name);
-	free(name);
-	if (var)
+	tmp = ft_strldup(l + i + 1, len_of_name);
+	var = ft_get_var(tmp);
+	printf("ok\n");
+	free(tmp);
+	if (l[i + 1] == '?' && ft_isforbidden(l[i + 2]))
 	{
-		printf("var content: %s\n", var->content);
+		printf("\e[34;1m[DEBUG]\e[0m: \e[35;1m[variable]: exitcode\e[0m\n");
+		tmp = ft_itoa(g_minishell.exitcode);
+		ft_replace_segment(l, tmp, i, 2);
+		len_of_name = ft_strlen(tmp);
+		free(tmp);
+		return (5);
+	}
+	else if (var)
+	{
+		printf("\e[34;1m[DEBUG]\e[0m: \e[35;1m[variable]: name=\"%s\", content=\"%s\"\e[0m\n", var->name, var->content);
 		ft_replace_segment(l, var->content, i, len_of_name + 1);
 		return (ft_strlen(var->content));
 	}
 	else
 	{
-		printf("no var\n");
-		printf("i: %d\n", i);
-		printf("line: %s\n", l);
+		printf("\e[34;1m[DEBUG]\e[0m: \e[35;1m[variable]: No variable\e[0m\n");
 		ft_replace_segment(l, "", i, len_of_name + 1);
-		printf("line: %s\n", l);
 		return (0);
 	}
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:55 by tle               #+#    #+#             */
-/*   Updated: 2022/11/26 23:19:54 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/27 23:21:44 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ char	*ft_getstr(char *l, int i)
 			d_q = ft_quote(TRUE, l, i + j--);
 		else if (l[i + j] == '"' && d_q && !s_q)
 			d_q = ft_quote(FALSE, l, i + j--);
+		else if (l[i + j] == '$' && !s_q)
+			j += ft_expender(l, i + j);
 	}
 	if (s_q || d_q)
 		g_minishell.exitcode = 258;
@@ -105,5 +107,6 @@ t_token	*ft_lexer(char *line)
 		ft_lstclear(token);
 		return (NULL);
 	}
+	free(line);
 	return (token);
 }
