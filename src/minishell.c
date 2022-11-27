@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/11/26 21:32:47 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/27 16:45:30 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_builtins(t_token	*token)
 	else if (!ft_strcmp(token->content, "pwd"))
 		printf("%s\n", ft_get_var("PWD")->content);
 	else if (!ft_strcmp(token->content, "exit"))
-		ft_exit(token->next);
+		ft_exit(token);
 	else
 		return (0);
 	return (1);
@@ -58,9 +58,9 @@ int	ft_minishell(const char *prompt)
 	t_token	*token;
 	char	*line;
 
+	g_minishell.exitcode = 0;
 	while (1)
 	{
-		g_minishell.exitcode = 0;
 		line = readline(prompt);
 		if (!line)
 			(printf("exit\n"), close(g_minishell.history_fd), exit(0));
@@ -71,7 +71,7 @@ int	ft_minishell(const char *prompt)
 			/**/	if (!ft_strcmp(token->content, "leaks"))													/**/
 			/**/		system("leaks minishell");																/**/
 			/**/	else if (!ft_strcmp(token->content, "exitcode"))											/**/
-			/**/		printf("exitcode= %d\n", g_minishell.exitcode);											/**/
+			/**/		(printf("exitcode = \e[0;40m%d\e[0m\n", g_minishell.exitcode), g_minishell.exitcode = 0);/**/
 			/**/	else if (!ft_strcmp(token->content, "re"))													/**/
 			/**/	{																							/**/
 			/**/		system("make run");																		/**/

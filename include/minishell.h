@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/11/26 22:01:24 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/27 16:45:16 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,7 @@ void	ft_exit(t_token *token);
 // src/error/error.c
 void	error_export(char *s1, char *s2);
 int		error_unknown(char *str);
+void	error_too_many_args(char *str);
+void	error_numeric_arg_required(char *s1, char *s2);
 
 #endif
