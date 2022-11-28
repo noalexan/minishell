@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:39:14 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/24 23:41:41 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/28 11:10:24 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,12 @@ t_env	*ft_create_env(char **env)
 	t_env	*lst;
 
 	lst = NULL;
-	if (env[0])
+	if (env && env[0])
 	{
 		lst = ft_create_env_var(
 				ft_get_name(env[0]),
 				ft_get_content(env[0]));
 		lst->next = ft_create_env(env + 1);
 	}
-	else
-		return (NULL);
 	return (lst);
 }

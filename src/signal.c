@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 16:27:04 by Mel               #+#    #+#             */
-/*   Updated: 2022/11/26 20:11:20 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/27 22:47:40 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	clavier(int sig_num)
 		rl_on_new_line();
 		rl_redisplay();
 	}
-	g_minishell.exitcode = 130;
+	// g_minishell.exitcode = 130; lorsqu'on kill un exec sinon :
+	g_minishell.exitcode = 1;
 }
 
 void	echo_control_seq(int c)

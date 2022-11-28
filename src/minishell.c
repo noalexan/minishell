@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/11/27 16:45:30 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/28 11:47:08 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ int	ft_builtins(t_token	*token)
 		ft_echo(token->next);
 	else if (!ft_strcmp(token->content, "cd"))
 		ft_cd(token->next);
-	else if (!ft_strcmp(token->content, "pwd"))
-		printf("%s\n", ft_get_var("PWD")->content);
 	else if (!ft_strcmp(token->content, "exit"))
 		ft_exit(token);
 	else
@@ -40,7 +38,7 @@ char	*ft_makeprompt(char *prompt)
 	char	*tmp2;
 
 	username = ft_get_var("USER");
-	if (username && username->content)
+	if (username && username->content && username->content[0])
 	{
 		tmp = ft_strjoin("\e[34;1m", username->content);
 		tmp2 = ft_strjoin(tmp, "@");
@@ -58,7 +56,6 @@ int	ft_minishell(const char *prompt)
 	t_token	*token;
 	char	*line;
 
-	g_minishell.exitcode = 0;
 	while (1)
 	{
 		line = readline(prompt);
@@ -70,8 +67,6 @@ int	ft_minishell(const char *prompt)
 			/* =========================================== DEBUG COMMAND ======================================== */
 			/**/	if (!ft_strcmp(token->content, "leaks"))													/**/
 			/**/		system("leaks minishell");																/**/
-			/**/	else if (!ft_strcmp(token->content, "exitcode"))											/**/
-			/**/		(printf("exitcode = \e[0;40m%d\e[0m\n", g_minishell.exitcode), g_minishell.exitcode = 0);/**/
 			/**/	else if (!ft_strcmp(token->content, "re"))													/**/
 			/**/	{																							/**/
 			/**/		system("make run");																		/**/
@@ -84,6 +79,8 @@ int	ft_minishell(const char *prompt)
 			/**/	}																							/**/
 			/**/	else if (!ft_strcmp(token->content, "history-fd"))											/**/
 			/**/		printf("history fd: %d\n", g_minishell.history_fd);										/**/
+			/**/	else if (!ft_strcmp(token->content, "pwd"))													/**/
+			/**/		printf("%s\n", ft_get_var("PWD")->content);												/**/
 			/**/	else if (!ft_strcmp(token->content, "colors"))												/**/
 			/**/	{																							/**/
 			/**/		int i = 0;																				/**/
@@ -107,11 +104,10 @@ int	ft_minishell(const char *prompt)
 			/**/	}																							/**/
 			/**/	else																						/**/
 			/* ================================================================================================== */
-			 if (!ft_builtins(token))
+			if (!ft_builtins(token))
 				if (!ft_execute(token))
 					error_unknown(token->content);
 			ft_lstclear(token);
 		}
-		free(line);
 	}
 }
