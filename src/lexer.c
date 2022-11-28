@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:55 by tle               #+#    #+#             */
-/*   Updated: 2022/11/27 23:21:44 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/28 11:08:03 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ t_token	*ft_lexer(char *line)
 	}
 	if (g_minishell.exitcode == 258)
 	{
-		ft_printf(2, "\e[31;1m[minishell]: Error syntax\n\e[0m");
+		ft_putendl_fd("\e[31;1m[minishell]: Error syntax\e[0m", 2);
 		ft_lstclear(token);
 		return (NULL);
 	}

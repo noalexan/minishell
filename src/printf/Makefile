@@ -6,7 +6,7 @@
 #    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by noalexan          #+#    #+#              #
-#    Updated: 2022/05/31 14:47:45 by noalexan         ###   ########.fr        #
+#    Updated: 2022/11/28 10:44:25 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,7 @@ CFLAGS	:= -Werror -Wextra -Wall
 
 NAME	:= printf.a
 
-SRCS	:=	ft_printf.c \
-			ft_printf_utils.c \
+SRCS	:=	ft_printf_utils.c \
 
 OBJS	:= $(SRCS:.c=.o)
 

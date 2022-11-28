@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:04:03 by flemaitr          #+#    #+#             */
-/*   Updated: 2022/11/27 23:14:32 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/28 11:34:20 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv, char **envv)
 
 S'OCCUPER DU EXIT_CODE
 S'OCCUPER DU '$?'
-"env -i ./minishell" : segfault
+"env -i ./minishell" puis "export ..=..": segfault
 """ et "'": segfault
 expender: not work
 ft_replace_segment: bancal sa mere

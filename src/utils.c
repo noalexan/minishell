@@ -91,10 +91,21 @@ void	ft_replace_segment(char *str, char *seg, int s, int l)
 	char	*tmp2;
 	char	*tmp3;
 
+	// if (!str)
+	// 	return (NULL);
 	tmp1 = ft_strldup(str, s);
+	// if (!tmp1)
+	// 	return (NULL);
 	tmp2 = ft_strjoin(tmp1, seg);
+	// if (!tmp2)
+	// 	return (NULL);
 	tmp3 = ft_strdup(str + s + l);
-	free(str);
-	str = ft_strjoin(tmp2, tmp3);
-	(free(tmp1), free(tmp2), free(tmp3));
+	// if (!tmp3)
+	// 	return (NULL);
+	free(tmp1);
+	tmp1 = ft_strjoin(tmp2, tmp3);
+	// if (!tmp1)
+	// 	return (NULL);
+	(free(tmp2), free(tmp3));
+	str = ft_strdup_and_free(tmp1);
 }

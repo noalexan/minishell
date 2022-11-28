@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:13:29 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/26 16:38:27 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/28 11:21:15 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 void	ft_sethistory(void)
 {
 	char	*tmp;
-	char	*tmp2;
+	t_env	*home;
 
-	tmp = ft_strjoin("/Users/", ft_get_var("USER")->content);
-	tmp2 = ft_strjoin(tmp, "/.polnareff_history");
-	g_minishell.history_fd = open(tmp2, O_CREAT | O_APPEND | O_RDWR, 00700);
+	home = ft_get_var("HOME");
+	if (!home || !home->content || !home->content[0])
+		return ;
+	tmp = ft_strjoin(home->content, "/.polnareff_history");
+	g_minishell.history_fd = open(tmp, O_CREAT | O_APPEND | O_RDWR, 00700);
+	free(tmp);
 	if (g_minishell.history_fd == -1)
 		printf("err %d\n", errno);
-	(free(tmp), free(tmp2));
 	tmp = get_next_line(g_minishell.history_fd);
 	while (tmp)
 	{
@@ -37,6 +39,6 @@ void	ft_sethistory(void)
 
 void	ft_addhistory(const char *str)
 {
-	ft_printf(g_minishell.history_fd, "%s\n", str);
+	ft_putendl_fd(str, g_minishell.history_fd);
 	add_history(str);
 }

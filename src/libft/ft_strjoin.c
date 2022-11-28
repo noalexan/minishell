@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:05:48 by noalexan          #+#    #+#             */
-/*   Updated: 2022/07/12 12:42:10 by noahalexand      ###   ########.fr       */
+/*   Updated: 2022/11/28 11:48:31 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 		result = ft_calloc(ft_strlen(s1) + 1, sizeof(char));
 	else
 		result = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 2, sizeof(char));
-	if (result == NULL)
+	if (!result)
 		return (NULL);
 	ecriture(result, s1, s2);
 	return (result);
