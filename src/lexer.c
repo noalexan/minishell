@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:55 by tle               #+#    #+#             */
-/*   Updated: 2022/11/28 11:08:03 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/28 13:46:55 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,12 @@ t_token	*ft_generate_token(char *line, int i)
 {
 	t_token		*token;
 	char		*str;
+	static int	j = 0;
 
 	token = NULL;
 	if (line && line[i])
 	{
+		printf("%s.........%d\n", line, j++);
 		i += ft_skip_space(line + i);
 		if (line[i])
 		{
@@ -107,6 +109,8 @@ t_token	*ft_lexer(char *line)
 		ft_lstclear(token);
 		return (NULL);
 	}
-	free(line);
+	printf("%s,,,,,,,,,,,,,\n", line);
+	if (line)
+		free(line); // ! DOUBLE FREE() ICI + DANS EXPENDER L.57
 	return (token);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 04:01:34 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/27 23:07:10 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/28 13:30:16 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**ft_convert_env(void)
 	while (tmp)
 	{
 		env[++i] = ft_convert_env_util(tmp);
-		printf("env: %d: %s\n", i, env[i]);
+		// printf("env: %d: %s\n", i, env[i]);
 		tmp = tmp->next;
 	}
 	return (env);

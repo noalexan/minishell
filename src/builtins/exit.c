@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 11:11:59 by M.Chanselme       #+#    #+#             */
-/*   Updated: 2022/11/28 13:18:13 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/28 13:22:47 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,5 @@ void	ft_exit(t_token *token)
 		exit(g_minishell.exitcode);
 	}
 }
+
+// fix when not '+' and '-'

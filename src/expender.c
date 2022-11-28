@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expender.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:38:30 by cjunker           #+#    #+#             */
-/*   Updated: 2022/11/28 12:46:30 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/28 14:43:51 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,6 @@ int	ft_expender(char *l, int i)
 		printf("\e[34;1m[DEBUG]\e[0m: \e[35;1m[variable]: name=\"%s\", conte\
 nt=\"%s\"\e[0m\n", var->name, var->content);
 		ft_replace_segment(l, var->content, i, len_of_name + 1);
-		printf("line: %s\n", l);
-		free(l);
-		l = ft_strdup("Salut salut");
-		printf("line: %s\n", l);
 		return (ft_strlen(var->content));
 	}
 	else
