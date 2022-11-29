@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 02:05:33 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/25 02:49:34 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:56:20 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_cd(t_token *token)
 	char	*buf;
 
 	buf = ft_calloc(3000, sizeof(char));
-	if (token && token->content && token->content[0])
+	if (token && token->content && token->content[0] && g_minishell.env)
 	{
 		if (1)
 		{

@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:55 by tle               #+#    #+#             */
-/*   Updated: 2022/11/28 13:46:55 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/29 17:16:38 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	ft_new_token(t_token **token, char *content)
 	}
 }
 
-int	ft_quote(int value, char *l, int i)
+int	ft_quote(int value, char *quote)
 {
-	ft_replace_segment(l, "", i, 1);
+	*quote = *quote;
 	return (value);
 }
 
@@ -51,13 +51,13 @@ char	*ft_getstr(char *l, int i)
 	while (l[++j + i] && (s_q || d_q || !ft_isspace(l[j + i])))
 	{
 		if (l[i + j] == '\'' && !s_q && !d_q)
-			s_q = ft_quote(TRUE, l, i + j--);
+			s_q = ft_quote(TRUE, &l[i + j]);
 		else if (l[i + j] == '\'' && s_q && !d_q)
-			s_q = ft_quote(FALSE, l, i + j--);
+			s_q = ft_quote(FALSE, &l[i + j]);
 		else if (l[i + j] == '"' && !d_q && !s_q)
-			d_q = ft_quote(TRUE, l, i + j--);
+			d_q = ft_quote(TRUE, &l[i + j]);
 		else if (l[i + j] == '"' && d_q && !s_q)
-			d_q = ft_quote(FALSE, l, i + j--);
+			d_q = ft_quote(FALSE, &l[i + j]);
 		else if (l[i + j] == '$' && !s_q)
 			j += ft_expender(l, i + j);
 	}
@@ -70,12 +70,10 @@ t_token	*ft_generate_token(char *line, int i)
 {
 	t_token		*token;
 	char		*str;
-	static int	j = 0;
 
 	token = NULL;
 	if (line && line[i])
 	{
-		printf("%s.........%d\n", line, j++);
 		i += ft_skip_space(line + i);
 		if (line[i])
 		{
@@ -109,7 +107,6 @@ t_token	*ft_lexer(char *line)
 		ft_lstclear(token);
 		return (NULL);
 	}
-	printf("%s,,,,,,,,,,,,,\n", line);
 	if (line)
 		free(line); // ! DOUBLE FREE() ICI + DANS EXPENDER L.57
 	return (token);

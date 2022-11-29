@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/11/28 11:47:08 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:53:54 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	ft_minishell(const char *prompt)
 			/**/	}																							/**/
 			/**/	else if (!ft_strcmp(token->content, "history-fd"))											/**/
 			/**/		printf("history fd: %d\n", g_minishell.history_fd);										/**/
-			/**/	else if (!ft_strcmp(token->content, "pwd"))													/**/
+			/**/	else if (!ft_strcmp(token->content, "pwd") && g_minishell.env)								/**/
 			/**/		printf("%s\n", ft_get_var("PWD")->content);												/**/
 			/**/	else if (!ft_strcmp(token->content, "colors"))												/**/
 			/**/	{																							/**/

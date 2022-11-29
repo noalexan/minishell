@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:00:00 by Tac               #+#    #+#             */
-/*   Updated: 2022/11/25 16:33:51 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/29 16:30:28 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,9 @@ void	ft_export(t_token *token)
 		n = ft_get_name(token->content);
 		content = ft_get_content(token->content);
 		v = ft_get_var(n);
-		if (v)
-		{
-			if (content != NULL)
-				free(v->content);
-		}
-		else
+		if (v && content != NULL)
+			free(v->content);
+		else if (!v)
 			v = ft_lstadd_back_env(ft_create_env_var(ft_strdup(n), NULL));
 		if (content)
 			v->content = ft_strdup(content);

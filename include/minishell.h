@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/11/28 12:35:40 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/29 17:11:45 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_env	*ft_lstlast_env(void);
 int		is_equal(char *str);
 t_env	*ft_lstnew_env(void *content);
 void	ft_lst_delone_env(t_env *del);
-void	ft_replace_segment(char *str, char *seg, int s, int l);
+void	ft_replace_segment(char **str, char *seg, int s, int l);
 
 // src/signal.c
 void	rl_replace_line(const char *text, int clear_undo);

@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 04:01:34 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/28 13:30:16 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/29 16:31:03 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	**ft_convert_argv(t_token *token)
 	return (argv);
 }
 
-void	ft_free_execute(char **env, char **argv, char **path)
+int	ft_free_execute(char **env, char **argv, char **path)
 {
 	int	i;
 
@@ -80,13 +80,21 @@ void	ft_free_execute(char **env, char **argv, char **path)
 		free(env[i]);
 	free(env);
 	i = -1;
-	while (argv[++i])
-		free(argv[i]);
-	free(argv);
+	// if (argv)
+	// {
+		
+		while (argv[++i])
+			free(argv[i]);
+		free(argv);
+	// }
 	i = -1;
-	while (path[++i])
-		free(path[i]);
-	free(path);
+	if (path)
+	{
+		while (path[++i])
+			free(path[i]);
+		free(path);
+	}
+	return (0);
 }
 
 char	**ft_get_path(void)
@@ -94,8 +102,12 @@ char	**ft_get_path(void)
 	int		i;
 	int		j;
 	char	**path;
+	t_env	*tmp;
 
 	i = -1;
+	tmp = g_minishell.env;
+	if (tmp == NULL)
+		return (NULL);
 	path = ft_split(ft_get_var("PATH")->content, ':');
 	while (path[++i])
 	{
@@ -115,7 +127,7 @@ char	*ft_find_path(char **path, char *cmd)
 
 	i = -1;
 	if (!access(cmd, 00100))
-		return (cmd);
+		return (ft_strdup(cmd));
 	else
 	{
 		while (path[++i])
@@ -141,14 +153,13 @@ int	ft_execute(t_token *token)
 	env = ft_convert_env();
 	argv = ft_convert_argv(token);
 	path = ft_get_path();
-	free(argv[0]);
+	if (!path)
+		return (ft_free_execute(env, argv, path));
+	free(argv[0]),
 	argv[0] = ft_find_path(path, token->content);
 	printf("%s\n", argv[0]);
 	if (!argv[0])
-	{
-		ft_free_execute(env, argv, path);
-		return (0);
-	}
+		return (ft_free_execute(env, argv, path));
 	pid = fork();
 	if (pid == 0)
 		execve(argv[0], argv, env);
@@ -157,6 +168,7 @@ int	ft_execute(t_token *token)
 	printf("pid: %d\n", pid);
 	waitpid(pid, NULL, 0);
 	ft_free_execute(env, argv, path);
+	// free(argv);
 	g_minishell.exitcode = 0;
 	return (1);
 }
