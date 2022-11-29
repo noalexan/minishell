@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/11/29 17:11:45 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/29 20:21:32 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <readline/history.h>
 # include <signal.h>
 # include <termios.h>
+# include <stdbool.h>
 
 # include "libft.h"
 # include "ft_printf.h"
@@ -112,5 +113,6 @@ void	error_export(char *s1, char *s2);
 int		error_unknown(char *str);
 void	error_too_many_args(char *str);
 void	error_numeric_arg_required(char *s1, char *s2);
+void	error_not_a_directory(char *str, bool b);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:50:42 by UwU               #+#    #+#             */
-/*   Updated: 2022/11/28 10:43:35 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/29 20:20:02 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,23 @@ void	error_numeric_arg_required(char *s1, char *s2)
 	ft_putstr_fd(s1, STDERR);
 	ft_putstr_fd(": ", STDERR);
 	ft_putstr_fd(s2, STDERR);
-	ft_putendl_fd(": numeric argument required \e[0m\n", STDERR);
+	ft_putendl_fd(": numeric argument required\e[0m\n", STDERR);
 	g_minishell.exitcode = 255;
+}
+
+void	error_not_a_directory(char *str, bool b)
+{
+	if (b)
+	{
+		ft_putstr_fd("\e[31;1m[minishell]: ", STDERR);
+		ft_putstr_fd(str, STDERR);
+		ft_putendl_fd(": Not a directory\e[0m", STDERR);
+	}
+	else
+	{
+		ft_putstr_fd("\e[31;1m[minishell]: ", STDERR);
+		ft_putstr_fd(str, STDERR);
+		ft_putendl_fd(": No such file or directory\e[0m", STDERR);
+	}
+	g_minishell.exitcode = 1;
 }

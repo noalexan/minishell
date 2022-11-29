@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:00:00 by Tac               #+#    #+#             */
-/*   Updated: 2022/11/29 16:30:28 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/29 19:43:22 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	ft_export(t_token *token)
 			free(v->content);
 		else if (!v)
 			v = ft_lstadd_back_env(ft_create_env_var(ft_strdup(n), NULL));
-		if (content)
+		if (content && v)
 			v->content = ft_strdup(content);
-		else if (content != NULL)
+		else if (content != NULL && v)
 			v->content = ft_strdup("");
 		(free(content), free(n), ft_export(token->next));
 	}

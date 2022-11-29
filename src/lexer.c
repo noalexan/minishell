@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:55 by tle               #+#    #+#             */
-/*   Updated: 2022/11/29 17:16:38 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/29 19:57:32 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ t_token	*ft_lexer(char *line)
 	{
 		ft_putendl_fd("\e[31;1m[minishell]: Error syntax\e[0m", 2);
 		ft_lstclear(token);
+		g_minishell.exitcode = 127;
 		return (NULL);
 	}
 	if (line)

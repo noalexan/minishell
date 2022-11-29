@@ -50,7 +50,10 @@ t_env	*ft_lstlast_env(void)
 t_env	*ft_lstadd_back_env(t_env *new)
 {
 	if (!g_minishell.env)
-		return (NULL);
+	{
+		g_minishell.env = new;
+		return (new);
+	}
 	ft_lstlast_env()->next = new;
 	return (new);
 }

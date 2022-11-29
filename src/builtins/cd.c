@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 02:05:33 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/29 14:56:20 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/29 20:20:37 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,13 @@ void	ft_cd(t_token *token)
 	{
 		if (1)
 		{
-			chdir(token->content);
+			if (chdir(token->content) != 0)
+			{
+				if (access(token->content, F_OK) != 0)
+					return (error_not_a_directory(token->content, 0));
+				else
+					return (error_not_a_directory(token->content, 1));
+			}
 			free(ft_get_var("PWD")->content);
 			getcwd(buf, 3000);
 			ft_get_var("PWD")->content = ft_strdup_and_free(buf);

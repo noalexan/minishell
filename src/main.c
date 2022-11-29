@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:04:03 by flemaitr          #+#    #+#             */
-/*   Updated: 2022/11/29 14:50:45 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/29 20:15:45 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ int	main(int argc, char **argv, char **envv)
 /*
 
 "env -i ./minishell" puis "export ..=..": segfault ✅
-""" et "'": segfault
+""" et "'": segfault ✅
 expender: not work
 ft_replace_segment: bancal sa mere
 voir si on peut retirer des fonction dans src/utils.c
 (et pas les deplacés hein mais vrm les supprimer)
 
-!! FAUT AU'ON ENLEVE FT_PRINTF
+!! FAUT QU'ON ENLEVE FT_PRINTF
 dans les fonctions autorisée y a pas va_start, etc mais y a write et printf
 pour ecrire dans un fichier faudra faire ft_putstr_fd()
 ou alors on peut faire un dossier ft_printf pour garder les fonction mais jsp
