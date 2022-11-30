@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:38:30 by cjunker           #+#    #+#             */
-/*   Updated: 2022/11/30 20:53:03 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/30 22:20:37 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,33 +69,40 @@ int	ft_insert_var(t_token *t, int i)
 	}
 }
 
-t_token	**ft_expender(t_token **t)
+void	ft_expend_token_list(t_token *t)
 {
 	int		s_q;
 	int		d_q;
-	int		i;
 	int		j;
 
 	s_q = FALSE;
 	d_q = FALSE;
 	j = -1;
-	i = -1;
-	if (t[++i])
+	if (t)
 	{
-		while (t[i]->content[++j] && (s_q || d_q || !ft_isspace(t[i]->content[j])))
+		while (t->content[++j] && (s_q || d_q || !ft_isspace(t->content[j])))
 		{
-			if (t[i]->content[j] == '\'' && !s_q && !d_q)
-				s_q = ft_replace_seg(t[i], "", j--, 1, TRUE);
-			else if (t[i]->content[j] == '\'' && s_q && !d_q)
-				s_q = ft_replace_seg(t[i], "", j--, 1, FALSE);
-			else if (t[i]->content[j] == '\"' && !d_q && !s_q)
-				d_q = ft_replace_seg(t[i], "", j--, 1, TRUE);
-			else if (t[i]->content[j] == '\"' && d_q && !s_q)
-				d_q = ft_replace_seg(t[i], "", j--, 1, FALSE);
-			else if (t[i]->content[j] == '$' && !s_q)
-				j += ft_insert_var(t[i], j) - 1;
+			if (t->content[j] == '\'' && !s_q && !d_q)
+				s_q = ft_replace_seg(t, "", j--, 1, TRUE);
+			else if (t->content[j] == '\'' && s_q && !d_q)
+				s_q = ft_replace_seg(t, "", j--, 1, FALSE);
+			else if (t->content[j] == '\"' && !d_q && !s_q)
+				d_q = ft_replace_seg(t, "", j--, 1, TRUE);
+			else if (t->content[j] == '\"' && d_q && !s_q)
+				d_q = ft_replace_seg(t, "", j--, 1, FALSE);
+			else if (t->content[j] == '$' && !s_q)
+				j += ft_insert_var(t, j) - 1;
 		}
-		ft_expender(&(*t)->next);
+		ft_expend_token_list(t->next);
 	}
+}
+
+t_token	**ft_expender(t_token **t)
+{
+	int		i;
+
+	i = -1;
+	while (t[++i])
+		ft_expend_token_list(t[i]);
 	return (t);
 }

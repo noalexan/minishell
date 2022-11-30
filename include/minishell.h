@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/11/30 19:59:38 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/30 23:16:56 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ void	echo_control_seq(int c);
 // src/expender.c
 t_token	**ft_expender(t_token **token);
 
+// src/heredoc.c
+void	ft_heredoc(t_token *token);
+
 // src/builtins/echo.c
 void	ft_echo(t_token *token);
 
@@ -117,5 +120,8 @@ int		error_unknown(char *str);
 void	error_too_many_args(char *str);
 void	error_numeric_arg_required(char *s1, char *s2);
 void	error_not_a_directory(char *str, bool b);
+
+// // src/fun/the_messager.c
+// void	the_heredoc_donjon(void);
 
 #endif

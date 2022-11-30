@@ -6,7 +6,7 @@
 #    By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/11/30 20:48:11 by mayoub           ###   ########.fr        #
+#    Updated: 2022/11/30 23:17:04 by mayoub           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC		:=	src/🤖.c \
 			src/signal.c \
 			src/history.c \
 			src/expender.c \
+			src/heredoc.c \
 			src/error/error.c \
 			src/operator/pipe.c \
 			src/builtins/cd.c \

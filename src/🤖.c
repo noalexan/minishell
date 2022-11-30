@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/11/30 19:55:41 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/30 22:50:34 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	ft_builtins(t_token	*token)
 		ft_exit(token);
 	else if (!ft_strcmp(token->content, "pwd") && g_minishell.env)
 		(printf("%s\n", ft_get_var("PWD")->content), g_minishell.exitcode = 0);
+	else if (!ft_strcmp(token->content, "heredoc"))
+		ft_heredoc(token);
 	else
 		return (0);
 	return (1);
@@ -64,7 +66,7 @@ int	ft_minishell(const char *prompt)
 		if (!line)
 			(printf("exit\n"), close(g_minishell.history_fd), exit(0));
 		token = ft_lexer(line);
-		if ((*token) && (*token)->content)
+		if (token && (*token) && (*token)->content)
 		{
 			/* =========================================== DEBUG COMMAND ======================================== */
 			/**/	if (!ft_strcmp((*token)->content, "leaks"))													/**/
