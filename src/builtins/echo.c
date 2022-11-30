@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:14:49 by César             #+#    #+#             */
-/*   Updated: 2022/11/24 23:57:49 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/11/30 18:57:09 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,5 @@ void	ft_echo(t_token *token)
 	}
 	if (!n)
 		printf("\n");
+	g_minishell.exitcode = 0;
 }

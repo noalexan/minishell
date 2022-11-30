@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/11/30 16:23:45 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/30 19:59:38 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*ft_makeprompt(char *prompt);
 int		ft_minishell(const char *prompt);
 
 // src/lexer.c
-t_token	*ft_lexer(char *line);
+t_token	**ft_lexer(char *line);
 
 // src/execution.c
 int		ft_execute(t_token *token);
@@ -86,10 +86,13 @@ void	clavier(int sig_num);
 void	echo_control_seq(int c);
 
 // src/expender.c
-void	ft_expender(t_token *token);
+t_token	**ft_expender(t_token **token);
 
 // src/builtins/echo.c
 void	ft_echo(t_token *token);
+
+// src/operator/pipe.c
+t_token	**ft_pipe(t_token *t);
 
 // src/builtins/env.c
 void	env_exp(t_token *token, int e);

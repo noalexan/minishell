@@ -6,17 +6,11 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:55 by tle               #+#    #+#             */
-/*   Updated: 2022/11/30 16:24:34 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/30 19:48:40 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-typedef struct s_getstr
-{
-	char	*line;
-	int		size;
-}		t_getstr;
 
 void	ft_new_token(t_token **token, char *content)
 {
@@ -52,6 +46,10 @@ char	*ft_getstr(char *l, int i)
 			d_q = TRUE;
 		else if (l[i + j] == '"' && d_q && !s_q)
 			d_q = FALSE;
+		if (l[i + j + 1] == '|' && !d_q && !s_q)
+			return (ft_strldup(l + i, j + 1));
+		else if (l[i + j] == '|' && !d_q && !s_q)
+			return (ft_strdup("|"));
 	}
 	if (s_q || d_q)
 		g_minishell.exitcode = 258;
@@ -78,7 +76,7 @@ t_token	*ft_generate_token(char *line, int i)
 	return (token);
 }
 
-t_token	*ft_lexer(char *line)
+t_token	**ft_lexer(char *line)
 {
 	t_token	*token;
 	int		i;
@@ -102,6 +100,5 @@ t_token	*ft_lexer(char *line)
 	}
 	if (line)
 		free(line);
-	ft_expender(token);
-	return (token);
+	return (ft_expender(ft_pipe(token)));
 }

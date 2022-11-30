@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:50:42 by UwU               #+#    #+#             */
-/*   Updated: 2022/11/29 20:20:02 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/30 19:03:09 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,6 @@ int	error_unknown(char *str)
 	ft_putendl_fd(": command not found\e[0m", STDERR);
 	g_minishell.exitcode = 127;
 	return (0);
-}
-
-void	error_too_many_args(char *str)
-{
-	ft_putstr_fd("\e[31;1m[minishell]: ", STDERR);
-	ft_putstr_fd(str, STDERR);
-	ft_putendl_fd(": too many arguments\e[0m", STDERR);
-	g_minishell.exitcode = 1;
-}
-
-void	error_numeric_arg_required(char *s1, char *s2)
-{
-	ft_putstr_fd("\e[31;1m[minishell]: ", STDERR);
-	ft_putstr_fd(s1, STDERR);
-	ft_putstr_fd(": ", STDERR);
-	ft_putstr_fd(s2, STDERR);
-	ft_putendl_fd(": numeric argument required\e[0m\n", STDERR);
-	g_minishell.exitcode = 255;
 }
 
 void	error_not_a_directory(char *str, bool b)

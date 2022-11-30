@@ -6,28 +6,29 @@
 #    By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/11/29 19:41:35 by mayoub           ###   ########.fr        #
+#    Updated: 2022/11/30 20:48:11 by mayoub           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compilation variables
 CC		:= gcc
-FLAGS	:= -Lvendor/readline/lib -lreadline #-fsanitize=address
+FLAGS	:= -Lvendor/readline/lib -lreadline -fsanitize=address
 CFLAGS	:= -Werror -Wextra -Wall 
 
 # Name of the final executable
 NAME	:= minishell
 
 # All needed files
-SRC		:=	src/env.c \
+SRC		:=	src/🤖.c \
+			src/env.c \
 			src/main.c \
 			src/utils.c \
 			src/lexer.c \
 			src/signal.c \
 			src/history.c \
 			src/expender.c \
-			src/minishell.c \
 			src/error/error.c \
+			src/operator/pipe.c \
 			src/builtins/cd.c \
 			src/builtins/env.c \
 			src/builtins/echo.c \
