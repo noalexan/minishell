@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:55 by tle               #+#    #+#             */
-/*   Updated: 2022/11/29 19:57:32 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/30 16:24:34 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,6 @@ void	ft_new_token(t_token **token, char *content)
 	}
 }
 
-int	ft_quote(int value, char *quote)
-{
-	*quote = *quote;
-	return (value);
-}
-
 char	*ft_getstr(char *l, int i)
 {
 	int		s_q;
@@ -51,15 +45,13 @@ char	*ft_getstr(char *l, int i)
 	while (l[++j + i] && (s_q || d_q || !ft_isspace(l[j + i])))
 	{
 		if (l[i + j] == '\'' && !s_q && !d_q)
-			s_q = ft_quote(TRUE, &l[i + j]);
+			s_q = TRUE;
 		else if (l[i + j] == '\'' && s_q && !d_q)
-			s_q = ft_quote(FALSE, &l[i + j]);
+			s_q = FALSE;
 		else if (l[i + j] == '"' && !d_q && !s_q)
-			d_q = ft_quote(TRUE, &l[i + j]);
+			d_q = TRUE;
 		else if (l[i + j] == '"' && d_q && !s_q)
-			d_q = ft_quote(FALSE, &l[i + j]);
-		else if (l[i + j] == '$' && !s_q)
-			j += ft_expender(l, i + j);
+			d_q = FALSE;
 	}
 	if (s_q || d_q)
 		g_minishell.exitcode = 258;
@@ -109,6 +101,7 @@ t_token	*ft_lexer(char *line)
 		return (NULL);
 	}
 	if (line)
-		free(line); // ! DOUBLE FREE() ICI + DANS EXPENDER L.57
+		free(line);
+	ft_expender(token);
 	return (token);
 }

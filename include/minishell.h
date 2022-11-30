@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/11/29 20:21:32 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/11/30 16:23:45 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	clavier(int sig_num);
 void	echo_control_seq(int c);
 
 // src/expender.c
-int		ft_expender(char *l, int i);
+void	ft_expender(t_token *token);
 
 // src/builtins/echo.c
 void	ft_echo(t_token *token);
