@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 11:07:26 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/28 10:32:32 by noalexan         ###   ########.fr       */
+/*   Created: 2022/04/19 12:09:14 by noalexan          #+#    #+#             */
+/*   Updated: 2022/11/25 00:29:30 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-# include <unistd.h>
-# include <stdlib.h>
+# include "minishell.h"
 
-int		ft_putchar(const char character, int fd);
-int		ft_putnbr(int nb, int fd);
-int		ft_putunsignednbr(unsigned int nb, int fd);
-int		ft_putstr(char *str, int fd);
-int		ft_puthexa(unsigned long nb, int upper, int add, int fd);
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+
+char	*get_next_line(int fd);
+int		there_is_a_end_of_line(char *save);
+void	add_buffer(char **save, char *buffer);
+char	*get_line(char **save);
 
 #endif

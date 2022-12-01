@@ -6,16 +6,17 @@
 #    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by noalexan          #+#    #+#              #
-#    Updated: 2022/11/28 10:44:25 by noalexan         ###   ########.fr        #
+#    Updated: 2022/11/25 00:18:04 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		:= gcc
 CFLAGS	:= -Werror -Wextra -Wall
 
-NAME	:= printf.a
+NAME	:= get_next_line.a
 
-SRCS	:=	ft_printf_utils.c \
+SRCS	:=	get_next_line.c \
+			get_next_line_utils.c \
 
 OBJS	:= $(SRCS:.c=.o)
 
@@ -28,22 +29,22 @@ RM		:= rm -rf
 AR		:= ar rcs
 
 .c.o:
-	@printf $(GREEN)"\r\033[KCompiling printf... "$(YELLOW)"<$<> "$(RESET)"⏳"
+	@printf $(GREEN)"\r\033[KCompiling get_next_line... "$(YELLOW)"<$<> "$(RESET)"⏳ "
 	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I.
 
 $(NAME): $(OBJS)
-	@printf $(CYAN)"\r\033[KCompiling '$(NAME)'... "$(RESET)"⏳"
+	@printf $(CYAN)"\r\033[KCompiling '$(NAME)'... "$(RESET)"⏳ "
 	@$(AR) $(NAME) $(OBJS)
-	@printf $(GREEN)"\r\033[KPrintf compiled succesfully ✅\n"$(RESET)
+	@printf $(GREEN)"\r\033[KGet_next_line compiled succesfully ✅\n"$(RESET)
 
 all: $(NAME)
 
 clean:
-	@printf $(CYAN)"\r\033[KErasing printf... "$(RESET)"⏳"
+	@printf $(CYAN)"\r\033[KErasing get_next_line... "$(RESET)"⏳ "
 	@$(RM) $(OBJS)
 
 fclean: clean
-	@printf $(CYAN)"\r\033[KErasing $(NAME)... "$(RESET)"⏳"
+	@printf $(CYAN)"\r\033[KErasing $(NAME)... "$(RESET)"⏳ "
 	@$(RM) $(NAME)
 
 re: fclean all

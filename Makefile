@@ -6,30 +6,35 @@
 #    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/11/13 19:55:47 by noalexan         ###   ########.fr        #
+#    Updated: 2022/12/01 22:36:01 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compilation variables
 CC		:= gcc
-FLAGS	:= -Lvendor/readline/lib -lreadline
+FLAGS	:= -Lvendor/readline/lib -lreadline # -fsanitize=address
 CFLAGS	:= -Werror -Wextra -Wall 
 
 # Name of the final executable
 NAME	:= minishell
 
 # All needed files
-SRC		:=	src/env.c \
+SRC		:=	src/🤖.c \
+			src/env.c \
 			src/main.c \
 			src/utils.c \
-			src/lexer.c \
-			src/minishell.c \
+			src/signal.c \
+			src/history.c \
+			src/operator/pipe.c \
+			src/operator/lexer.c \
+			src/operator/expender.c \
 
 OBJ		:= $(SRC:.c=.o)
 
 # All needed library
 LIB		:=	src/libft/libft.a \
 			src/printf/printf.a \
+			src/get_next_line/get_next_line.a \
 
 # Colors for differents prints
 GREEN	:= "\033[0m\033[1;32m"
@@ -43,10 +48,11 @@ RESET	:= "\033[0m"
 	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 # Compile all .o files
-$(NAME): $(OBJ)
+$(NAME): vendor/readline $(OBJ)
 	@printf $(GREEN)"\r\033[KObjects compiled succesfully ✅\n"$(RESET)
 	@make -C src/libft
 	@make -C src/printf
+	@make -C src/get_next_line
 	@printf $(CYAN)"\r\033[KCompiling '$(NAME)'... ⏳"$(RESET)
 	@$(CC) $(FLAGS) $(OBJ) $(LIB) -I include/ -o $(NAME)
 	@printf $(GREEN)"\r\033[KSuccess compiling '$(NAME)' ✅\n"$(RESET)
@@ -66,30 +72,33 @@ $(NAME): $(OBJ)
 	@printf "╚═╝      ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝\n"
 	@printf "\n"
 
-# Default command to launch
-all: libs $(NAME)
-
-# Compile and run minishell
-run: all
-	@./$(NAME)
+# Readline
+vendor/readline: vendor
+	@if [ ! -d "vendor/readline" ]; then \
+		printf $(CYAN)"\r\033[KInstallation of readline... ⏳\n"$(RESET); \
+		curl https://raw.githubusercontent.com/noalexan/minishell/stable/install_readline.sh | sh; \
+	fi
 
 # Vendor
 vendor:
 	@mkdir vendor
 
-# Readline
-vendor/readline: vendor
-	@printf $(CYAN)"\r\033[KInstallation of readline... ⏳\n"$(RESET)
-	@sh install_readline.sh
-	@printf $(GREEN)"Readline installed ✅\n"$(RESET)
+# Default command to launch
+all: $(NAME)
 
-readline: vendor/readline
-
-# Library necessary to compile
-libs: readline
+# Compile and run minishell
+run: all
+	@./$(NAME)
 
 shortcut:
-	@open https://www.google.com/search?q=how+to+become+a+good+developer+%3F&rlz=1C5CHFA_enFR1031FR1031&ei=typxY8mBN-yUxc8Pm6CB4Ak&ved=0ahUKEwiJudLQ2Kv7AhVsSvEDHRtQAJwQ4dUDCA8&uact=5&oq=how+to+become+a+good+developer+%3F&gs_lcp=Cgxnd3Mtd2l6LXNlcnAQAzIHCAAQgAQQEzIGCAAQHhATMgYIABAeEBMyBggAEB4QEzIICAAQCBAeEBMyCAgAEAgQHhATMggIABAIEB4QEzIICAAQCBAeEBMyCAgAEAgQHhATMggIABAIEB4QEzoKCAAQRxDWBBCwAzoJCAAQgAQQDRATOggIABAeEA0QEzoICAAQFhAeEBNKBAhNGAFKBAhBGABKBAhGGABQhgpYnDJgvTdoAXABeACAAWaIAe0BkgEDMi4xmAEAoAEByAEIwAEB&sclient=gws-wiz-serp
+	@open https://www.google.com/search?q=how+to+become+a+good+developer+%3\
+	F&rlz=1C5CHFA_enFR1031FR1031&ei=typxY8mBN-yUxc8Pm6CB4Ak&ved=0ahUKEwiJud\
+	LQ2Kv7AhVsSvEDHRtQAJwQ4dUDCA8&uact=5&oq=how+to+become+a+good+developer+\
+	%3F&gs_lcp=Cgxnd3Mtd2l6LXNlcnAQAzIHCAAQgAQQEzIGCAAQHhATMgYIABAeEBMyBggA\
+	EB4QEzIICAAQCBAeEBMyCAgAEAgQHhATMggIABAIEB4QEzIICAAQCBAeEBMyCAgAEAgQHhA\
+	TMggIABAIEB4QEzoKCAAQRxDWBBCwAzoJCAAQgAQQDRATOggIABAeEA0QEzoICAAQFhAeEB\
+	NKBAhNGAFKBAhBGABKBAhGGABQhgpYnDJgvTdoAXABeACAAWaIAe0BkgEDMi4xmAEAoAEBy\
+	AEIwAEB&sclient=gws-wiz-serp
 
 # Print our god
 polnareff:
@@ -176,6 +185,7 @@ clean:
 	@rm -rdf $(OBJ)
 	@make -C src/libft clean
 	@make -C src/printf clean
+	@make -C src/get_next_line clean
 	@printf $(GREEN)"\r\033[Kcleaned 🗑\n"$(RESET)
 
 # Same as 'clean' but clean minishell too
@@ -184,6 +194,7 @@ fclean:
 	@rm -rdf $(OBJ)
 	@make -C src/libft fclean
 	@make -C src/printf fclean
+	@make -C src/get_next_line fclean
 	@printf $(GREEN)"\r\033[KObjects cleaned 🗑\n"$(RESET)
 	@printf $(CYAN)"\r\033[KErasing binary file... "$(RESET)"⏳ "
 	@rm -rdf $(NAME) test_parser
@@ -199,4 +210,4 @@ fclean_readline:
 # Clean all and recompile minishell
 re: fclean all
 
-.PHONY: all clean fclean re libs readline polnareff load fclean_readline run update
+.PHONY: all clean fclean re polnareff load fclean_readline run readline

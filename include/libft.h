@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/23 10:04:44 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/13 16:22:30 by noalexan         ###   ########.fr       */
+/*   Created: 2022/03/23 10:04:44 by Yoshi             #+#    #+#             */
+/*   Updated: 2022/12/01 18:11:48 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ typedef struct s_token {
 
 typedef struct s_input
 {
-	t_token	*tokens;
-	int		in;
-	int		out;
+	t_token			*token;
+	int				in;
+	int				out;
+	struct s_input	*next;
 }		t_input;
 
 int		ft_isalpha(int character);
@@ -66,9 +67,9 @@ char	**ft_split(const char *string, char separator);
 char	*ft_itoa(int number);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putendl_fd(char *s, int fd);
+void	ft_putchar_fd(const char c, int fd);
+void	ft_putstr_fd(const char *s, int fd);
+void	ft_putendl_fd(const char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 t_token	*ft_lstlast(t_token *lst);
 t_token	*ft_lst_before_last(t_token *lst);

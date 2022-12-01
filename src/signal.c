@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 15:04:03 by flemaitr          #+#    #+#             */
-/*   Updated: 2022/12/01 23:04:37 by noalexan         ###   ########.fr       */
+/*   Created: 2022/10/26 16:27:04 by Mel               #+#    #+#             */
+/*   Updated: 2022/12/01 22:45:10 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	main(int argc, char **argv, char **envv)
+void	clavier(int sig_num)
 {
-	((void) argc, (void) argv, (void) envv);
-	g_minishell.env = ft_create_env(envv);
-	echo_control_seq(0);
-	signal(SIGINT, clavier);
-	ft_sethistory();
-	ft_minishell(ft_makeprompt(PROMPT));
-	return (0);
+	if (sig_num == SIGINT)
+	{
+		printf("\n");
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	}
+	g_minishell.exitcode = 1;
 }
 
-// Version : 0.2.0
-// Authors : Marwan Ayoub, Noah Alexandre
+void	echo_control_seq(int c)
+{
+	struct termios	conf;
+
+	ioctl(ttyslot(), TIOCGETA, &conf);
+	if (c == 1)
+		conf.c_lflag |= ECHOCTL;
+	else if (c == 0)
+		conf.c_lflag &= ~(ECHOCTL);
+	ioctl(ttyslot(), TIOCSETA, &conf);
+}
