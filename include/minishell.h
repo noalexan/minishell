@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/11/30 23:16:56 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/01 21:42:25 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_global
 {
 	int		exitcode;
 	int		history_fd;
+	t_input	*input;
 	t_env	*env;
 }		t_global;
 
@@ -66,7 +67,7 @@ char	*ft_makeprompt(char *prompt);
 int		ft_minishell(const char *prompt);
 
 // src/lexer.c
-t_token	**ft_lexer(char *line);
+void	ft_lexer(char *line);
 
 // src/execution.c
 int		ft_execute(t_token *token);
@@ -86,7 +87,7 @@ void	clavier(int sig_num);
 void	echo_control_seq(int c);
 
 // src/expender.c
-t_token	**ft_expender(t_token **token);
+void	ft_expender(t_input *s);
 
 // src/heredoc.c
 void	ft_heredoc(t_token *token);
@@ -121,7 +122,7 @@ void	error_too_many_args(char *str);
 void	error_numeric_arg_required(char *s1, char *s2);
 void	error_not_a_directory(char *str, bool b);
 
-// // src/fun/the_messager.c
-// void	the_heredoc_donjon(void);
+// src/fun/the_messager.c
+void	the_heredoc_donjon(void);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/11/30 23:17:04 by mayoub           ###   ########.fr        #
+#    Updated: 2022/12/01 09:10:56 by mayoub           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ NAME	:= minishell
 # All needed files
 SRC		:=	src/🤖.c \
 			src/env.c \
+			src/fun/the_messager.c \
 			src/main.c \
 			src/utils.c \
 			src/lexer.c \

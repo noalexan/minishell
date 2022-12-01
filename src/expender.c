@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:38:30 by cjunker           #+#    #+#             */
-/*   Updated: 2022/11/30 22:20:37 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/01 21:42:11 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,11 @@ void	ft_expend_token_list(t_token *t)
 	}
 }
 
-t_token	**ft_expender(t_token **t)
+void	ft_expender(t_input *s)
 {
-	int		i;
-
-	i = -1;
-	while (t[++i])
-		ft_expend_token_list(t[i]);
-	return (t);
+	if (s)
+	{
+		ft_expend_token_list(s->token);
+		ft_expender(s->next);
+	}
 }

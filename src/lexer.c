@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:55 by tle               #+#    #+#             */
-/*   Updated: 2022/11/30 19:48:40 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/01 21:41:32 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_token	*ft_generate_token(char *line, int i)
 	return (token);
 }
 
-t_token	**ft_lexer(char *line)
+void	*ft_lexer(char *line)
 {
 	t_token	*token;
 	int		i;
@@ -100,5 +100,6 @@ t_token	**ft_lexer(char *line)
 	}
 	if (line)
 		free(line);
-	return (ft_expender(ft_pipe(token)));
+	ft_pipe(token);
+	ft_expender();
 }

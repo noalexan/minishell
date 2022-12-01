@@ -5,53 +5,57 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/30 19:11:11 by mayoub            #+#    #+#             */
-/*   Updated: 2022/11/30 22:52:17 by mayoub           ###   ########.fr       */
+/*   Created: 2022/11/30 19:11:11 by Rondoudou         #+#    #+#             */
+/*   Updated: 2022/12/01 21:34:55 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_count_pipe(t_token *t)
-{
-	if (t)
-	{
-		if (!ft_strcmp(t->content, "|"))
-			return (1 + ft_count_pipe(t->next));
-		else
-			return (0 + ft_count_pipe(t->next));
-	}
-	return (0);
-}
-
 t_token	*ft_get_pipe(t_token *t)
 {
-	t_token	*new;
+	t_token	*a;
 
-	new = t;
-	while (t)
+	a = NULL;
+	if (t && t->content && ft_strcmp(t->content, "|"))
 	{
-		if (!ft_strcmp(t->content, "|"))
-			t->next = NULL;
-		t = t->next;
+		a = ft_calloc(1, sizeof(t_token));
+		a->content = ft_strdup(t->content);
+		a->next = NULL;
+		a->next = ft_get_pipe(t->next);
 	}
-	return (new);
+	return (a);
 }
 
-t_token	**ft_pipe(t_token *t)
+t_token	*ft_get_token(t_token *t)
 {
-	t_token	**new;
-	int		i;
-	int		j;
-
-	i = ft_count_pipe(t) + 1;
-	printf("Size: %d\n", i);
-	new = ft_calloc(i + 1, sizeof(t_token));
-	j = -1;
-	while (++j < i)
+	if (t && t->content && t->content[0])
 	{
-		new[j] = ft_get_pipe(t);
-		t = ft_get_pipe(t);
+		if (ft_strcmp(t->content, "|"))
+			return (ft_get_token(t->next));
+		else
+			return (t->next);
 	}
-	return (new);
+	return (NULL);
+}
+
+t_input	*ft_create_input(t_token *t)
+{
+	t_input	*a;
+
+	a = NULL;
+	if (t)
+	{
+		a = ft_calloc(1, sizeof(t_input));
+		a->in = 0;
+		a->out = 1;
+		a->token = ft_get_pipe(t);
+		a->next = ft_create_input(ft_get_token(t));
+	}
+	return (a);
+}
+
+void	ft_pipe(t_token *t)
+{
+	g_minishell.input = ft_create_input(t);
 }

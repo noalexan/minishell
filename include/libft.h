@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 10:04:44 by Yoshi             #+#    #+#             */
-/*   Updated: 2022/11/28 10:36:10 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/01 18:11:48 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ typedef struct s_token {
 
 typedef struct s_input
 {
-	t_token	*tokens;
-	int		in;
-	int		out;
+	t_token			*token;
+	int				in;
+	int				out;
+	struct s_input	*next;
 }		t_input;
 
 int		ft_isalpha(int character);
