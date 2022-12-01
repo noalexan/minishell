@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/01 21:42:25 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/01 21:51:28 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*ft_makeprompt(char *prompt);
 int		ft_minishell(const char *prompt);
 
 // src/lexer.c
-void	ft_lexer(char *line);
+void	*ft_lexer(char *line);
 
 // src/execution.c
 int		ft_execute(t_token *token);
@@ -87,7 +87,7 @@ void	clavier(int sig_num);
 void	echo_control_seq(int c);
 
 // src/expender.c
-void	ft_expender(t_input *s);
+void	ft_expender(void);
 
 // src/heredoc.c
 void	ft_heredoc(t_token *token);
@@ -96,7 +96,7 @@ void	ft_heredoc(t_token *token);
 void	ft_echo(t_token *token);
 
 // src/operator/pipe.c
-t_token	**ft_pipe(t_token *t);
+void	ft_pipe(t_token *t);
 
 // src/builtins/env.c
 void	env_exp(t_token *token, int e);

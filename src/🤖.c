@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   🤖.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/12/01 21:40:42 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/01 22:23:52 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,65 @@ char	*ft_makeprompt(char *prompt)
 		return (ft_strjoin("\e[34;1mstranger@", prompt));
 }
 
+void	ft_exec(t_input *s)
+{
+	if (s)
+	{
+		/* =========================================== DEBUG COMMAND ======================================== */
+		/**/	if (!ft_strcmp(s->token->content, "leaks"))													/**/
+		/**/		system("leaks minishell");																/**/
+		/**/	else if (!ft_strcmp(s->token->content, "pwd") && g_minishell.env)							/**/
+		/**/		(printf("%s\n", ft_get_var("PWD")->content), g_minishell.exitcode = 0);					/**/
+		/**/	else if (!ft_strcmp(s->token->content, "heredoc"))											/**/
+		/**/		ft_heredoc(s->token);																	/**/
+		/**/	else if (!ft_strcmp(s->token->content, "re"))												/**/
+		/**/	{																							/**/
+		/**/		system("make run");																		/**/
+		/**/		exit(EXIT_SUCCESS);																		/**/
+		/**/	}																							/**/
+		/**/	else if (!ft_strcmp(s->token->content, "fre"))												/**/
+		/**/	{																							/**/
+		/**/		system("make fclean run");																/**/
+		/**/		exit(EXIT_SUCCESS);																		/**/
+		/**/	}																							/**/
+		/**/	else if (!ft_strcmp(s->token->content, "history-fd"))										/**/
+		/**/		printf("history fd: %d\n", g_minishell.history_fd);										/**/
+		/**/	else if (!ft_strcmp(s->token->content, "colors"))											/**/
+		/**/	{																							/**/
+		/**/		int i = 0;																				/**/
+		/**/		while (++i <= 9)																		/**/
+		/**/		{																						/**/
+		/**/			printf(																				/**/
+		/**/				"\e[34;1m[DEBUG]\e[0m: [COLOR]: \"\\e[%d;%dm\"  -> \"\e[%d;%dmCOLOR\e[0m\"\n",	/**/
+		/**/				(s->token->next) ? ft_atoi(s->token->next->content) : 0, i,						/**/
+		/**/				(s->token->next) ? ft_atoi(s->token->next->content) : 0, i						/**/
+		/**/			);																					/**/
+		/**/		}																						/**/
+		/**/		i = 29;																					/**/
+		/**/		while (++i <= 47)																		/**/
+		/**/		{																						/**/
+		/**/			printf(																				/**/
+		/**/				"\e[34;1m[DEBUG]\e[0m: [COLOR]: \"\\e[%d;%dm\" -> \"\e[%d;%dmCOLOR\e[0m\"\n",	/**/
+		/**/				(s->token->next) ? ft_atoi(s->token->next->content) : 0, i,						/**/
+		/**/				(s->token->next) ? ft_atoi(s->token->next->content) : 0, i						/**/
+		/**/			);																					/**/
+		/**/		}																						/**/
+		/**/	}																							/**/
+		/* ================================================================================================== */
+		ft_exec(s->next);
+	}
+}
+
+void	ft_clear(t_input *s)
+{
+	if (s)
+	{
+		ft_lstclear(s->token);
+		ft_clear(s->next);
+		free(s);
+	}
+}
+
 int	ft_minishell(const char *prompt)
 {
 	char	*line;
@@ -62,68 +121,8 @@ int	ft_minishell(const char *prompt)
 			(printf("exit\n"), close(g_minishell.history_fd), exit(0));
 		ft_lexer(line);
 
-		int i = 0;
-		printf("{\n");
-		while (g_minishell.input && ++i)
-		{
-			printf("\t\"tab[%d]\":[\n", i);
-			while (g_minishell.input->token)
-			{
-				printf("\t\t\"%s\",\n", g_minishell.input->token->content);
-				g_minishell.input->token = g_minishell.input->token->next;
-			}
-			printf("\t],\n");
-			g_minishell.input = g_minishell.input->next;
-		}
-		printf("}\n");
-
-		// if (token && (*token) && (*token)->content)
-		// {
-		// 	/* =========================================== DEBUG COMMAND ======================================== */
-		// 	/**/	if (!ft_strcmp((*token)->content, "leaks"))													/**/
-		// 	/**/		system("leaks minishell");																/**/
-		// 	/**/	else if (!ft_strcmp(token->content, "pwd") && g_minishell.env)								/**/
-		// 	/**/		(printf("%s\n", ft_get_var("PWD")->content), g_minishell.exitcode = 0);					/**/
-		// 	/**/	else if (!ft_strcmp(token->content, "heredoc"))												/**/
-		// 	/**/		ft_heredoc(token);																		/**/
-		// 	/**/	else if (!ft_strcmp((*token)->content, "re"))												/**/
-		// 	/**/	{																							/**/
-		// 	/**/		system("make run");																		/**/
-		// 	/**/		exit(EXIT_SUCCESS);																		/**/
-		// 	/**/	}																							/**/
-		// 	/**/	else if (!ft_strcmp((*token)->content, "fre"))												/**/
-		// 	/**/	{																							/**/
-		// 	/**/		system("make fclean run");																/**/
-		// 	/**/		exit(EXIT_SUCCESS);																		/**/
-		// 	/**/	}																							/**/
-		// 	/**/	else if (!ft_strcmp((*token)->content, "history-fd"))										/**/
-		// 	/**/		printf("history fd: %d\n", g_minishell.history_fd);										/**/
-		// 	/**/	else if (!ft_strcmp((*token)->content, "colors"))											/**/
-		// 	/**/	{																							/**/
-		// 	/**/		int i = 0;																				/**/
-		// 	/**/		while (++i <= 9)																		/**/
-		// 	/**/		{																						/**/
-		// 	/**/			printf(																				/**/
-		// 	/**/				"\e[34;1m[DEBUG]\e[0m: [COLOR]: \"\\e[%d;%dm\"  -> \"\e[%d;%dmCOLOR\e[0m\"\n",	/**/
-		// 	/**/				((*token)->next) ? ft_atoi((*token)->next->content) : 0, i,						/**/
-		// 	/**/				((*token)->next) ? ft_atoi((*token)->next->content) : 0, i						/**/
-		// 	/**/			);																					/**/
-		// 	/**/		}																						/**/
-		// 	/**/		i = 29;																					/**/
-		// 	/**/		while (++i <= 47)																		/**/
-		// 	/**/		{																						/**/
-		// 	/**/			printf(																				/**/
-		// 	/**/				"\e[34;1m[DEBUG]\e[0m: [COLOR]: \"\\e[%d;%dm\" -> \"\e[%d;%dmCOLOR\e[0m\"\n",	/**/
-		// 	/**/				((*token)->next) ? ft_atoi((*token)->next->content) : 0, i,						/**/
-		// 	/**/				((*token)->next) ? ft_atoi((*token)->next->content) : 0, i						/**/
-		// 	/**/			);																					/**/
-		// 	/**/		}																						/**/
-		// 	/**/	}																							/**/
-		// 	/**/	else																						/**/
-		// 	/* ================================================================================================== */
-		// 	if (!ft_builtins())
-		// 		if (!ft_execute())
-		// 			error_unknown((*token)->content);
-		// }
+		ft_exec(g_minishell.input);
+		
+		ft_clear(g_minishell.input);
 	}
 }

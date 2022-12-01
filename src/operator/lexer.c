@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:55 by tle               #+#    #+#             */
-/*   Updated: 2022/12/01 21:41:32 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/01 22:16:10 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
 void	ft_new_token(t_token **token, char *content)
 {
@@ -102,4 +102,5 @@ void	*ft_lexer(char *line)
 		free(line);
 	ft_pipe(token);
 	ft_expender();
+	return (NULL);
 }

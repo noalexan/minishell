@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+         #
+#    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/12/01 09:10:56 by mayoub           ###   ########.fr        #
+#    Updated: 2022/12/01 22:15:46 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compilation variables
 CC		:= gcc
-FLAGS	:= -Lvendor/readline/lib -lreadline -fsanitize=address
+FLAGS	:= -Lvendor/readline/lib -lreadline # -fsanitize=address
 CFLAGS	:= -Werror -Wextra -Wall 
 
 # Name of the final executable
@@ -21,23 +21,23 @@ NAME	:= minishell
 # All needed files
 SRC		:=	src/🤖.c \
 			src/env.c \
-			src/fun/the_messager.c \
 			src/main.c \
 			src/utils.c \
-			src/lexer.c \
 			src/signal.c \
 			src/history.c \
-			src/expender.c \
-			src/heredoc.c \
 			src/error/error.c \
-			src/operator/pipe.c \
 			src/builtins/cd.c \
 			src/builtins/env.c \
+			src/operator/pipe.c \
 			src/builtins/echo.c \
 			src/builtins/exit.c \
+			src/operator/lexer.c \
 			src/builtins/unset.c \
 			src/builtins/export.c \
 			src/execute/execute.c \
+			src/fun/the_messager.c \
+			src/operator/heredoc.c \
+			src/operator/expender.c \
 
 OBJ		:= $(SRC:.c=.o)
 
@@ -88,7 +88,6 @@ vendor/readline: vendor
 		printf $(CYAN)"\r\033[KInstallation of readline... ⏳\n"$(RESET); \
 		curl https://raw.githubusercontent.com/noalexan/minishell/stable/install_readline.sh | sh; \
 	fi
-	@printf $(GREEN)"Readline installed ✅\n"$(RESET)
 
 # Vendor
 vendor:

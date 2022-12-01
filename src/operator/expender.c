@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expender.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:38:30 by cjunker           #+#    #+#             */
-/*   Updated: 2022/12/01 21:42:11 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/01 22:16:01 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
 int	ft_size_of_name(const char *s)
 {
@@ -97,11 +97,14 @@ void	ft_expend_token_list(t_token *t)
 	}
 }
 
-void	ft_expender(t_input *s)
+void	ft_expender(void)
 {
-	if (s)
+	t_input	*s;
+
+	s = g_minishell.input;
+	while (s)
 	{
 		ft_expend_token_list(s->token);
-		ft_expender(s->next);
+		s = s->next;
 	}
 }

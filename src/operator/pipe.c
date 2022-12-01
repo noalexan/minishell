@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:11:11 by Rondoudou         #+#    #+#             */
-/*   Updated: 2022/12/01 21:34:55 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/01 22:14:57 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,5 @@ t_input	*ft_create_input(t_token *t)
 void	ft_pipe(t_token *t)
 {
 	g_minishell.input = ft_create_input(t);
+	ft_lstclear(t);
 }
