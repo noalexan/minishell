@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:14:49 by César             #+#    #+#             */
-/*   Updated: 2022/11/30 18:57:09 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/02 02:11:19 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,18 @@ void	ft_echo(t_token *token)
 	if (!n)
 		printf("\n");
 	g_minishell.exitcode = 0;
+}
+
+void	ft_exec_echo(t_input *s)
+{
+	int	pid;
+
+	pid = fork();
+	if (pid == 0)
+	{
+		dup2(0, s->in);
+		dup2(1, s->out);
+		ft_echo(s->token->next);
+		exit(0);
+	}
 }

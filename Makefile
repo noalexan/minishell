@@ -6,7 +6,7 @@
 #    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/12/01 22:15:46 by noalexan         ###   ########.fr        #
+#    Updated: 2022/12/02 02:10:36 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,19 +25,25 @@ SRC		:=	src/🤖.c \
 			src/utils.c \
 			src/signal.c \
 			src/history.c \
+\
 			src/error/error.c \
+\
 			src/builtins/cd.c \
 			src/builtins/env.c \
-			src/operator/pipe.c \
 			src/builtins/echo.c \
 			src/builtins/exit.c \
-			src/operator/lexer.c \
 			src/builtins/unset.c \
 			src/builtins/export.c \
-			src/execute/execute.c \
-			src/fun/the_messager.c \
+\
+			src/operator/pipe.c \
+			src/operator/lexer.c \
 			src/operator/heredoc.c \
 			src/operator/expender.c \
+\
+			src/execute/utils.c \
+			src/execute/execute.c \
+\
+			src/fun/the_messager.c \
 
 OBJ		:= $(SRC:.c=.o)
 

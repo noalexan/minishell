@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/01 21:51:28 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/02 02:07:47 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ typedef struct s_global
 
 t_global	g_minishell;
 
+// src/minishell.c
+char	*ft_makeprompt(char *prompt);
+int		ft_minishell(const char *prompt);
+
 // src/env.c
 t_env	*ft_create_env(char	**env);
 t_env	*ft_create_env_var(char *name, char *content);
@@ -62,41 +66,42 @@ char	*ft_get_content(char *str);
 void	ft_sethistory(void);
 void	ft_addhistory(const char *str);
 
-// src/minishell.c
-char	*ft_makeprompt(char *prompt);
-int		ft_minishell(const char *prompt);
-
-// src/lexer.c
-void	*ft_lexer(char *line);
-
-// src/execution.c
-int		ft_execute(t_token *token);
-
-// src/utils.c
-int		ft_skip_space(char *line);
-t_env	*ft_lstadd_back_env(t_env *new);
-t_env	*ft_lstlast_env(void);
-int		is_equal(char *str);
-t_env	*ft_lstnew_env(void *content);
-void	ft_lst_delone_env(t_env *del);
-void	ft_replace_segment(char **str, char *seg, int s, int l);
-
 // src/signal.c
 void	rl_replace_line(const char *text, int clear_undo);
 void	clavier(int sig_num);
 void	echo_control_seq(int c);
 
-// src/expender.c
+// src/utils.c
+int		ft_skip_space(char *line);
+t_env	*ft_lstadd_back_env(t_env *new);
+int		is_equal(char *str);
+t_env	*ft_lstnew_env(void *content);
+void	ft_lst_delone_env(t_env *del);
+
+// src/operator/lexer.c
+void	*ft_lexer(char *line);
+
+// src/operator/expender.c
 void	ft_expender(void);
 
-// src/heredoc.c
+// src/operator/heredoc.c
 void	ft_heredoc(t_token *token);
-
-// src/builtins/echo.c
-void	ft_echo(t_token *token);
 
 // src/operator/pipe.c
 void	ft_pipe(t_token *t);
+
+// src/execute/execute.c
+int		ft_execute(t_token *token);
+
+// src/execute/utils.c
+char	**ft_convert_env(void);
+char	**ft_convert_argv(t_token *token);
+int		ft_free_execute(char **env, char **argv, char **path);
+char	**ft_get_path(void);
+char	*ft_find_path(char **path, char *cmd);
+
+// src/builtins/echo.c
+void	ft_exec_echo(t_input *s);
 
 // src/builtins/env.c
 void	env_exp(t_token *token, int e);

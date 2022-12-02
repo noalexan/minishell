@@ -36,25 +36,20 @@ int	is_equal(char *str)
 	return (0);
 }
 
-t_env	*ft_lstlast_env(void)
+t_env	*ft_lstadd_back_env(t_env *new)
 {
 	t_env	*tmp;
 
-	tmp = g_minishell.env;
-	if (tmp)
-		while (tmp->next)
-			tmp = tmp->next;
-	return (tmp);
-}
-
-t_env	*ft_lstadd_back_env(t_env *new)
-{
 	if (!g_minishell.env)
 	{
 		g_minishell.env = new;
 		return (new);
 	}
-	ft_lstlast_env()->next = new;
+	tmp = g_minishell.env;
+	if (tmp)
+		while (tmp->next)
+			tmp = tmp->next;
+	tmp->next = new;
 	return (new);
 }
 

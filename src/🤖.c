@@ -6,49 +6,26 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/12/01 22:23:52 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/02 02:08:58 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_builtins(t_token	*token)
+void	ft_builtins(t_input	*s)
 {
-	if (!ft_strcmp(token->content, "env"))
-		env_exp(token, 0);
-	else if (!ft_strcmp(token->content, "export"))
-		env_exp(token, 1);
-	else if (!ft_strcmp(token->content, "unset"))
-		env_exp(token, 2);
-	else if (!ft_strcmp(token->content, "echo"))
-		ft_echo(token->next);
-	else if (!ft_strcmp(token->content, "cd"))
-		ft_cd(token->next);
-	else if (!ft_strcmp(token->content, "exit"))
-		ft_exit(token);
-	else
-		return (0);
-	return (1);
-}
-
-char	*ft_makeprompt(char *prompt)
-{
-	t_env	*username;
-	char	*tmp;
-	char	*tmp2;
-
-	username = ft_get_var("USER");
-	if (username && username->content && username->content[0])
-	{
-		tmp = ft_strjoin("\e[34;1m", username->content);
-		tmp2 = ft_strjoin(tmp, "@");
-		free(tmp);
-		tmp = ft_strjoin(tmp2, prompt);
-		free(tmp2);
-		return (tmp);
-	}
-	else
-		return (ft_strjoin("\e[34;1mstranger@", prompt));
+	if (!ft_strcmp(s->token->content, "echo"))
+		ft_exec_echo(s);
+	// else if (!ft_strcmp(token->content, "env"))
+	// 	env_exp(token, 0);
+	// else if (!ft_strcmp(token->content, "export"))
+	// 	env_exp(token, 1);
+	// else if (!ft_strcmp(token->content, "unset"))
+	// 	env_exp(token, 2);
+	// else if (!ft_strcmp(token->content, "cd"))
+	// 	ft_cd(token->next);
+	// else if (!ft_strcmp(token->content, "exit"))
+	// 	ft_exit(token);
 }
 
 void	ft_exec(t_input *s)
@@ -96,8 +73,29 @@ void	ft_exec(t_input *s)
 		/**/		}																						/**/
 		/**/	}																							/**/
 		/* ================================================================================================== */
+		ft_builtins(s);
 		ft_exec(s->next);
 	}
+}
+
+char	*ft_makeprompt(char *prompt)
+{
+	t_env	*username;
+	char	*tmp;
+	char	*tmp2;
+
+	username = ft_get_var("USER");
+	if (username && username->content && username->content[0])
+	{
+		tmp = ft_strjoin("\e[34;1m", username->content);
+		tmp2 = ft_strjoin(tmp, "@");
+		free(tmp);
+		tmp = ft_strjoin(tmp2, prompt);
+		free(tmp2);
+		return (tmp);
+	}
+	else
+		return (ft_strjoin("\e[34;1mstranger@", prompt));
 }
 
 void	ft_clear(t_input *s)
@@ -117,8 +115,10 @@ int	ft_minishell(const char *prompt)
 	while (1)
 	{
 		line = readline(prompt);
+
 		if (!line)
 			(printf("exit\n"), close(g_minishell.history_fd), exit(0));
+
 		ft_lexer(line);
 
 		ft_exec(g_minishell.input);
