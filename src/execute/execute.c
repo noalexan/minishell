@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 04:01:34 by noalexan          #+#    #+#             */
-/*   Updated: 2022/12/02 02:03:28 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/02 16:30:24 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,15 @@ int	ft_execute(t_token *token)
 	printf("%s\n", argv[0]);
 	if (!argv[0])
 		return (ft_free_execute(env, argv, path));
+
+	// ! deplacer [ci-dessous] dans une fonction
 	pid = fork();
 	if (pid == 0)
 		execve(argv[0], argv, env);
 	else if (pid == -1)
 		printf("Error while fork\n");
 	printf("pid: %d\n", pid);
-	waitpid(pid, NULL, 0);
+	
 	ft_free_execute(env, argv, path);
 	g_minishell.exitcode = 0;
 	return (1);

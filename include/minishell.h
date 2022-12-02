@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/02 02:07:47 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/02 17:21:08 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	*ft_lexer(char *line);
 
 // src/operator/expender.c
 void	ft_expender(void);
+int		ft_replace_seg(t_token *t, const char *seg, int *s);
 
 // src/operator/heredoc.c
 void	ft_heredoc(t_token *token);
@@ -90,8 +91,12 @@ void	ft_heredoc(t_token *token);
 // src/operator/pipe.c
 void	ft_pipe(t_token *t);
 
+// src/operator/redirection.c
+void    ft_redirection(void);
+
 // src/execute/execute.c
 int		ft_execute(t_token *token);
+// void	ft_execute(char **arg, char **env, int old_out);
 
 // src/execute/utils.c
 char	**ft_convert_env(void);

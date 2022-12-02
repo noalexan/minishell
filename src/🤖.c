@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   🤖.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/12/02 02:08:58 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/02 16:30:28 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ void	ft_builtins(t_input	*s)
 {
 	if (!ft_strcmp(s->token->content, "echo"))
 		ft_exec_echo(s);
-	// else if (!ft_strcmp(token->content, "env"))
-	// 	env_exp(token, 0);
-	// else if (!ft_strcmp(token->content, "export"))
-	// 	env_exp(token, 1);
-	// else if (!ft_strcmp(token->content, "unset"))
-	// 	env_exp(token, 2);
-	// else if (!ft_strcmp(token->content, "cd"))
-	// 	ft_cd(token->next);
-	// else if (!ft_strcmp(token->content, "exit"))
-	// 	ft_exit(token);
+	else if (!ft_strcmp(s->token->content, "env"))
+		env_exp(s->token, 0);
+	else if (!ft_strcmp(s->token->content, "export"))
+		env_exp(s->token, 1);
+	else if (!ft_strcmp(s->token->content, "unset"))
+		env_exp(s->token, 2);
+	else if (!ft_strcmp(s->token->content, "cd"))
+		ft_cd(s->token->next);
+	else if (!ft_strcmp(s->token->content, "exit"))
+		ft_exit(s->token);
 }
 
 void	ft_exec(t_input *s)
@@ -122,7 +122,7 @@ int	ft_minishell(const char *prompt)
 		ft_lexer(line);
 
 		ft_exec(g_minishell.input);
-		
+
 		ft_clear(g_minishell.input);
 	}
 }

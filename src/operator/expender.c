@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expender.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:38:30 by cjunker           #+#    #+#             */
-/*   Updated: 2022/12/01 22:16:01 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/02 17:43:24 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,20 @@ int	ft_size_of_name(const char *s)
 	return (i);
 }
 
-int	ft_replace_seg(t_token *t, const char *seg, int s, int l, int ret)
+int	ft_replace_seg(t_token *t, const char *seg, int *s)
 {
 	char	*tmp;
 	char	*tmp2;
 
-	tmp = ft_strldup(t->content, s);
+	tmp = ft_strldup(t->content, s[0]);
 	tmp2 = ft_strjoin(tmp, seg);
 	free(tmp);
-	tmp = ft_strdup(t->content + s + l);
-	free(t->content);
+	tmp = ft_strdup(t->content + s[0] + s[1]);
+	if (t->content)
+		free(t->content);
 	t->content = ft_strjoin(tmp2, tmp);
 	(free(tmp), free(tmp2));
-	return (ret);
+	return (s[2]);
 }
 
 int	ft_insert_var(t_token *t, int i)
@@ -49,7 +50,7 @@ int	ft_insert_var(t_token *t, int i)
 	{
 		printf("\e[34;1m[DEBUG]\e[0m: \e[35;1m[variable]: exitcode = '%d'\e[0m\n", g_minishell.exitcode);
 		tmp = ft_itoa(g_minishell.exitcode);
-		ft_replace_seg(t, tmp, i, 2, 0);
+		ft_replace_seg(t, tmp, (int []){i, 2, 0});
 		free(tmp);
 		return (2);
 	}
@@ -60,12 +61,12 @@ int	ft_insert_var(t_token *t, int i)
 	if (var && var->content && var->content[0])
 	{
 		printf("\e[34;1m[DEBUG]\e[0m: \e[35;1m[variable]: name = \"%s\", content = \"%s\"\e[0m\n", var->name, var->content);
-		return (ft_replace_seg(t, var->content, i, len + 1, ft_strlen(var->content)));
+		return (ft_replace_seg(t, var->content, (int []){i, len + 1, ft_strlen(var->content)}));
 	}
 	else
 	{
 		printf("\e[34;1m[DEBUG]\e[0m: \e[35;1m[variable]: no variable\e[0m\n");
-		return (ft_replace_seg(t, "", i, len + 1, 0));
+		return (ft_replace_seg(t, "", (int []){i, len + 1, 0}));
 	}
 }
 
@@ -83,13 +84,13 @@ void	ft_expend_token_list(t_token *t)
 		while (t->content[++j] && (s_q || d_q || !ft_isspace(t->content[j])))
 		{
 			if (t->content[j] == '\'' && !s_q && !d_q)
-				s_q = ft_replace_seg(t, "", j--, 1, TRUE);
+				s_q = ft_replace_seg(t, "", (int []){j--, 1, TRUE});
 			else if (t->content[j] == '\'' && s_q && !d_q)
-				s_q = ft_replace_seg(t, "", j--, 1, FALSE);
+				s_q = ft_replace_seg(t, "", (int []){j--, 1, FALSE});
 			else if (t->content[j] == '\"' && !d_q && !s_q)
-				d_q = ft_replace_seg(t, "", j--, 1, TRUE);
+				d_q = ft_replace_seg(t, "", (int []){j--, 1, TRUE});
 			else if (t->content[j] == '\"' && d_q && !s_q)
-				d_q = ft_replace_seg(t, "", j--, 1, FALSE);
+				d_q = ft_replace_seg(t, "", (int []){j--, 1, FALSE});
 			else if (t->content[j] == '$' && !s_q)
 				j += ft_insert_var(t, j) - 1;
 		}
