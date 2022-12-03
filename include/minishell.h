@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/03 17:30:50 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/03 21:45:32 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 
-# define STDIN  0
-# define STDOUT 1
-# define STDERR 2
+# define STDIN  STDIN_FILENO
+# define STDOUT STDOUT_FILENO
+# define STDERR STDERR_FILENO
 
 # define TRUE  1
 # define FALSE 0
@@ -53,6 +53,7 @@ t_global	g_minishell;
 
 // src/🤖.c
 char	*ft_makeprompt(char *prompt);
+void	ft_clear(t_input *s);
 int		ft_minishell(const char *prompt);
 
 // src/env.c
@@ -93,6 +94,9 @@ void	ft_pipe(t_token *t);
 
 // src/operator/redirection.c
 void	ft_redirection(t_input *s);
+
+// src/operator/verify.c
+void	ft_verify(void);
 
 // src/execute/execute.c
 int		ft_execute(t_input *s);

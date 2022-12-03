@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expender.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:38:30 by cjunker           #+#    #+#             */
-/*   Updated: 2022/12/02 17:43:24 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/03 21:03:51 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	ft_insert_var(t_token *t, int i)
 	}
 	tmp = ft_substr(t->content, i + 1, len);
 	var = ft_get_var(tmp);
-	printf("line: %s, i: %d\n", tmp, len);
 	free(tmp);
 	if (var && var->content && var->content[0])
 	{

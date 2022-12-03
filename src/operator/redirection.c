@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:48:56 by mayoub            #+#    #+#             */
-/*   Updated: 2022/12/03 20:17:32 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/03 21:02:26 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	ft_redirection(t_input *s)
 	{
 		// ft_parse_redirecion(s->token);
 		ft_pipe_redirection(s);
+		printf("\e[1;34m[DEBUG]\e[0m: \e[1;36m[redirection]: in = '%d', out = '%d'\e[0m\n", s->in, s->out);
 		ft_redirection(s->next);
 	}
 }

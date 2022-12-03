@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:57:28 by noalexan          #+#    #+#             */
-/*   Updated: 2022/12/02 02:02:11 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/03 22:59:54 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,11 @@ char	**ft_get_path(void)
 	char	**path;
 	t_env	*tmp;
 
-	i = -1;
-	tmp = g_minishell.env;
-	if (tmp == NULL)
+	tmp = ft_get_var("PATH");
+	if (!tmp)
 		return (NULL);
-	path = ft_split(ft_get_var("PATH")->content, ':');
+	i = -1;
+	path = ft_split(tmp->content, ':');
 	while (path[++i])
 	{
 		j = -1;

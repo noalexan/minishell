@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   🤖.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/12/03 20:24:42 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/03 22:40:44 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	ft_exec(t_input *s)
 {
 	if (s)
 	{
-		printf("in: %d\n", s->in);
-		printf("out: %d\n", s->out);
 		/* =========================================== DEBUG COMMAND ======================================== */
 		/**/	if (!ft_strcmp(s->token->content, "leaks"))													/**/
 		/**/		system("leaks minishell");																/**/
@@ -119,7 +117,6 @@ void	ft_wait_all(t_input *s)
 {
 	if (s)
 	{
-		wait(NULL);
 		if (s->in != 0)
 		{
 			printf("closing in %d...\n", s->in);
@@ -131,6 +128,7 @@ void	ft_wait_all(t_input *s)
 			close(s->out);
 		}
 		ft_wait_all(s->next);
+		wait(NULL);
 	}
 }
 
@@ -154,7 +152,5 @@ int	ft_minishell(const char *prompt)
 		ft_wait_all(g_minishell.input);
 
 		ft_clear(g_minishell.input);
-
-		g_minishell.input = NULL;
 	}
 }

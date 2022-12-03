@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:55 by tle               #+#    #+#             */
-/*   Updated: 2022/12/03 18:13:08 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/03 21:38:17 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	ft_lexer(char *line)
 	}
 	if (g_minishell.exitcode == 258)
 	{
-		ft_putendl_fd("\e[31;1m[minishell]: Error syntax\e[0m", 2);
+		ft_putendl_fd("\e[31;1m[minishell]: Error syntax\e[0m", STDERR);
 		ft_lstclear(token);
 		g_minishell.exitcode = 127;
 		return ;
@@ -115,5 +115,6 @@ void	ft_lexer(char *line)
 	ft_pipe(token);
 	ft_redirection(g_minishell.input);
 	ft_expender();
+	ft_verify();
 	ft_lstclear(token);
 }
