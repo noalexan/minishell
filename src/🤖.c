@@ -6,13 +6,13 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/12/02 16:30:28 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/03 20:24:42 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_builtins(t_input	*s)
+int	ft_builtins(t_input	*s)
 {
 	if (!ft_strcmp(s->token->content, "echo"))
 		ft_exec_echo(s);
@@ -26,12 +26,17 @@ void	ft_builtins(t_input	*s)
 		ft_cd(s->token->next);
 	else if (!ft_strcmp(s->token->content, "exit"))
 		ft_exit(s->token);
+	else
+		return (0);
+	return (1);
 }
 
 void	ft_exec(t_input *s)
 {
 	if (s)
 	{
+		printf("in: %d\n", s->in);
+		printf("out: %d\n", s->out);
 		/* =========================================== DEBUG COMMAND ======================================== */
 		/**/	if (!ft_strcmp(s->token->content, "leaks"))													/**/
 		/**/		system("leaks minishell");																/**/
@@ -72,8 +77,10 @@ void	ft_exec(t_input *s)
 		/**/			);																					/**/
 		/**/		}																						/**/
 		/**/	}																							/**/
+		/**/	else																						/**/
 		/* ================================================================================================== */
-		ft_builtins(s);
+		if (!ft_builtins(s))
+			ft_execute(s);
 		ft_exec(s->next);
 	}
 }
@@ -108,6 +115,25 @@ void	ft_clear(t_input *s)
 	}
 }
 
+void	ft_wait_all(t_input *s)
+{
+	if (s)
+	{
+		wait(NULL);
+		if (s->in != 0)
+		{
+			printf("closing in %d...\n", s->in);
+			close(s->in);
+		}
+		if (s->out != 1)
+		{
+			printf("closing out %d...\n", s->out);
+			close(s->out);
+		}
+		ft_wait_all(s->next);
+	}
+}
+
 int	ft_minishell(const char *prompt)
 {
 	char	*line;
@@ -121,8 +147,14 @@ int	ft_minishell(const char *prompt)
 
 		ft_lexer(line);
 
+		free(line);
+
 		ft_exec(g_minishell.input);
 
+		ft_wait_all(g_minishell.input);
+
 		ft_clear(g_minishell.input);
+
+		g_minishell.input = NULL;
 	}
 }

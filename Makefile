@@ -6,13 +6,13 @@
 #    By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/12/02 17:38:19 by mayoub           ###   ########.fr        #
+#    Updated: 2022/12/03 16:49:17 by mayoub           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compilation variables
 CC		:= gcc
-FLAGS	:= -Lvendor/readline/lib -lreadline -fsanitize=address
+FLAGS	:= -Lvendor/readline/lib -lreadline #-fsanitize=address
 CFLAGS	:= -Werror -Wextra -Wall 
 
 # Name of the final executable

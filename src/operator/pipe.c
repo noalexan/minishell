@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:11:11 by Rondoudou         #+#    #+#             */
-/*   Updated: 2022/12/02 16:26:34 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/03 16:48:52 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,4 @@ t_input	*ft_create_input(t_token *t)
 void	ft_pipe(t_token *t)
 {
 	g_minishell.input = ft_create_input(t);
-	ft_lstclear(t);
 }

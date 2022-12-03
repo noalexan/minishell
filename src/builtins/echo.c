@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:14:49 by César             #+#    #+#             */
-/*   Updated: 2022/12/02 16:33:27 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/03 20:17:14 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,16 @@ void	ft_echo(t_token *token)
 	}
 	if (!n)
 		printf("\n");
-	g_minishell.exitcode = 0;
 }
 
 void	ft_exec_echo(t_input *s)
 {
-	int	pid;
-
-	pid = fork();
-	if (pid == 0)
+	if (fork() == 0)
 	{
-		dup2(0, s->in);
-		dup2(1, s->out);
+		dup2(s->in, 0);
+		dup2(s->out, 1);
 		ft_echo(s->token->next);
 		exit(0);
 	}
+	g_minishell.exitcode = 0;
 }

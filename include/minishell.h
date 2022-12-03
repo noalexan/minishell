@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/02 17:21:08 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/03 17:30:50 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_global
 
 t_global	g_minishell;
 
-// src/minishell.c
+// src/🤖.c
 char	*ft_makeprompt(char *prompt);
 int		ft_minishell(const char *prompt);
 
@@ -79,7 +79,7 @@ t_env	*ft_lstnew_env(void *content);
 void	ft_lst_delone_env(t_env *del);
 
 // src/operator/lexer.c
-void	*ft_lexer(char *line);
+void	ft_lexer(char *line);
 
 // src/operator/expender.c
 void	ft_expender(void);
@@ -92,11 +92,10 @@ void	ft_heredoc(t_token *token);
 void	ft_pipe(t_token *t);
 
 // src/operator/redirection.c
-void    ft_redirection(void);
+void	ft_redirection(t_input *s);
 
 // src/execute/execute.c
-int		ft_execute(t_token *token);
-// void	ft_execute(char **arg, char **env, int old_out);
+int		ft_execute(t_input *s);
 
 // src/execute/utils.c
 char	**ft_convert_env(void);
@@ -106,6 +105,7 @@ char	**ft_get_path(void);
 char	*ft_find_path(char **path, char *cmd);
 
 // src/builtins/echo.c
+void	ft_echo(t_token *token);
 void	ft_exec_echo(t_input *s);
 
 // src/builtins/env.c

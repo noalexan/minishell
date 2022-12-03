@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:48:56 by mayoub            #+#    #+#             */
-/*   Updated: 2022/12/02 17:52:27 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/03 20:17:32 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,24 @@ void	ft_parse_redirecion(t_token *t)
 	}
 }
 
-void	ft_redirection(void)
+void	ft_pipe_redirection(t_input *s)
 {
-	t_input	*s;
+	int	pipe_fd[2];
 
-	s = g_minishell.input;
-	while (s)
+	if (s->next)
 	{
-		ft_parse_redirecion(s->token);
-		s = s->next;
+		pipe(pipe_fd);
+		s->out = pipe_fd[1];
+		s->next->in = pipe_fd[0];
+	}
+}
+
+void	ft_redirection(t_input *s)
+{
+	if (s)
+	{
+		// ft_parse_redirecion(s->token);
+		ft_pipe_redirection(s);
+		ft_redirection(s->next);
 	}
 }

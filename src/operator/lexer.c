@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:55 by tle               #+#    #+#             */
-/*   Updated: 2022/12/02 17:30:47 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/03 18:13:08 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_token	*ft_generate_token(char *line, int i)
 	return (token);
 }
 
-void	*ft_lexer(char *line)
+void	ft_lexer(char *line)
 {
 	t_token	*token;
 	int		i;
@@ -110,12 +110,10 @@ void	*ft_lexer(char *line)
 		ft_putendl_fd("\e[31;1m[minishell]: Error syntax\e[0m", 2);
 		ft_lstclear(token);
 		g_minishell.exitcode = 127;
-		return (NULL);
+		return ;
 	}
-	if (line)
-		free(line);
 	ft_pipe(token);
-	ft_redirection();
+	ft_redirection(g_minishell.input);
 	ft_expender();
-	return (NULL);
+	ft_lstclear(token);
 }
