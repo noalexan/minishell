@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:04:03 by flemaitr          #+#    #+#             */
-/*   Updated: 2022/12/03 23:08:28 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/04 16:18:54 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,14 @@ int	main(int argc, char **argv, char **envv)
 	return (0);
 }
 
-// Version : 0.1.0
 // Authors : Marwan Ayoub, Noah Alexandre
 
 /*
 
-"env -i ./minishell" puis "export ..=..": segfault ✅
+"env -i ./minishell" puis "export ..=..": segfault
 
 """ et "'": segfault
 
-si y a pas PATH -> ft_verify: segfault
+ctrl + c pour kill une commande: double prompt
 
 */

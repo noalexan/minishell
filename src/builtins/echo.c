@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:14:49 by César             #+#    #+#             */
-/*   Updated: 2022/12/03 20:17:14 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/04 13:41:43 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_echo(t_token *token)
 	tmp = token;
 	n = 0;
 	if (!token)
-		return ((void)printf("\n"));
+		return ((void) printf("\n"));
 	while (where_is_n(tmp->content) && tmp->next && ++n)
 		tmp = tmp->next;
 	if (where_is_n(tmp->content))

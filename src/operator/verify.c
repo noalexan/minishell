@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 21:22:12 by noalexan          #+#    #+#             */
-/*   Updated: 2022/12/03 22:50:24 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/04 12:44:56 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	ft_verify_cmd(t_input *s, char **path)
 	if (s)
 	{
 		a = s->token->content;
-		cmd_path = ft_find_path(path, a);
+		if (path)
+			cmd_path = ft_find_path(path, a);
+		else
+			cmd_path = ft_calloc(1, sizeof(char));
 		if (!cmd_path && ft_strcmp(a, "echo") && strcmp(a, "env")
 			&& strcmp(a, "export") && strcmp(a, "unset") && strcmp(a, "cd")
 			&& strcmp(a, "pwd") && strcmp(a, "exit")
@@ -49,7 +52,10 @@ void	ft_verify(void)
 		g_minishell.input = NULL;
 	}
 	i = -1;
-	while (path[++i])
-		free(path[i]);
-	free(path);
+	if (path)
+	{
+		while (path[++i])
+			free(path[i]);
+		free(path);
+	}
 }

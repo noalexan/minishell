@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/03 21:45:32 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/04 13:34:26 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,8 @@ void	env_exp(t_token *token, int e);
 
 // src/builtins/export.c
 void	ft_export(t_token *token);
-int		parse_export(char *str);
+int		parse_export_name(char *str);
+int		parse_export_content(char *str);
 
 // src/builtins/unset.c
 void	ft_lst_delete(t_env *e, char *name);
@@ -130,11 +131,10 @@ void	ft_cd(t_token *token);
 void	ft_exit(t_token *token);
 
 // src/error/error.c
-void	error_export(char *s1, char *s2);
-int		error_unknown(char *str);
-void	error_too_many_args(char *str);
-void	error_numeric_arg_required(char *s1, char *s2);
-void	error_not_a_directory(char *str, bool b);
+void	error_export(const char *s1, const char *s2);
+int		error_unknown(const char *str);
+void	error_synthax_export(const char c);
+void	error_not_a_directory(const char *str, bool b);
 
 // src/fun/the_messager.c
 void	the_heredoc_donjon(void);

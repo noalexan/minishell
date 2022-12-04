@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:49:50 by eallouch          #+#    #+#             */
-/*   Updated: 2022/11/24 23:59:37 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/04 13:17:09 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	ft_unset(t_token *token)
 
 	if (token)
 	{
-		if (!parse_export(token->content) || ft_strchr(token->content, '='))
+		if (!parse_export_name(token->content)
+			|| ft_strchr(token->content, '='))
 			return (error_export("unset", token->content),
 				ft_unset(token->next));
 		name = ft_get_name(token->content);
