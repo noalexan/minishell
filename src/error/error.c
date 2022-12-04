@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:50:42 by UwU               #+#    #+#             */
-/*   Updated: 2022/12/04 14:00:15 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/04 17:34:41 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,27 @@ int	error_unknown(const char *str)
 	return (0);
 }
 
-void	error_not_a_directory(const char *str, bool b)
+void	error_not_a_directory(const char *str, int b)
 {
-	if (b)
+	if (b == 1)
 	{
 		ft_putstr_fd("\e[31;1m[minishell]: ", STDERR);
 		ft_putstr_fd(str, STDERR);
 		ft_putendl_fd(": Not a directory\e[0m", STDERR);
 	}
-	else
+	else if (!b)
 	{
 		ft_putstr_fd("\e[31;1m[minishell]: ", STDERR);
 		ft_putstr_fd(str, STDERR);
 		ft_putendl_fd(": No such file or directory\e[0m", STDERR);
+	}
+	else
+	{
+		ft_putstr_fd("\e[31;1m[", STDERR);
+		ft_putstr_fd(str, STDERR);
+		ft_putstr_fd("\e[31;1m]: ", STDERR);
+		ft_putstr_fd(str, STDERR);
+		ft_putendl_fd(": is a directory\e[0m", STDERR);
 	}
 	g_minishell.exitcode = 1;
 }
