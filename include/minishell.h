@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/04 13:34:26 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/04 19:14:46 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <signal.h>
 # include <termios.h>
 # include <stdbool.h>
+# include <dirent.h>
 
 # include "libft.h"
 # include "ft_printf.h"
@@ -52,9 +53,11 @@ typedef struct s_global
 t_global	g_minishell;
 
 // src/🤖.c
+void	ft_exec(t_input *s);
 char	*ft_makeprompt(char *prompt);
 void	ft_clear(t_input *s);
 int		ft_minishell(const char *prompt);
+void	ft_wait_all(t_input *s);
 
 // src/env.c
 t_env	*ft_create_env(char	**env);
@@ -78,6 +81,9 @@ t_env	*ft_lstadd_back_env(t_env *new);
 int		is_equal(char *str);
 t_env	*ft_lstnew_env(void *content);
 void	ft_lst_delone_env(t_env *del);
+
+// src/pars_arg.c
+void	parse_arg(char **argv);
 
 // src/operator/lexer.c
 void	ft_lexer(char *line);
@@ -134,7 +140,7 @@ void	ft_exit(t_token *token);
 void	error_export(const char *s1, const char *s2);
 int		error_unknown(const char *str);
 void	error_synthax_export(const char c);
-void	error_not_a_directory(const char *str, bool b);
+void	error_not_a_directory(const char *str, int b);
 
 // src/fun/the_messager.c
 void	the_heredoc_donjon(void);
