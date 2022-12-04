@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/12/04 16:19:39 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/04 20:32:21 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,8 @@ void	ft_wait_all(t_input *s)
 			printf("closing out %d...\n", s->out);
 			close(s->out);
 		}
-		ft_wait_all(s->next);
 		wait(NULL);
+		ft_wait_all(s->next);
 	}
 }
 

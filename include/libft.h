@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 10:04:44 by Yoshi             #+#    #+#             */
-/*   Updated: 2022/12/01 18:11:48 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/04 19:44:46 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,6 @@ t_token	*ft_lst_before_last(t_token *lst);
 void	ft_lstadd_back(t_token **lst, t_token *new);
 void	ft_lstclear(t_token *stack);
 void	ft_lstiter(t_token *lst, void (*f)(t_token *));
-t_token	*ft_lstnew(void *content);
+t_token	*ft_lstnew(char *content);
 
 #endif
