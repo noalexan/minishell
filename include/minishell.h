@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/04 19:09:52 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/04 19:14:46 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_env	*ft_lstnew_env(void *content);
 void	ft_lst_delone_env(t_env *del);
 
 // src/pars_arg.c
-void	parse_arg(char **argv, char **env);
+void	parse_arg(char **argv);
 
 // src/operator/lexer.c
 void	ft_lexer(char *line);

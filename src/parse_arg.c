@@ -6,18 +6,17 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 16:36:27 by Johanna 🌷        #+#    #+#             */
-/*   Updated: 2022/12/04 19:10:19 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/04 19:14:40 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	parse_arg(char **argv, char **env)
+void	parse_arg(char **argv)
 {
 	int		fd;
 	char	*line;
 
-	(void) env;
 	if (access(argv[1], F_OK) != 0)
 		return (error_not_a_directory(argv[1], 0), exit(1));
 	else if (opendir(argv[1]))
