@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:50:42 by UwU               #+#    #+#             */
-/*   Updated: 2022/12/04 17:34:41 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/05 13:32:02 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,13 @@ void	error_synthax_export(const char c)
 {
 	ft_putstr_fd("\e[31;1m[minishell]: syntax error near unexpected token `",
 		STDERR);
-	ft_putstr_fd((const char []){c, 0}, STDERR);
-	ft_putendl_fd("'\e[0m", STDERR);
+	if (!c)
+		ft_putendl_fd("newline'\e[0m", STDERR);
+	else
+	{
+		ft_putstr_fd((const char []){c, 0}, STDERR);
+		ft_putendl_fd("'\e[0m", STDERR);
+	}
 	g_minishell.exitcode = 1;
 }
 

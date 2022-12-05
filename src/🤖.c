@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   🤖.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/12/04 20:32:21 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/05 18:02:43 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ void	ft_exec(t_input *s)
 		/**/	else if (!ft_strcmp(s->token->content, "pwd") && g_minishell.env)							/**/
 		/**/		(printf("%s\n", ft_get_var("PWD")->content), g_minishell.exitcode = 0);					/**/
 		/**/	else if (!ft_strcmp(s->token->content, "heredoc"))											/**/
-		/**/		ft_heredoc(s->token);																	/**/
+		/**/	{																							/**/
+		/**/		if (fork() == 0)																		/**/
+		/**/			(ft_heredoc(s->token), exit(0));													/**/
+		/**/	}																							/**/
 		/**/	else if (!ft_strcmp(s->token->content, "re"))												/**/
 		/**/	{																							/**/
 		/**/		system("make run");																		/**/
