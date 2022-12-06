@@ -6,7 +6,7 @@
 #    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by noalexan          #+#    #+#              #
-#    Updated: 2022/11/11 10:16:41 by noalexan         ###   ########.fr        #
+#    Updated: 2022/12/05 23:04:21 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ SRCS	:=	ft_atoi.c \
 			ft_putchar_fd.c \
 			ft_putendl_fd.c \
 			ft_lstadd_back.c \
+			ft_insert_token.c \
 			ft_lst_before_last.c \
 
 OBJS	:= $(SRCS:.c=.o)
