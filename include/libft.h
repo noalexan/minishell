@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 10:04:44 by Yoshi             #+#    #+#             */
-/*   Updated: 2022/12/04 19:44:46 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/05 23:03:57 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ void	ft_lstadd_back(t_token **lst, t_token *new);
 void	ft_lstclear(t_token *stack);
 void	ft_lstiter(t_token *lst, void (*f)(t_token *));
 t_token	*ft_lstnew(char *content);
+void	ft_insert_token(t_token *t, t_token *new);
 
 #endif
