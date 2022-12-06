@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:48:56 by Keyblade          #+#    #+#             */
-/*   Updated: 2022/12/05 18:42:00 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/06 12:10:13 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void	ft_parse_redirecion(t_token *t, int s_q, int d_q, int j)
 				if (j)
 					j2 = j;
 				if (t->content[j + 1] == t->content[j])
-					(ft_put_token(t, ft_lstnew(t->content + j2 + j)),
+					(ft_put_token(t, ft_lstnew(t->content + j2 + 1)),
 						ft_replace_seg(t, "", (int []){
-							j2 + j, ft_strlen(t->content) - j2 - j, 0}));
-				if (t->content[j2 + 1])
-					(ft_put_token(t, ft_lstnew(t->content + j2 + j)),
+							j2, ft_strlen(t->content) - j2 - 1, 0}));
+				if (t->content[j + 1])
+					(ft_put_token(t, ft_lstnew(t->content + j2)),
 						ft_replace_seg(t, "", (int []){
-							j2, ft_strlen(t->content) - j2 - j, 0}));
+							j2, ft_strlen(t->content) - j2, 0}));
 			}
 		}
 		ft_parse_redirecion(t->next, FALSE, FALSE, -1);

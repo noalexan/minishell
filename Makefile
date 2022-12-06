@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
+#    By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/12/04 20:34:06 by noalexan         ###   ########.fr        #
+#    Updated: 2022/12/06 14:38:46 by mayoub           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC		:=	src/🤖.c \
 			src/utils.c \
 			src/signal.c \
 			src/history.c \
-			src/parse_arg.c\
+			src/parse_arg.c \
 \
 			src/error/error.c \
 \

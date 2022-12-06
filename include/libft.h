@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 10:04:44 by Yoshi             #+#    #+#             */
-/*   Updated: 2022/12/04 19:44:46 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/06 10:49:34 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_input
 	t_token			*token;
 	int				in;
 	int				out;
+	int				pid;
 	struct s_input	*next;
 }		t_input;
 
