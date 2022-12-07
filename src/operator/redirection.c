@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:48:56 by Keyblade          #+#    #+#             */
-/*   Updated: 2022/12/06 16:28:13 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/07 22:41:10 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_parse_redirecion(t_token *t, int s_q, int d_q, int j)
 					i = j;
 				if (!j && t->content[j + 1] == t->content[j])
 					i++;
-				if (t->content[j + 1])
+				if (t->content[i + 1])
 					(ft_insert_token(t, ft_lstnew(t->content + i)),
 						ft_replace_seg(t, "",
 							(int []){i, ft_strlen(t->content) - i, 0}));
@@ -47,30 +47,34 @@ void	ft_init_redirection(t_input *s, t_token *t)
 {
 	if (t)
 	{
-		if (!ft_strcmp(t->content, ">"))
+		if (t->content[0] == '>')
 		{
-			printf("mode: outfile\n");
-		}
-		else if (!ft_strcmp(t->content, ">>"))
-		{
-			printf("mode: outfile append\n");
-		}
-		else if (!ft_strcmp(t->content, "<"))
-		{
-			printf("mode: infile\n");
-		}
-		else if (!ft_strcmp(t->content, "<<"))
-		{
-			printf("mode: heredoc\n");
-		}
-		if (t->next)
-		{
-			if (!ft_is_a_valid_filename(t->next->content))
-				printf("error\n");
+			if (!t->next)
+				(printf("Error near: new line\n"), exit(0));
+			if (t->content[1] == '>')
+			{
+				printf("mode: outfile append\nfile: '%s'\n\n", t->next->content);
+			}
 			else
-				printf("file: '%s'\n", t->next->content);
+			{
+				printf("mode: outfile\nfile: '%s'\n\n", t->next->content);
+			}
 		}
-		ft_init_redirection(s, t->next);
+		else if (t->content[0] == '<')
+		{
+			if (!t->next)
+				(printf("Error near: new line\n"), exit(0));
+			if (t->content[1] == '<')
+			{
+				printf("mode: heredoc\nend world: '%s'\n\n", t->next->content);
+			}
+			else
+			{
+				printf("mode: infile\nfile: '%s'\n\n", t->next->content);
+			}
+		}
+		else
+			ft_init_redirection(s, t->next);
 	}
 }
 

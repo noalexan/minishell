@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:14:49 by César             #+#    #+#             */
-/*   Updated: 2022/12/04 13:41:43 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/07 22:46:21 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	ft_exec_echo(t_input *s)
 	{
 		dup2(s->in, 0);
 		dup2(s->out, 1);
+		close(s->in);
+		close(s->out);
 		ft_echo(s->token->next);
 		exit(0);
 	}

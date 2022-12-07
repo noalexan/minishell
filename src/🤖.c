@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   🤖.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/12/06 16:12:51 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/07 23:55:42 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,26 +116,22 @@ void	ft_clear(t_input *s)
 	}
 }
 
-void	ft_wait_all(t_input *s)
+void	ft_close_all(t_input *s)
 {
-	int	status;
-
-	while (s)
+	if (s)
 	{
 		if (s->in != 0)
-		{
-			printf("closing in %d...\n", s->in);
 			close(s->in);
-		}
 		if (s->out != 1)
-		{
-			printf("closing out %d...\n", s->out);
 			close(s->out);
-		}
-		printf("token = [ %s ]\n", s->token->content);
-		waitpid(s->pid, &status, 0);
-		s = s->next;
+		ft_close_all(s->next);
 	}
+}
+
+void	ft_wait_all(t_input *s)
+{
+	if (s)
+		(wait(NULL), ft_wait_all(s->next));
 }
 
 int	ft_minishell(const char *prompt)
@@ -155,9 +151,8 @@ int	ft_minishell(const char *prompt)
 
 		ft_exec(g_minishell.input);
 
+		ft_close_all(g_minishell.input);
 		ft_wait_all(g_minishell.input);
-		// while (wait(0) > 0)
-		// 	;
 
 		ft_clear(g_minishell.input);
 

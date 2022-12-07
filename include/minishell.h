@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/06 15:20:02 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/07 23:56:03 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char	*ft_makeprompt(char *prompt);
 void	ft_clear(t_input *s);
 int		ft_minishell(const char *prompt);
 void	ft_wait_all(t_input *s);
+void	ft_close_all(t_input *s);
 
 // src/env.c
 t_env	*ft_create_env(char	**env);
