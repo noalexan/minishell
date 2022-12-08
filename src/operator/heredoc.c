@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 22:38:09 by itaouil 👑        #+#    #+#             */
-/*   Updated: 2022/12/08 01:32:14 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/08 02:22:23 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,30 @@ void	clavier_heredoc(int sig_num)
 		exit(0);
 }
 
-char	*ft_mini_expender(char *line, int s)
+char	*ft_mini_expender(char *s)
 {
-	int	i;
+	int		s_q;
+	int		d_q;
+	int		j;
+	t_token	*t;
 
-	i = s - 1;
-	while (line[++i])
+	t = ft_lstnew(s);
+	s_q = FALSE;
+	d_q = FALSE;
+	j = -1;
+	while (t->content[++j] && (s_q || d_q || !ft_isspace(t->content[j])))
 	{
-		if (line[i] == '$')
-			printf("variable\n");
+		if (t->content[j] == '\'' && !d_q)
+			s_q = 1 - s_q;
+		else if (t->content[j] == '\"' && !s_q)
+			d_q = 1 - d_q;
+		else if (t->content[j] == '$' && !s_q)
+			j += ft_insert_var(t, j) - 1;
 	}
-	return (line);
+	free(s);
+	s = ft_strdup(t->content);
+	ft_lstclear(t);
+	return (s);
 }
 
 int	ft_heredoc(char *limiter)
@@ -40,17 +53,15 @@ int	ft_heredoc(char *limiter)
 	the_heredoc_donjon();
 	echo_control_seq(0);
 	signal(SIGINT, clavier_heredoc);
-	line = readline("💀🐺 HERE THE DOC 🗡 🛡 > ");
 	while (1)
 	{
+		line = readline("💀🐺 HERE THE DOC 🗡 🛡 > ");
 		if (!line || !ft_strcmp(line, limiter))
 			break ;
-		line = ft_mini_expender(line, 0);
+		line = ft_mini_expender(line);
 		ft_putendl_fd(line, p[1]);
 		free(line);
-		line = readline("💀🐺 HERE THE DOC 🗡 🛡 > ");
 	}
-	free(line);
 	close(p[1]);
 	return (p[0]);
 }

@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:04:03 by flemaitr          #+#    #+#             */
-/*   Updated: 2022/12/08 02:04:26 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/08 02:25:31 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,5 @@ int	main(int argc, char **argv, char **envv)
 /*
 
 revoir le parsing du contenu dans export
-
-variable a gerer dans le heredoc mais pas les quotes
-
-ctrl + c pour kill une commande: double prompt
 
 */
