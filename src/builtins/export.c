@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:00:00 by Tac               #+#    #+#             */
-/*   Updated: 2022/12/04 19:52:54 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/08 01:52:55 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	parse_export_content(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (str && str[i])
 	{
 		if ((str[i] >= 0 && str[i] <= 32) || (str[i] >= 35 && str[i] <= 47)
 			|| (str[i] >= 58 && str[i] <= 60)
@@ -73,7 +73,11 @@ void	ft_export(t_token *token)
 		n = ft_get_name(token->content);
 		cont = ft_get_content(token->content);
 		if (!parse_export_name(token->content) || !parse_export_content(cont))
-			return (ft_export(token->next), free(n), free(cont));
+		{
+			if (cont)
+				free(cont);
+			return (ft_export(token->next), free(n));
+		}
 		v = ft_get_var(n);
 		if (v && cont != NULL)
 			free(v->content);

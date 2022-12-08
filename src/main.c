@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:04:03 by flemaitr          #+#    #+#             */
-/*   Updated: 2022/12/08 01:36:24 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/08 02:04:26 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	main(int argc, char **argv, char **envv)
 {
-	((void) argc, (void) argv, (void) envv);
 	g_minishell.env = ft_create_env(envv);
 	echo_control_seq(0);
 	signal(SIGINT, clavier);
@@ -29,7 +28,7 @@ int	main(int argc, char **argv, char **envv)
 
 /*
 
-a verifier : "env -i ./minishell" puis "export ..=..": segfault
+revoir le parsing du contenu dans export
 
 variable a gerer dans le heredoc mais pas les quotes
 

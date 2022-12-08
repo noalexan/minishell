@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/08 00:48:12 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/08 01:59:16 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	ft_echo(t_token *token);
 void	ft_exec_echo(t_input *s);
 
 // src/builtins/env.c
-void	env_exp(t_token *token, int e);
+void	env_exp(t_input *s, int e);
 
 // src/builtins/export.c
 void	ft_export(t_token *token);

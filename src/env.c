@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:39:14 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/29 14:12:04 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/08 01:48:08 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*ft_get_content(char *str)
 	int		i;
 
 	i = ft_strchr(str, '=') + 1;
-	if (i == 1)
+	if (i <= 1)
 		return (NULL);
 	content = ft_strdup(str + i);
 	return (content);

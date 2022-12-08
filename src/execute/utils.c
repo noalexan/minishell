@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:57:28 by Moulinette        #+#    #+#             */
-/*   Updated: 2022/12/05 14:13:30 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/08 02:02:20 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ char	**ft_convert_env(void)
 	while (tmp && ++i)
 		tmp = tmp->next;
 	tmp = g_minishell.env;
-	printf("calloc: i: %d\n", i);
 	env = ft_calloc(i + 1, sizeof(char *));
 	i = -1;
 	while (tmp)

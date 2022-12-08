@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/12/08 01:44:18 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/08 01:59:26 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	ft_builtins(t_input	*s)
 	if (!ft_strcmp(s->token->content, "echo"))
 		ft_exec_echo(s);
 	else if (!ft_strcmp(s->token->content, "env"))
-		env_exp(s->token, 0);
+		env_exp(s, 0);
 	else if (!ft_strcmp(s->token->content, "export"))
-		env_exp(s->token, 1);
+		env_exp(s, 1);
 	else if (!ft_strcmp(s->token->content, "unset"))
-		env_exp(s->token, 2);
+		env_exp(s, 2);
 	else if (!ft_strcmp(s->token->content, "cd"))
 		ft_cd(s->token->next);
 	else if (!ft_strcmp(s->token->content, "exit"))
