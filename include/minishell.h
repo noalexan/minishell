@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/08 02:19:04 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/08 05:10:07 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 
 # define TRUE  1
 # define FALSE 0
+
+# define IN  STDOUT
+# define OUT STDIN
 
 # define PROMPT "\e[1;33mminishell polnareff\e[0m> "
 

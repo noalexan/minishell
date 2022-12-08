@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/12/08 01:59:26 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/08 05:12:50 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,9 @@ void	ft_close_all(t_input *s)
 {
 	if (s)
 	{
-		if (s->in != 0)
+		if (s->in != STDIN)
 			close(s->in);
-		if (s->out != 1)
+		if (s->out != STDOUT)
 			close(s->out);
 		ft_close_all(s->next);
 	}
@@ -137,22 +137,14 @@ int	ft_minishell(const char *prompt)
 	while (1)
 	{
 		line = readline(prompt);
-
 		if (!line)
 			(printf("exit\n"), close(g_minishell.history_fd), exit(0));
-
 		ft_lexer(line);
-
 		free(line);
-
 		ft_exec(g_minishell.input);
-
 		ft_close_all(g_minishell.input);
 		ft_wait_all(g_minishell.input);
-
 		ft_clear(g_minishell.input);
-
 		g_minishell.input = NULL;
-
 	}
 }

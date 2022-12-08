@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 22:38:09 by itaouil 👑        #+#    #+#             */
-/*   Updated: 2022/12/08 02:22:23 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/08 05:10:39 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	clavier_heredoc(int sig_num)
 {
 	if (sig_num == SIGINT)
-		exit(0);
+		exit(5);
 }
 
 char	*ft_mini_expender(char *s)
@@ -48,20 +48,27 @@ int	ft_heredoc(char *limiter)
 {
 	char	*line;
 	int		p[2];
+	int		tmp;
 
 	pipe(p);
-	the_heredoc_donjon();
-	echo_control_seq(0);
-	signal(SIGINT, clavier_heredoc);
-	while (1)
+	tmp = fork();
+	if (tmp == 0)
 	{
-		line = readline("💀🐺 HERE THE DOC 🗡 🛡 > ");
-		if (!line || !ft_strcmp(line, limiter))
-			break ;
-		line = ft_mini_expender(line);
-		ft_putendl_fd(line, p[1]);
-		free(line);
+		(the_heredoc_donjon(), echo_control_seq(0),
+			signal(SIGINT, clavier_heredoc), close(p[OUT]));
+		while (1)
+		{
+			line = readline("💀🐺 HERE THE DOC 🗡 🛡 > ");
+			if (!line || !ft_strcmp(line, limiter))
+				break ;
+			line = ft_mini_expender(line);
+			(ft_putendl_fd(line, p[IN]), free(line));
+		}
+		(close(p[IN]), exit(0));
 	}
-	close(p[1]);
-	return (p[0]);
+	waitpid(tmp, &tmp, 0);
+	if (tmp == 5)
+		return (-2);
+	close(p[IN]);
+	return (p[OUT]);
 }

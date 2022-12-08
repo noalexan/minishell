@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:48:56 by Keyblade          #+#    #+#             */
-/*   Updated: 2022/12/08 01:31:03 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/08 05:11:37 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void	ft_parse_redirecion(t_token *t, int s_q, int d_q, int j)
 	}
 }
 
-// 0644
-
 void	ft_init_redirection(t_input *s, t_token *t)
 {
 	if (t)
@@ -52,7 +50,7 @@ void	ft_init_redirection(t_input *s, t_token *t)
 				(printf("Error near: new line\n"), exit(0));
 		if (t->content[0] == '>')
 		{
-			if (s->out != 1)
+			if (s->out != STDOUT)
 				close(s->out);
 			if (t->content[1] == '>')
 				s->out = open(t->next->content,
@@ -63,7 +61,7 @@ void	ft_init_redirection(t_input *s, t_token *t)
 		}
 		else if (t->content[0] == '<')
 		{
-			if (s->in != 0)
+			if (s->in != STDIN)
 				close(s->in);
 			if (t->content[1] == '<')
 				s->in = ft_heredoc(t->next->content);
@@ -83,14 +81,14 @@ void	ft_pipe_redirection(t_input *s)
 	if (s->next)
 	{
 		pipe(pipe_fd);
-		if (s->out == 1)
-			s->out = pipe_fd[1];
+		if (s->out == STDOUT)
+			s->out = pipe_fd[IN];
 		else
-			close(pipe_fd[1]);
-		if (s->next->in == 0)
-			s->next->in = pipe_fd[0];
+			close(pipe_fd[IN]);
+		if (s->next->in == STDIN)
+			s->next->in = pipe_fd[OUT];
 		else
-			close(pipe_fd[0]);
+			close(pipe_fd[OUT]);
 	}
 }
 
@@ -122,6 +120,8 @@ void	ft_redirection(t_input *s)
 		ft_init_redirection(s, s->token);
 		ft_clear_tokens(s->token);
 		ft_pipe_redirection(s);
+		if (s->in < 0 || s->out < 0)
+			return ((void) ft_putendl_fd("Error", STDERR), ft_clear(g_minishell.input));
 		printf("\e[1;34m[DEBUG]\e[0m: \e[1;36m[redirection]: in = '%d', out = '%d'\e[0m\n", s->in, s->out);
 		ft_redirection(s->next);
 	}

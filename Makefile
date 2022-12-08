@@ -6,7 +6,7 @@
 #    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/12/08 02:18:46 by noalexan         ###   ########.fr        #
+#    Updated: 2022/12/08 05:27:16 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,7 +106,7 @@ vendor:
 all: $(NAME)
 
 # Compile and run minishell
-run: all
+run: all load
 	@./$(NAME)
 
 shortcut:
@@ -156,47 +156,47 @@ polnareff:
 # Just a cute loading bar
 load:
 	@printf '\r █▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ - 0%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ - 5%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r ███▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ - 10%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r ████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ - 15%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r █████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ - 20%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r ██████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ - 25%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r ███████▒▒▒▒▒▒▒▒▒▒▒▒▒▒ - 30%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r ████████▒▒▒▒▒▒▒▒▒▒▒▒▒ - 35%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r █████████▒▒▒▒▒▒▒▒▒▒▒▒ - 40%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r ██████████▒▒▒▒▒▒▒▒▒▒▒ - 45%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r ███████████▒▒▒▒▒▒▒▒▒▒ - 50%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r ████████████▒▒▒▒▒▒▒▒▒ - 55%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r █████████████▒▒▒▒▒▒▒▒ - 60%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r ██████████████▒▒▒▒▒▒▒ - 65%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r ███████████████▒▒▒▒▒▒ - 70%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r ████████████████▒▒▒▒▒ - 75%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r █████████████████▒▒▒▒ - 80%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r ██████████████████▒▒▒ - 85%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r ███████████████████▒▒ - 90%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r ████████████████████▒ - 95%%\r'
-	@sleep .01
+	@sleep .1
 	@printf '\r █████████████████████ - 100%%\r'
-	@sleep .08
+	@sleep .8
 
 # Clean all .o and .a files
 clean:
