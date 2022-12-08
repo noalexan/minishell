@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 04:01:34 by BEBZ              #+#    #+#             */
-/*   Updated: 2022/12/08 01:38:40 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:47:17 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_execute(t_input *s)
 	env = ft_convert_env();
 	argv = ft_convert_argv(s->token);
 	path = ft_get_path();
-	if (!path)
+	if (!path && access(argv[0], F_OK | X_OK) != 0)
 		return (ft_free_execute(env, argv, path));
 	free(argv[0]),
 	argv[0] = ft_find_path(path, s->token->content);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:39:14 by noalexan          #+#    #+#             */
-/*   Updated: 2022/12/08 01:48:08 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/08 15:50:18 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ char	*ft_get_name(char *str)
 	i = ft_strchr(str, '=');
 	if (!i)
 		return (ft_strdup(str));
+	if (!str)
+		return (NULL);
 	name = ft_strldup(str, i);
 	return (name);
 }

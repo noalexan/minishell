@@ -73,12 +73,15 @@ void	ft_lst_delone_env(t_env *unset)
 {
 	t_env	*tmp;
 
-	tmp = g_minishell.env;
-	while (g_minishell.env->next != unset)
-		g_minishell.env = g_minishell.env->next;
-	free(unset->content);
-	free(unset->name);
-	free(unset);
-	g_minishell.env->next = unset->next;
-	g_minishell.env = tmp;
+	if (unset)
+	{
+		tmp = g_minishell.env;
+		while (g_minishell.env->next != unset)
+			g_minishell.env = g_minishell.env->next;
+		free(unset->content);
+		free(unset->name);
+		free(unset);
+		g_minishell.env->next = unset->next;
+		g_minishell.env = tmp;
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 22:38:09 by itaouil 👑        #+#    #+#             */
-/*   Updated: 2022/12/08 05:10:39 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:56:32 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	clavier_heredoc(int sig_num)
 {
 	if (sig_num == SIGINT)
-		exit(5);
+		(printf("\n"), exit(5));
 }
 
 char	*ft_mini_expender(char *s)
@@ -58,7 +58,7 @@ int	ft_heredoc(char *limiter)
 			signal(SIGINT, clavier_heredoc), close(p[OUT]));
 		while (1)
 		{
-			line = readline("💀🐺 HERE THE DOC 🗡 🛡 > ");
+			line = readline("💀🐺 \e[1;30mHERE THE DOC 🗡 🛡\e[0m > ");
 			if (!line || !ft_strcmp(line, limiter))
 				break ;
 			line = ft_mini_expender(line);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:00:00 by Tac               #+#    #+#             */
-/*   Updated: 2022/12/08 01:52:55 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:50:13 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	parse_export_content(char *str)
 	i = 0;
 	while (str && str[i])
 	{
-		if ((str[i] >= 0 && str[i] <= 32) || (str[i] >= 35 && str[i] <= 47)
+		if ((str[i] >= 0 && str[i] <= 32) || (str[i] >= 35 && str[i] <= 46)
 			|| (str[i] >= 58 && str[i] <= 60)
 			|| (str[i] >= 62 && str[i] <= 64)
 			|| (str[i] >= 123 && str[i] <= 127) || (str[i] == 33)
