@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 16:36:27 by Johanna 🌷        #+#    #+#             */
-/*   Updated: 2022/12/04 19:14:40 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/08 00:15:18 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	parse_arg(char **argv)
 		ft_lexer(line);
 		free(line);
 		ft_exec(g_minishell.input);
+		ft_close_all(g_minishell.input);
 		ft_wait_all(g_minishell.input);
 		ft_clear(g_minishell.input);
 	}

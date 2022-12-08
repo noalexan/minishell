@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/07 23:56:03 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/08 00:48:12 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	ft_expender(void);
 int		ft_replace_seg(t_token *t, const char *seg, int *s);
 
 // src/operator/heredoc.c
-void	ft_heredoc(t_token *token);
+int		ft_heredoc(char *limiter);
 
 // src/operator/pipe.c
 void	ft_pipe(t_token *t);

@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:04:03 by flemaitr          #+#    #+#             */
-/*   Updated: 2022/12/05 02:32:54 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/08 01:36:24 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,7 @@ int	main(int argc, char **argv, char **envv)
 
 a verifier : "env -i ./minishell" puis "export ..=..": segfault
 
-a verifier : """ et "'": segfault
-
-j'ai trop prevu que le gars colle le chevron au reste du texte que j'ai fais des erreurs dans le parsing
-(je verrais ca quand j'arrive au cas ou tu lis ca avant)
-j'ai aussi essayer 2 3 trucs si tu veux voir c'est dans src/operator/redirection.c
+variable a gerer dans le heredoc mais pas les quotes
 
 ctrl + c pour kill une commande: double prompt
 

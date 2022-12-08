@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 04:01:34 by BEBZ              #+#    #+#             */
-/*   Updated: 2022/12/07 23:52:31 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/08 01:38:40 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	ft_execute(t_input *s)
 	char		**env;
 	char		**path;
 	int			pid;
-	// int			status;
 
 	env = ft_convert_env();
 	argv = ft_convert_argv(s->token);
@@ -30,8 +29,6 @@ int	ft_execute(t_input *s)
 	if (!argv[0])
 		return (ft_free_execute(env, argv, path));
 	pid = fork();
-	// if (pid > 0)
-	// 	waitpid(-1, &status, 0);
 	if (pid == 0)
 	{
 		s->pid = pid;
