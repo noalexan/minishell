@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:00:00 by Tac               #+#    #+#             */
-/*   Updated: 2022/12/08 19:50:13 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/09 19:02:38 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	parse_export_name(char *str)
 	if ((name[0] >= 0 && name[0] <= 64) || name[0] == 91 || name[0] == 93
 		|| name[0] == 94 || name[0] == 96 || (name[0] >= 123 && name[0] <= 127))
 	{
-		(error_export("export", str), free(name));
+		free(name);
 		return (0);
 	}
 	while (name[i])
@@ -53,7 +53,7 @@ int	parse_export_name(char *str)
 			|| (name[i] >= 62 && name[i] <= 64)
 			|| (name[i] >= 123 && name[i] <= 127) || (name[i] == 33))
 		{
-			(error_export("export", str), free(name));
+			free(name);
 			return (0);
 		}
 		i++;
@@ -62,7 +62,7 @@ int	parse_export_name(char *str)
 	return (1);
 }
 
-void	ft_export(t_token *token)
+void	ft_exp(t_token *token)
 {
 	t_env	*v;
 	char	*n;
@@ -76,7 +76,7 @@ void	ft_export(t_token *token)
 		{
 			if (cont)
 				free(cont);
-			return (ft_export(token->next), free(n));
+			return (e_("export", token->content), ft_exp(token->next), free(n));
 		}
 		v = ft_get_var(n);
 		if (v && cont != NULL)
@@ -87,6 +87,6 @@ void	ft_export(t_token *token)
 			v->content = ft_strdup(cont);
 		else if (cont != NULL && v)
 			v->content = ft_strdup("");
-		(free(cont), free(n), ft_export(token->next));
+		(free(cont), free(n), ft_exp(token->next));
 	}
 }

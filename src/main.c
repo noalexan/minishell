@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:04:03 by flemaitr          #+#    #+#             */
-/*   Updated: 2022/12/08 19:51:05 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/09 21:05:31 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,26 @@ int	main(int argc, char **argv, char **envv)
 // Authors : Marwan Ayoub, Noah Alexandre
 
 /*
+	TODO : mettre touts les bugs/problèmes a fix ci-dessous ===> '✅' si résolut
+
+
+! L.41 && L.42 in 🤖.c [DEBUG_WINDOW] : segf quand 'unset PWD' suivi d'une autre commande
+! L.79 - /src/builtins/export.c : j'ai du raccourcir au max la ft error pour la norm mdr c'est degueu mais pas le choix pour corriger le double error de unset
 
 * revoir le parsing du contenu dans export ✅
-* norme et nettoyage
+* 'unset PATH' suivi de 'pwd' : segf ✅
+* 'unset [UNDEFINED_NAME]' : segf ✅
+* 'unset PWD' suivi de 'cd [path]' : segf ✅
+* 'cd [UNDEFINED_FILE]' : leaks ✅
+* 'OLDPWD' dans l'env : pas màj ✅
+* 'env [ARGUMENT]' : n'affiche pas d'erreur ✅
+* unset [INVALID_IDENTIFIER] : affiche 2 fois l'erreur avec 'export' ✅
+* lorsque + de une redirection : 'execve' prend le reste ne arg ce qui casse tout
+* 'cd [FILE]' : marche pas en 'env -i ./minishell'
+* 'echo $ a' : ne print pas le '$'
+* double heredoc : fix ou revoir le systeme de fork du heredoc + error cat
+* '[minishell]: <<: command not found' quand la commande commance par '<<' puis sortis du HD
+
+? norme et nettoyage
 
 */

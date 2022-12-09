@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:20:14 by mhug              #+#    #+#             */
-/*   Updated: 2022/12/08 02:01:33 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/09 20:08:30 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	env_exp(t_input *s, int e)
 {
 	t_env	*tmp;
-	int		pid;
 
 	tmp = g_minishell.env;
 	if (e == 2 && s->token->next)
 		return (ft_unset(s->token->next));
 	else if (e == 1 && s->token->next)
-		return (ft_export(s->token->next));
-	pid = fork();
-	if (pid == 0)
+		return (ft_exp(s->token->next));
+	else if (e == 0 && s->token->next)
+		return (error_not_a_directory(s->token->next->content, 3));
+	if (fork() == 0)
 	{
 		(dup2(s->in, 0), dup2(s->out, 1), ft_close_all(g_minishell.input));
 		while (tmp)
@@ -36,6 +36,6 @@ void	env_exp(t_input *s, int e)
 				printf("%s=%s\n", tmp->name, tmp->content);
 			tmp = tmp->next;
 		}
-		exit (0);
+		exit(0);
 	}
 }

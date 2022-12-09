@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   🤖.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/12/08 05:12:50 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/09 13:30:12 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,12 @@ void	ft_exec(t_input *s)
 		/* =========================================== DEBUG COMMAND ======================================== */
 		/**/	if (!ft_strcmp(s->token->content, "leaks"))													/**/
 		/**/		system("leaks minishell");																/**/
-		/**/	else if (!ft_strcmp(s->token->content, "pwd") && g_minishell.env)							/**/
-		/**/		(printf("%s\n", ft_get_var("PWD")->content), g_minishell.exitcode = 0);					/**/
+		// /**/	else if (!ft_strcmp(s->token->content, "pwd") && g_minishell.env)							/**/
+		// /**/		(printf("%s\n", ft_get_var("PWD")->content), g_minishell.exitcode = 0);					/**/
 		/**/	else if (!ft_strcmp(s->token->content, "re"))												/**/
-		/**/	{																							/**/
-		/**/		system("make run");																		/**/
-		/**/		exit(EXIT_SUCCESS);																		/**/
-		/**/	}																							/**/
+		/**/		(system("make run"), exit(EXIT_SUCCESS));												/**/
 		/**/	else if (!ft_strcmp(s->token->content, "fre"))												/**/
-		/**/	{																							/**/
-		/**/		system("make fclean run");																/**/
-		/**/		exit(EXIT_SUCCESS);																		/**/
-		/**/	}																							/**/
+		/**/		(system("make fclean run"), exit(EXIT_SUCCESS));										/**/
 		/**/	else if (!ft_strcmp(s->token->content, "history-fd"))										/**/
 		/**/		printf("history fd: %d\n", g_minishell.history_fd);										/**/
 		/**/	else if (!ft_strcmp(s->token->content, "colors"))											/**/
