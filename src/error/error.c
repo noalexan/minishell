@@ -6,13 +6,13 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:50:42 by UwU               #+#    #+#             */
-/*   Updated: 2022/12/09 19:01:49 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/10 07:50:54 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	e_(const char *s1, const char *s2)
+void	error_export(const char *s1, const char *s2)
 {
 	ft_putstr_fd("\e[31;1m[minishell]: ", STDERR);
 	ft_putstr_fd(s1, STDERR);

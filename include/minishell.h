@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/09 19:02:23 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/10 07:54:39 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,13 +127,14 @@ void	ft_exec_echo(t_input *s);
 void	env_exp(t_input *s, int e);
 
 // src/builtins/export.c
-void	ft_exp(t_token *token);
+void	ft_export(t_token *token);
 int		parse_export_name(char *str);
 int		parse_export_content(char *str);
 
 // src/builtins/unset.c
 void	ft_lst_delete(t_env *e, char *name);
 void	ft_unset(t_token *token);
+int	parse_unset_name(char *str);
 
 // src/builtins/cd.c
 void	ft_cd(t_token *token);
@@ -142,7 +143,7 @@ void	ft_cd(t_token *token);
 void	ft_exit(t_token *token);
 
 // src/error/error.c
-void	e_(const char *s1, const char *s2);
+void	error_export(const char *s1, const char *s2);
 int		error_unknown(const char *str);
 void	error_synthax_export(const char c);
 void	error_not_a_directory(const char *str, int b);

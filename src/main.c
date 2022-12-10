@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:04:03 by flemaitr          #+#    #+#             */
-/*   Updated: 2022/12/09 21:05:31 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/10 07:58:22 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	main(int argc, char **argv, char **envv)
 
 
 ! L.41 && L.42 in 🤖.c [DEBUG_WINDOW] : segf quand 'unset PWD' suivi d'une autre commande
-! L.79 - /src/builtins/export.c : j'ai du raccourcir au max la ft error pour la norm mdr c'est degueu mais pas le choix pour corriger le double error de unset
+//! L.79 - /src/builtins/export.c : j'ai du raccourcir au max la ft error pour la norm mdr c'est degueu mais pas le choix pour corriger le double error de unset
+* ||---> j'ai recorrigé tout ça et rajouté 'parse_unset_name' dans 'unset.c'
 
 * revoir le parsing du contenu dans export ✅
 * 'unset PATH' suivi de 'pwd' : segf ✅
