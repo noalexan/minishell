@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/11 15:25:44 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/11 17:53:25 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int		ft_skip_space(char *line);
 t_env	*ft_lstadd_back_env(t_env *new);
 int		is_equal(char *str);
 t_env	*ft_lstnew_env(void *content);
-void	ft_lst_delone_env(t_env *del);
+void	ft_lst_delone_env(t_env *env, t_env *unset);
 
 // src/pars_arg.c
 void	parse_arg(char **argv);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:39:14 by noalexan          #+#    #+#             */
-/*   Updated: 2022/12/11 15:05:38 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/11 18:13:18 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@ t_env	*ft_get_var(char *name)
 	t_env	*tmp;
 
 	tmp = g_minishell.env;
-	while (tmp)
+	if (name)
 	{
-		if (!ft_strcmp(tmp->name, name))
-			return (tmp);
-		tmp = tmp->next;
+		while (tmp)
+		{
+			if (!ft_strcmp(tmp->name, name))
+				return (tmp);
+			tmp = tmp->next;
+		}
 	}
 	return (NULL);
 }

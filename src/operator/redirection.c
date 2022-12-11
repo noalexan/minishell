@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:48:56 by Keyblade          #+#    #+#             */
-/*   Updated: 2022/12/11 11:47:30 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/11 18:51:49 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,15 +98,14 @@ void	ft_clear_tokens(t_token *t)
 
 	if (t)
 	{
-		if (t->next)
+		if (t->next && (t->next->content[0] == '<' || t->next->content[0] == '>'))
 		{
-			if (t->next->content[0] == '>' || t->next->content[0] == '<')
-			{
-				tmp = t->next->next->next;
-				t->next->next->next = NULL;
-				ft_lstclear(t->next);
-				t->next = tmp;
-			}
+			tmp = t->next;
+			tmp->next->next = NULL;
+			t->next = t->next->next->next;
+			printf("removing... '%s'\n", tmp->content);
+			printf("removing... '%s'\n", tmp->next->content);
+			ft_lstclear(tmp);
 		}
 		ft_clear_tokens(t->next);
 	}

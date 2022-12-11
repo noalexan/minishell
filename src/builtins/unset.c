@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:49:50 by eallouch          #+#    #+#             */
-/*   Updated: 2022/12/10 07:54:00 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/11 18:35:39 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,20 @@ void	ft_lst_delete(t_env *e, char *name)
 
 void	ft_unset(t_token *token)
 {
-	t_env	*tmp;
+	t_env	*var;
 	char	*name;
 
 	if (token)
 	{
 		if (!parse_unset_name(token->content)
 			|| ft_strchr(token->content, '='))
-			return (ft_unset(token->next));
+			return (error_export("unset", token->content),
+				ft_unset(token->next));
 		name = ft_get_name(token->content);
-		tmp = ft_get_var(name);
+		var = ft_get_var(name);
+		free(name);
 		if (g_minishell.env)
-			(ft_lst_delone_env(tmp), free(name));
+			ft_lst_delone_env(g_minishell.env, var);
+		ft_unset(token->next);
 	}
 }

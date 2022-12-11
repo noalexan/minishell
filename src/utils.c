@@ -69,19 +69,25 @@ t_env	*ft_lstnew_env(void *content)
 	return (new_element);
 }
 
-void	ft_lst_delone_env(t_env *unset)
+void	ft_lst_delone_env(t_env *env, t_env *unset)
 {
-	t_env	*tmp;
-
-	if (unset)
+	if (env && unset)
 	{
-		tmp = g_minishell.env;
-		while (g_minishell.env->next != unset)
-			g_minishell.env = g_minishell.env->next;
-		free(unset->content);
-		free(unset->name);
-		free(unset);
-		g_minishell.env->next = unset->next;
-		g_minishell.env = tmp;
+		if (env == unset)
+		{
+			g_minishell.env = unset->next;
+			free(unset->content);
+			free(unset->name);
+			free(unset);
+		}
+		if (env->next == unset)
+		{
+			env->next = unset->next;
+			free(unset->content);
+			free(unset->name);
+			free(unset);
+		}
+		else
+			ft_lst_delone_env(env->next, unset);
 	}
 }

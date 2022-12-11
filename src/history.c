@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:13:29 by Norminette        #+#    #+#             */
-/*   Updated: 2022/12/05 14:14:02 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/11 18:47:10 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	ft_sethistory(void)
 	home = ft_get_var("HOME");
 	if (!home || !home->content || !home->content[0])
 		return ;
-	tmp = ft_strjoin(home->content, "/.polnareff_history");
+	if (home)
+		tmp = ft_strjoin(home->content, "/.polnareff_history");
+	else
+		tmp = ft_strdup("/dev/null");
 	g_minishell.history_fd = open(tmp, O_CREAT | O_APPEND | O_RDWR, 00700);
 	free(tmp);
 	if (g_minishell.history_fd == -1)

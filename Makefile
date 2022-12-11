@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+         #
+#    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/12/11 15:03:50 by mayoub           ###   ########.fr        #
+#    Updated: 2022/12/11 18:37:13 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compilation variables
 CC		:= gcc
-FLAGS	:= -Lvendor/readline/lib -lreadline  #-fsanitize=address
+FLAGS	:= -Lvendor/readline/lib -lreadline #-fsanitize=address
 CFLAGS	:= -Werror -Wextra -Wall 
 
 # Name of the final executable
