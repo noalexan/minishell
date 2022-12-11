@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/10 07:54:39 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/10 08:24:49 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int		parse_export_content(char *str);
 // src/builtins/unset.c
 void	ft_lst_delete(t_env *e, char *name);
 void	ft_unset(t_token *token);
-int	parse_unset_name(char *str);
+int		parse_unset_name(char *str);
 
 // src/builtins/cd.c
 void	ft_cd(t_token *token);

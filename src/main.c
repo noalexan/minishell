@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:04:03 by flemaitr          #+#    #+#             */
-/*   Updated: 2022/12/10 07:58:22 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/10 08:22:10 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ int	main(int argc, char **argv, char **envv)
 * 'OLDPWD' dans l'env : pas màj ✅
 * 'env [ARGUMENT]' : n'affiche pas d'erreur ✅
 * unset [INVALID_IDENTIFIER] : affiche 2 fois l'erreur avec 'export' ✅
-* lorsque + de une redirection : 'execve' prend le reste ne arg ce qui casse tout
-* 'cd [FILE]' : marche pas en 'env -i ./minishell'
+* lorsque + de une redirection : 'execve' prend le reste en arg ce qui casse tout
+? PAS FIXABLE //// 'cd [FILE]' : marche pas en 'env -i ./minishell'
 * 'echo $ a' : ne print pas le '$'
 * double heredoc : fix ou revoir le systeme de fork du heredoc + error cat
-* '[minishell]: <<: command not found' quand la commande commance par '<<' puis sortis du HD
+* '[minishell]: <<: command not found' quand la commande commence par '<<' puis sortis du HD
 
 ? norme et nettoyage
 
