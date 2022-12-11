@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/12/09 13:30:12 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/11 09:30:03 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	ft_builtins(t_input	*s)
 		ft_cd(s->token->next);
 	else if (!ft_strcmp(s->token->content, "exit"))
 		ft_exit(s->token);
+	else if (!ft_strcmp(s->token->content, "pwd") && g_minishell.env)
+		(printf("%s\n", ft_get_var("PWD")->content), g_minishell.exitcode = 0);
 	else
 		return (0);
 	return (1);
@@ -38,8 +40,6 @@ void	ft_exec(t_input *s)
 		/* =========================================== DEBUG COMMAND ======================================== */
 		/**/	if (!ft_strcmp(s->token->content, "leaks"))													/**/
 		/**/		system("leaks minishell");																/**/
-		// /**/	else if (!ft_strcmp(s->token->content, "pwd") && g_minishell.env)							/**/
-		// /**/		(printf("%s\n", ft_get_var("PWD")->content), g_minishell.exitcode = 0);					/**/
 		/**/	else if (!ft_strcmp(s->token->content, "re"))												/**/
 		/**/		(system("make run"), exit(EXIT_SUCCESS));												/**/
 		/**/	else if (!ft_strcmp(s->token->content, "fre"))												/**/

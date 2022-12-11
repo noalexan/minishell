@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/10 08:24:49 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/11 09:25:52 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,14 @@ typedef struct s_global
 	t_input	*input;
 	t_env	*env;
 }		t_global;
+
+typedef struct s_exec {
+	char	**argv;
+	char	**env;
+	char	**path;
+	
+	int		pid;
+}	t_exec;
 
 t_global	g_minishell;
 

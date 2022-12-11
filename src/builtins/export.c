@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:00:00 by Tac               #+#    #+#             */
-/*   Updated: 2022/12/10 07:54:56 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/11 09:27:22 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	parse_export_content(char *str)
 	i = 0;
 	while (str && str[i])
 	{
-		if ((str[i] >= 0 && str[i] <= 32) || (str[i] >= 35 && str[i] <= 41)
+		if ((str[i] >= 0 && str[i] <= 31) || (str[i] >= 40 && str[i] <= 41)
 			|| (str[i] >= 58 && str[i] <= 60)
 			|| (str[i] >= 62 && str[i] <= 64)
 			|| (str[i] >= 123 && str[i] <= 127) || (str[i] == 33)

@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:04:03 by flemaitr          #+#    #+#             */
-/*   Updated: 2022/12/10 08:22:10 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/11 10:13:12 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ int	main(int argc, char **argv, char **envv)
 * lorsque + de une redirection : 'execve' prend le reste en arg ce qui casse tout
 ? PAS FIXABLE //// 'cd [FILE]' : marche pas en 'env -i ./minishell'
 * 'echo $ a' : ne print pas le '$'
+* '[CMD] || [CMD]' : segf			! ===> plusieurs pipes collées
+* '[CMD] >>>>> [CMD] : segf			! ===> au moins 5 chevrons collés
+* 'pwd' : segf (revoir peut-etre comment le refaire) ? Il passait dans l'execve et c'est de la !TRICHE!
 * double heredoc : fix ou revoir le systeme de fork du heredoc + error cat
 * '[minishell]: <<: command not found' quand la commande commence par '<<' puis sortis du HD
 
