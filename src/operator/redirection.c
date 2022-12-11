@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:48:56 by Keyblade          #+#    #+#             */
-/*   Updated: 2022/12/11 09:12:48 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/11 11:47:30 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_init_redirection(t_input *s, t_token *t)
 	{
 		if (t->content[0] == '>' || t->content[0] == '<')
 			if (!t->next)
-				(printf("Error near: new line\n"), g_minishell.exitcode = 258);
+				return (error_synthax_export(0));
 		if (t->content[0] == '>')
 		{
 			if (s->out != STDOUT)

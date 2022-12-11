@@ -6,11 +6,17 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:50:42 by UwU               #+#    #+#             */
-/*   Updated: 2022/12/10 07:50:54 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/11 13:19:42 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+void	error_cd_home_not_set(void)
+{
+	ft_putstr_fd("\e[31;1m[minishell]: cd: HOME not set\e[0m\n", STDERR);
+	g_minishell.exitcode = 1;
+}
 
 void	error_export(const char *s1, const char *s2)
 {
@@ -27,7 +33,10 @@ void	error_synthax_export(const char c)
 	ft_putstr_fd("\e[31;1m[minishell]: syntax error near unexpected token `",
 		STDERR);
 	if (!c)
-		ft_putendl_fd("newline'\e[0m", STDERR);
+	{
+		g_minishell.exitcode = 258;
+		return (ft_putendl_fd("newline'\e[0m", STDERR));
+	}
 	else
 	{
 		ft_putstr_fd((const char []){c, 0}, STDERR);

@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 13:08:18 by noalexan          #+#    #+#             */
-/*   Updated: 2022/11/28 14:44:17 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/11 15:01:06 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ char	*ft_strdup(const char *source)
 {
 	char	*copy;
 
+	if (!source)
+		return (NULL);
 	copy = ft_calloc(ft_strlen(source) + 1, sizeof(char));
 	if (!copy)
 		return (NULL);

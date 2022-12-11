@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:04:03 by flemaitr          #+#    #+#             */
-/*   Updated: 2022/12/11 10:13:12 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/11 16:38:39 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int argc, char **argv, char **envv)
 {
 	g_minishell.env = ft_create_env(envv);
+	ft_create_pwd();
 	echo_control_seq(0);
 	signal(SIGINT, clavier);
 	ft_sethistory();
@@ -42,12 +43,15 @@ int	main(int argc, char **argv, char **envv)
 * 'OLDPWD' dans l'env : pas màj ✅
 * 'env [ARGUMENT]' : n'affiche pas d'erreur ✅
 * unset [INVALID_IDENTIFIER] : affiche 2 fois l'erreur avec 'export' ✅
+* 'pwd' : segf (revoir peut-etre comment le refaire) ? Il passait dans l'execve et c'est de la !TRICHE! ✅
+* 'echo $ a' : ne print pas le '$' ✅
+* rework cd ✅
+* 'unset HOME' -> 'cd' : n'affiche pas le message d'erreur ✅
+* 'cd [FILE]' : marche pas en 'env -i ./minishell' ✅
+* 'unset PWD' : segf en 'env -i ./minishell'
 * lorsque + de une redirection : 'execve' prend le reste en arg ce qui casse tout
-? PAS FIXABLE //// 'cd [FILE]' : marche pas en 'env -i ./minishell'
-* 'echo $ a' : ne print pas le '$'
 * '[CMD] || [CMD]' : segf			! ===> plusieurs pipes collées
 * '[CMD] >>>>> [CMD] : segf			! ===> au moins 5 chevrons collés
-* 'pwd' : segf (revoir peut-etre comment le refaire) ? Il passait dans l'execve et c'est de la !TRICHE!
 * double heredoc : fix ou revoir le systeme de fork du heredoc + error cat
 * '[minishell]: <<: command not found' quand la commande commence par '<<' puis sortis du HD
 

@@ -6,13 +6,13 @@
 #    By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/12/11 09:29:18 by mayoub           ###   ########.fr        #
+#    Updated: 2022/12/11 15:03:50 by mayoub           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compilation variables
 CC		:= gcc
-FLAGS	:= -Lvendor/readline/lib -lreadline -fsanitize=address
+FLAGS	:= -Lvendor/readline/lib -lreadline  #-fsanitize=address
 CFLAGS	:= -Werror -Wextra -Wall 
 
 # Name of the final executable
@@ -26,11 +26,13 @@ SRC		:=	src/🤖.c \
 			src/signal.c \
 			src/history.c \
 			src/parse_arg.c \
+			src/create_pwd.c \
 \
 			src/error/error.c \
 \
 			src/builtins/cd.c \
 			src/builtins/env.c \
+			src/builtins/pwd.c \
 			src/builtins/echo.c \
 			src/builtins/exit.c \
 			src/builtins/unset.c \
@@ -106,7 +108,7 @@ vendor:
 all: $(NAME)
 
 # Compile and run minishell
-run: all load
+run: all
 	@./$(NAME)
 
 shortcut:

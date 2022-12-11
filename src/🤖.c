@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/12/11 09:30:03 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/11 11:16:16 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	ft_builtins(t_input	*s)
 {
 	if (!ft_strcmp(s->token->content, "echo"))
 		ft_exec_echo(s);
+	else if (!ft_strcmp(s->token->content, "pwd") && g_minishell.env)
+		ft_exec_pwd(s);
 	else if (!ft_strcmp(s->token->content, "env"))
 		env_exp(s, 0);
 	else if (!ft_strcmp(s->token->content, "export"))
@@ -26,8 +28,6 @@ int	ft_builtins(t_input	*s)
 		ft_cd(s->token->next);
 	else if (!ft_strcmp(s->token->content, "exit"))
 		ft_exit(s->token);
-	else if (!ft_strcmp(s->token->content, "pwd") && g_minishell.env)
-		(printf("%s\n", ft_get_var("PWD")->content), g_minishell.exitcode = 0);
 	else
 		return (0);
 	return (1);

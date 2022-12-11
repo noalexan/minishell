@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/11 09:25:52 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/11 15:25:44 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,6 @@ typedef struct s_global
 	t_env	*env;
 }		t_global;
 
-typedef struct s_exec {
-	char	**argv;
-	char	**env;
-	char	**path;
-	
-	int		pid;
-}	t_exec;
-
 t_global	g_minishell;
 
 // src/🤖.c
@@ -77,6 +69,9 @@ t_env	*ft_create_env_var(char *name, char *content);
 t_env	*ft_get_var(char *name);
 char	*ft_get_name(char *str);
 char	*ft_get_content(char *str);
+
+// src/create_pwd.c
+void	ft_create_pwd(void);
 
 // src/history.c
 void	ft_sethistory(void);
@@ -137,7 +132,9 @@ void	env_exp(t_input *s, int e);
 // src/builtins/export.c
 void	ft_export(t_token *token);
 int		parse_export_name(char *str);
-int		parse_export_content(char *str);
+
+// src/builtins//pwd.c
+void	ft_exec_pwd(t_input *s);
 
 // src/builtins/unset.c
 void	ft_lst_delete(t_env *e, char *name);
@@ -155,6 +152,7 @@ void	error_export(const char *s1, const char *s2);
 int		error_unknown(const char *str);
 void	error_synthax_export(const char c);
 void	error_not_a_directory(const char *str, int b);
+void	error_cd_home_not_set(void);
 
 // src/fun/the_messager.c
 void	the_heredoc_donjon(void);

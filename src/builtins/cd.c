@@ -6,53 +6,74 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 02:05:33 by MATHIAS           #+#    #+#             */
-/*   Updated: 2022/12/10 10:34:42 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/11 16:27:31 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 #include "sys/stat.h"
 
-void	old_pwd(void)
+void	ft_goto(const char *to)
 {
-	t_env	*pwd;
-	t_env	*tmp;
+	char	buffer[3000];
 
-	pwd = g_minishell.env;
-	tmp = g_minishell.env;
-	while (ft_strcmp(g_minishell.env->name, "OLDPWD") && g_minishell.env)
-		g_minishell.env = g_minishell.env->next;
-	while (ft_strcmp(pwd->name, "PWD") && pwd)
-		pwd = pwd->next;
-	free(g_minishell.env->content);
-	g_minishell.env->content = ft_strdup(pwd->content);
-	g_minishell.env = tmp;
+	if (chdir(to) != 0)
+	{
+		if (access(to, F_OK) != 0)
+			return (error_not_a_directory(to, 0));
+		else
+			return (error_not_a_directory(to, 1));
+	}
+	if (ft_get_var("PWD"))
+	{
+		if (ft_get_var("OLDPWD"))
+		{
+			free(ft_get_var("OLDPWD")->content);
+			ft_get_var("OLDPWD")->content
+			= ft_strdup(ft_get_var("PWD")->content);
+		}
+		(free(ft_get_var("PWD")->content), getcwd(buffer, 3000));
+		ft_get_var("PWD")->content = ft_strdup(buffer);
+	}
+	else if (ft_get_var("OLDPWD"))
+	{
+		free(ft_get_var("OLDPWD")->content);
+		ft_get_var("OLDPWD")->content = ft_strdup("");
+	}
 }
 
-void	ft_cd(t_token *token)
+void	ft_goto_home(void)
 {
-	char	*b;
+	t_env	*pwd;
 
-	b = ft_calloc(3000, sizeof(char));
-	if (token && token->content && token->content[0] && g_minishell.env)
+	pwd = ft_get_var("PWD");
+	if (ft_get_var("HOME"))
 	{
-		if (1)
+		chdir(ft_get_var("HOME")->content);
+		if (pwd)
 		{
-			if (chdir(token->content) != 0)
+			if (ft_get_var("OLDPWD"))
 			{
-				if (access(token->content, F_OK) != 0)
-					return (error_not_a_directory(token->content, 0), free(b));
-				else
-					return (error_not_a_directory(token->content, 1), free(b));
+				free(ft_get_var("OLDPWD")->content);
+				ft_get_var("OLDPWD")->content = ft_strdup(pwd->content);
 			}
-			if (ft_get_var("PWD"))
-			{
-				(old_pwd(), free(ft_get_var("PWD")->content), getcwd(b, 3000));
-				ft_get_var("PWD")->content = ft_strdup_and_free(b);
-			}
-			else
-				free(b);
+			free(pwd->content);
+			pwd->content = ft_strdup(ft_get_var("HOME")->content);
+		}
+		else if (ft_get_var("OLDPWD"))
+		{
+			free(ft_get_var("OLDPWD")->content);
+			ft_get_var("OLDPWD")->content = ft_strdup("");
 		}
 	}
-	g_minishell.exitcode = 0;
+	else
+		error_cd_home_not_set();
+}
+
+void	ft_cd(t_token *t)
+{
+	if (t)
+		ft_goto(t->content);
+	else
+		ft_goto_home();
 }

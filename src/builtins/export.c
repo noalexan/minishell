@@ -6,32 +6,11 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:00:00 by Tac               #+#    #+#             */
-/*   Updated: 2022/12/11 09:27:22 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/11 15:25:32 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-int	parse_export_content(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str && str[i])
-	{
-		if ((str[i] >= 0 && str[i] <= 31) || (str[i] >= 40 && str[i] <= 41)
-			|| (str[i] >= 58 && str[i] <= 60)
-			|| (str[i] >= 62 && str[i] <= 64)
-			|| (str[i] >= 123 && str[i] <= 127) || (str[i] == 33)
-			|| (str[i] == 33))
-		{
-			error_synthax_export(str[i]);
-			return (0);
-		}
-		i++;
-	}
-	return (1);
-}
 
 int	parse_export_name(char *str)
 {
@@ -72,7 +51,7 @@ void	ft_export(t_token *token)
 	{
 		n = ft_get_name(token->content);
 		cont = ft_get_content(token->content);
-		if (!parse_export_name(token->content) || !parse_export_content(cont))
+		if (!parse_export_name(token->content))
 		{
 			if (cont)
 				free(cont);

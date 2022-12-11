@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:39:14 by noalexan          #+#    #+#             */
-/*   Updated: 2022/12/09 15:55:39 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/11 15:05:38 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ t_env	*ft_create_env_var(char *name, char *content)
 
 	var = ft_calloc(1, sizeof(t_env));
 	var->name = ft_strdup_and_free(name);
+	var->content = ft_strdup(content);
 	if (content)
-		var->content = ft_strdup_and_free(content);
-	else
-		var->content = NULL;
+		free(content);
 	var->next = NULL;
 	return (var);
 }
@@ -75,14 +74,8 @@ t_env	*ft_create_env(char **env)
 	if (env && env[0])
 	{
 		tmp = ft_get_name(env[0]);
-		if (!ft_strcmp(tmp, "OLDPWD"))
-			lst = ft_create_env_var(
-					ft_get_name(env[0]),
-					ft_get_content(NULL));
-		else
-			lst = ft_create_env_var(
-					ft_get_name(env[0]),
-					ft_get_content(env[0]));
+		lst = ft_create_env_var(
+				ft_get_name(env[0]), ft_get_content(env[0]));
 		free(tmp);
 		lst->next = ft_create_env(env + 1);
 	}

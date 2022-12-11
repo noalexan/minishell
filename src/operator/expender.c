@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:38:30 by cjunker           #+#    #+#             */
-/*   Updated: 2022/12/10 08:45:02 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/11 15:09:20 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	ft_insert_var(t_token *t, int i)
 	}
 	else
 	{
-		printf("\e[34;1m[DEBUG]\e[0m: \e[35;1m[variable]: no variable\e[0m\n");
+		printf("\e[34;1m[DEBUG]\e[0m: \e[35;1m[variable]: no variable or no content\e[0m\n");
 		return (ft_replace_seg(t, "", (int []){i, len + 1, 0}));
 	}
 }
@@ -90,7 +90,7 @@ void	ft_expend_token_list(t_token *t)
 				d_q = ft_replace_seg(t, "", (int []){j--, 1, TRUE});
 			else if (t->content[j] == '\"' && d_q && !s_q)
 				d_q = ft_replace_seg(t, "", (int []){j--, 1, FALSE});
-			else if (t->content[j] == '$' && !s_q)
+			else if (t->content[j] == '$' && t->content[j + 1] && !s_q)
 				j += ft_insert_var(t, j) - 1;
 		}
 		ft_expend_token_list(t->next);
