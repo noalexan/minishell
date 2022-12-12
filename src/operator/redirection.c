@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:48:56 by Keyblade          #+#    #+#             */
-/*   Updated: 2022/12/11 18:51:49 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/11 20:54:57 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,23 +92,33 @@ void	ft_pipe_redirection(t_input *s)
 	}
 }
 
-void	ft_clear_tokens(t_token *t)
+t_token	*ft_clear_tokens(t_token *t)
 {
 	t_token	*tmp;
 
-	if (t)
+	if (t && t->next)
 	{
-		if (t->next && (t->next->content[0] == '<' || t->next->content[0] == '>'))
+		if (t->content[0] == '<' || t->content[0] == '>')
 		{
-			tmp = t->next;
+			tmp = t;
+			t = t->next->next;
 			tmp->next->next = NULL;
-			t->next = t->next->next->next;
 			printf("removing... '%s'\n", tmp->content);
 			printf("removing... '%s'\n", tmp->next->content);
 			ft_lstclear(tmp);
 		}
-		ft_clear_tokens(t->next);
+		else if (t->next->content[0] == '<' || t->next->content[0] == '>')
+		{
+			tmp = t->next;
+			t->next = t->next->next->next;
+			tmp->next->next = NULL;
+			printf("removing... '%s'\n", tmp->content);
+			printf("removing... '%s'\n", tmp->next->content);
+			ft_lstclear(tmp);
+		}
+		t->next = ft_clear_tokens(t->next);
 	}
+	return (t);
 }
 
 void	ft_redirection(t_input *s)
@@ -117,7 +127,7 @@ void	ft_redirection(t_input *s)
 	{
 		ft_parse_redirecion(s->token, FALSE, FALSE, -1);
 		ft_init_redirection(s, s->token);
-		ft_clear_tokens(s->token);
+		s->token = ft_clear_tokens(s->token);
 		ft_pipe_redirection(s);
 		if (s->in < 0 || s->out < 0)
 			return ((void) ft_putendl_fd("Error", STDERR), ft_clear(g_minishell.input));
