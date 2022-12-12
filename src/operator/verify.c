@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 21:22:12 by Tiplouf           #+#    #+#             */
-/*   Updated: 2022/12/08 19:58:57 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/12 15:57:42 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ int	ft_verify_cmd(t_input *s, char **path)
 
 	if (s)
 	{
+		if (!s->token)
+		{
+			printf("error near `|'\n");
+			return (0);
+		}
 		a = s->token->content;
 		if (path)
 			cmd_path = ft_find_path(path, a);

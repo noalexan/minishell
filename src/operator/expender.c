@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expender.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:38:30 by cjunker           #+#    #+#             */
-/*   Updated: 2022/12/11 15:09:20 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/12 16:55:19 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	ft_insert_var(t_token *t, int i)
 	}
 }
 
-void	ft_expend_token_list(t_token *t)
+t_token	*ft_expend_token_list(t_token *t)
 {
 	int		s_q;
 	int		d_q;
@@ -95,6 +95,7 @@ void	ft_expend_token_list(t_token *t)
 		}
 		ft_expend_token_list(t->next);
 	}
+	return (t);
 }
 
 void	ft_expender(void)

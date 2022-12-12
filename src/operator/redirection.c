@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:48:56 by Keyblade          #+#    #+#             */
-/*   Updated: 2022/12/11 20:54:57 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:56:53 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,27 +96,17 @@ t_token	*ft_clear_tokens(t_token *t)
 {
 	t_token	*tmp;
 
-	if (t && t->next)
+	if (t)
 	{
 		if (t->content[0] == '<' || t->content[0] == '>')
 		{
-			tmp = t;
-			t = t->next->next;
-			tmp->next->next = NULL;
-			printf("removing... '%s'\n", tmp->content);
-			printf("removing... '%s'\n", tmp->next->content);
-			ft_lstclear(tmp);
+			tmp = t->next->next;
+			t->next->next = NULL;
+			ft_lstclear(t);
+			t = ft_clear_tokens(tmp);
 		}
-		else if (t->next->content[0] == '<' || t->next->content[0] == '>')
-		{
-			tmp = t->next;
-			t->next = t->next->next->next;
-			tmp->next->next = NULL;
-			printf("removing... '%s'\n", tmp->content);
-			printf("removing... '%s'\n", tmp->next->content);
-			ft_lstclear(tmp);
-		}
-		t->next = ft_clear_tokens(t->next);
+		else
+			t->next = ft_clear_tokens(t->next);
 	}
 	return (t);
 }

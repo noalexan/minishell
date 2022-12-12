@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:04:03 by flemaitr          #+#    #+#             */
-/*   Updated: 2022/12/12 09:26:30 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:41:09 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,12 @@ int	main(int argc, char **argv, char **envv)
 // Authors : Marwan Ayoub, Noah Alexandre
 
 /*
-	TODO : mettre touts les bugs/problèmes a fix ci-dessous ===> '✅' si résolut
 
 * pipe:
-	* '.. || ..': segfault lorsque plusieurs pipes sont collees
 
 * redirection:
-	* '[redirection] ..': segfault lorsqu'il y a juste une redirection
 	* '.. >>>>> ..': segfault lorsqu'il y a plus de 4 chevrons
-
-* heredoc:
-	* double heredoc sur la meme commande: segfault
+	* expend le name du fichier de output
 
 ? norme et nettoyage
 
