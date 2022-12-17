@@ -6,7 +6,7 @@
 #    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/12/12 15:53:44 by noalexan         ###   ########.fr        #
+#    Updated: 2022/12/17 00:22:01 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,8 @@ SRC		:=	src/🤖.c \
 			src/create_pwd.c \
 \
 			src/error/error.c \
+			src/error/lexer.c \
+			src/error/redirection.c \
 \
 			src/builtins/cd.c \
 			src/builtins/env.c \

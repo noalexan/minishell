@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   🤖.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/12/11 11:16:16 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/16 23:03:11 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,11 @@ void	ft_clear(t_input *s)
 {
 	if (s)
 	{
-		ft_lstclear(s->token);
 		ft_clear(s->next);
+		ft_lstclear(s->token);
 		free(s);
 	}
+	g_minishell.input = NULL;
 }
 
 void	ft_close_all(t_input *s)
@@ -139,6 +140,5 @@ int	ft_minishell(const char *prompt)
 		ft_close_all(g_minishell.input);
 		ft_wait_all(g_minishell.input);
 		ft_clear(g_minishell.input);
-		g_minishell.input = NULL;
 	}
 }

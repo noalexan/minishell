@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:04:03 by flemaitr          #+#    #+#             */
-/*   Updated: 2022/12/12 16:41:09 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/17 00:55:10 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ int	main(int argc, char **argv, char **envv)
 
 /*
 
-* pipe:
+* main:
+	* je pense qu'il faudra enlever le 'parse_arg()' parce que c'est
+		cool pour le debut mais c'est pas cense etre comme ca donc vu que
+		c'est pas demandé je pense c'est mieux
 
 * redirection:
-	* '.. >>>>> ..': segfault lorsqu'il y a plus de 4 chevrons
 	* expend le name du fichier de output
 
 ? norme et nettoyage

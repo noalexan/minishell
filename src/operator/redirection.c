@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:48:56 by Keyblade          #+#    #+#             */
-/*   Updated: 2022/12/12 16:56:53 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/17 00:37:58 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,37 +41,48 @@ void	ft_parse_redirecion(t_token *t, int s_q, int d_q, int j)
 	}
 }
 
-void	ft_init_redirection(t_input *s, t_token *t)
+void	*ft_init_redirection(t_input *s, t_token *t)
 {
 	if (t)
 	{
 		if (t->content[0] == '>' || t->content[0] == '<')
+		{
 			if (!t->next)
-				return (error_synthax_export(0));
-		if (t->content[0] == '>')
-		{
-			if (s->out != STDOUT)
-				close(s->out);
-			if (t->content[1] == '>')
-				s->out = open(t->next->content,
-						O_CREAT | O_WRONLY | O_APPEND, 0600);
+				return (ft_error_redirection_nl());
+			else if (t->next->content[0] == '>' || t->next->content[0] == '<')
+				return (ft_error_redirection(t->next->content[0]));
+			if (t->content[0] == '>')
+			{
+				if (s->out != STDOUT)
+					close(s->out);
+				if (t->content[1] == '>')
+					s->out = open(t->next->content,
+							O_CREAT | O_WRONLY | O_APPEND, 0600);
+				else
+					s->out = open(t->next->content,
+							O_CREAT | O_WRONLY | O_TRUNC, 0600);
+			}
+			else if (t->content[0] == '<')
+			{
+				if (s->in != STDIN)
+					close(s->in);
+				if (t->content[1] == '<')
+					s->in = ft_heredoc(t->next->content);
+				else
+				{
+					if (!access(t->next->content, 0400))
+						s->in = open(t->next->content, O_RDONLY, 0400);
+					else
+						return (ft_error_no_file(t->next->content));
+				}
+			}
 			else
-				s->out = open(t->next->content,
-						O_CREAT | O_WRONLY | O_TRUNC, 0600);
+				return (ft_init_redirection(s, t->next));
+			ft_init_redirection(s, t->next->next);
 		}
-		else if (t->content[0] == '<')
-		{
-			if (s->in != STDIN)
-				close(s->in);
-			if (t->content[1] == '<')
-				s->in = ft_heredoc(t->next->content);
-			else
-				s->in = open(t->next->content, O_RDONLY, 0400);
-		}
-		else
-			return ((void) ft_init_redirection(s, t->next));
-		ft_init_redirection(s, t->next->next);
+		ft_init_redirection(s, t->next);
 	}
+	return (NULL);
 }
 
 void	ft_pipe_redirection(t_input *s)
@@ -96,7 +107,7 @@ t_token	*ft_clear_tokens(t_token *t)
 {
 	t_token	*tmp;
 
-	if (t)
+	if (t && g_minishell.input)
 	{
 		if (t->content[0] == '<' || t->content[0] == '>')
 		{
@@ -120,7 +131,7 @@ void	ft_redirection(t_input *s)
 		s->token = ft_clear_tokens(s->token);
 		ft_pipe_redirection(s);
 		if (s->in < 0 || s->out < 0)
-			return ((void) ft_putendl_fd("Error", STDERR), ft_clear(g_minishell.input));
+			return ((void) ft_error_fd());
 		printf("\e[1;34m[DEBUG]\e[0m: \e[1;36m[redirection]: in = '%d', out = '%d'\e[0m\n", s->in, s->out);
 		ft_redirection(s->next);
 	}

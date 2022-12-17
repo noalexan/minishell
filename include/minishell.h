@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/11 17:53:25 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/17 00:23:28 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,9 +150,17 @@ void	ft_exit(t_token *token);
 // src/error/error.c
 void	error_export(const char *s1, const char *s2);
 int		error_unknown(const char *str);
-void	error_synthax_export(const char c);
 void	error_not_a_directory(const char *str, int b);
 void	error_cd_home_not_set(void);
+
+// src/error/lexer.c
+void	*ft_error_syntax(t_token *t);
+
+// src/error/redirection.c
+void	*ft_error_redirection_nl(void);
+void	*ft_error_redirection(const char c);
+void	*ft_error_fd(void);
+void	*ft_error_no_file(const char *s);
 
 // src/fun/the_messager.c
 void	the_heredoc_donjon(void);

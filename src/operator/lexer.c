@@ -6,25 +6,11 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:55 by tle               #+#    #+#             */
-/*   Updated: 2022/12/03 21:38:17 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/17 00:26:39 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-bool	ft_lstchr(t_token *token, char chr)
-{
-	t_token	*tmp;
-
-	tmp = token;
-	while (tmp)
-	{
-		if (ft_strchr(tmp->content, chr))
-			return (TRUE);
-		tmp = tmp->next;
-	}
-	return (FALSE);
-}
 
 void	ft_new_token(t_token **token, char *content)
 {
@@ -66,7 +52,7 @@ char	*ft_getstr(char *l, int i)
 			return (ft_strdup("|"));
 	}
 	if (s_q || d_q)
-		g_minishell.exitcode = 258;
+		g_minishell.exitcode = 127;
 	return (ft_strldup(l + i, j));
 }
 
@@ -105,13 +91,8 @@ void	ft_lexer(char *line)
 		if (line[i])
 			token = ft_generate_token(line, i);
 	}
-	if (g_minishell.exitcode == 258)
-	{
-		ft_putendl_fd("\e[31;1m[minishell]: Error syntax\e[0m", STDERR);
-		ft_lstclear(token);
-		g_minishell.exitcode = 127;
-		return ;
-	}
+	if (g_minishell.exitcode == 127)
+		return ((void) ft_error_syntax(token));
 	ft_pipe(token);
 	ft_redirection(g_minishell.input);
 	ft_expender();

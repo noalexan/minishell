@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 21:22:12 by Tiplouf           #+#    #+#             */
-/*   Updated: 2022/12/12 15:57:42 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/16 23:04:55 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,7 @@ void	ft_verify(void)
 
 	path = ft_get_path();
 	if (!ft_verify_cmd(g_minishell.input, path))
-	{
 		ft_clear(g_minishell.input);
-		g_minishell.input = NULL;
-	}
 	i = -1;
 	if (path)
 	{

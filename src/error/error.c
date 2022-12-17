@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:50:42 by UwU               #+#    #+#             */
-/*   Updated: 2022/12/11 13:19:42 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/16 22:22:54 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,6 @@ void	error_export(const char *s1, const char *s2)
 	ft_putstr_fd(": `", STDERR);
 	ft_putstr_fd(s2, STDERR);
 	ft_putendl_fd("': not a valid identifier\e[0m", STDERR);
-	g_minishell.exitcode = 1;
-}
-
-void	error_synthax_export(const char c)
-{
-	ft_putstr_fd("\e[31;1m[minishell]: syntax error near unexpected token `",
-		STDERR);
-	if (!c)
-	{
-		g_minishell.exitcode = 258;
-		return (ft_putendl_fd("newline'\e[0m", STDERR));
-	}
-	else
-	{
-		ft_putstr_fd((const char []){c, 0}, STDERR);
-		ft_putendl_fd("'\e[0m", STDERR);
-	}
 	g_minishell.exitcode = 1;
 }
 
