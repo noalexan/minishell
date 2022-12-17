@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:55 by tle               #+#    #+#             */
-/*   Updated: 2022/12/17 00:26:39 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/17 14:29:16 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*ft_getstr(char *l, int i)
 			return (ft_strdup("|"));
 	}
 	if (s_q || d_q)
-		g_minishell.exitcode = 127;
+		g_minishell.exitcode = 300;
 	return (ft_strldup(l + i, j));
 }
 
@@ -91,7 +91,7 @@ void	ft_lexer(char *line)
 		if (line[i])
 			token = ft_generate_token(line, i);
 	}
-	if (g_minishell.exitcode == 127)
+	if (g_minishell.exitcode == 300)
 		return ((void) ft_error_syntax(token));
 	ft_pipe(token);
 	ft_redirection(g_minishell.input);

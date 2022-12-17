@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:50:42 by UwU               #+#    #+#             */
-/*   Updated: 2022/12/16 22:22:54 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/17 15:53:24 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	error_not_a_directory(const char *str, int b)
 {
 	if (b == 1)
 	{
-		ft_putstr_fd("\e[31;1m[minishell]: ", STDERR);
+		ft_putstr_fd("\e[31;1m[minishell]: cd: ", STDERR);
 		ft_putstr_fd(str, STDERR);
 		ft_putendl_fd(": Not a directory\e[0m", STDERR);
 	}
 	else if (!b)
 	{
-		ft_putstr_fd("\e[31;1m[minishell]: ", STDERR);
+		ft_putstr_fd("\e[31;1m[minishell]: cd: ", STDERR);
 		ft_putstr_fd(str, STDERR);
 		ft_putendl_fd(": No such file or directory\e[0m", STDERR);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:39:14 by noalexan          #+#    #+#             */
-/*   Updated: 2022/12/11 18:13:18 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/17 15:09:54 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,12 @@ t_env	*ft_create_env(char **env)
 	if (env && env[0])
 	{
 		tmp = ft_get_name(env[0]);
-		lst = ft_create_env_var(
-				ft_get_name(env[0]), ft_get_content(env[0]));
+		if (!ft_strcmp(tmp, "OLDPWD"))
+			lst = ft_create_env_var(
+				ft_get_name(env[0]), ft_get_content(NULL));
+		else
+			lst = ft_create_env_var(
+					ft_get_name(env[0]), ft_get_content(env[0]));
 		free(tmp);
 		lst->next = ft_create_env(env + 1);
 	}

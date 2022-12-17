@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:04:03 by flemaitr          #+#    #+#             */
-/*   Updated: 2022/12/17 09:09:24 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/17 17:36:55 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,32 @@ int	main(int argc, char **argv, char **envv)
 
 exitcode:
 	* erreur syntax qui persiste je pense il faut bien faire en sorte que les commande le remette a zero ou le change en cas de probleme
+	! UPDATE : c'est réglé : j'ai utilisé une valeur temporaire pour l'exitcode
+
+* /error/error.c
+	* n'affiche pas la bonne erreur pour "No such file or directory"
+	! UPDATE : réglé
 
 * redirection:
 	* expend le name du fichier de output
+	? input  : `` echo > $[VARIABLE QUI N'EXISTE PAS]
+	? output : `` [minishell]: $[VARIABLE QUI N'EXISTE PAS]: ambiguous redirect ``
+	? ===> A FIX
 
 * heredoc:
 	* mettre plusieurs heredoc dans la meme pipe...
+
+* OLDPWD:
+	* une foi minishell lancé, la commande ' env '  ===>  ' OLDPWD="" '  au lieu de --->  ' OLDPWD '
+	* avant de changer de repertory
+	! UPDATE : c'est réglé : à regarder dans le fichier '/src/env.c'
+
+* expend:
+	* le lexeur bug un peu lorsque le code d'erreur est égal à 0
+	* exemple : `` echo "$USER$USER""$USER'$USER$USER$?""'$USER"  ``
+	* output  : `` mayoubmayoubmayoub'mayoubmayoub0"$USER" ``
+	* bash    : `` mayoubmayoubmayoub'mayoubmayoub0'mayoub ``
+	* si le code d'erreur aurait était différant de 0, ça marche
 
 ? norme et nettoyage
 
