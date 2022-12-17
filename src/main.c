@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:04:03 by flemaitr          #+#    #+#             */
-/*   Updated: 2022/12/17 00:55:10 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/17 09:09:24 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,14 @@ int	main(int argc, char **argv, char **envv)
 		cool pour le debut mais c'est pas cense etre comme ca donc vu que
 		c'est pas demandé je pense c'est mieux
 
+exitcode:
+	* erreur syntax qui persiste je pense il faut bien faire en sorte que les commande le remette a zero ou le change en cas de probleme
+
 * redirection:
 	* expend le name du fichier de output
+
+* heredoc:
+	* mettre plusieurs heredoc dans la meme pipe...
 
 ? norme et nettoyage
 
