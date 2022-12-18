@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:20:14 by mhug              #+#    #+#             */
-/*   Updated: 2022/12/10 07:54:44 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/18 20:47:01 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	env_exp(t_input *s, int e)
 	else if (e == 1 && s->token->next)
 		return (ft_export(s->token->next));
 	else if (e == 0 && s->token->next)
-		return (error_not_a_directory(s->token->next->content, 3));
+		return (error_not_a_directory("env", s->token->next->content, 3));
 	if (fork() == 0)
 	{
 		(dup2(s->in, 0), dup2(s->out, 1), ft_close_all(g_minishell.input));

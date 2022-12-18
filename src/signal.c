@@ -3,16 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 16:27:04 by Mel               #+#    #+#             */
-/*   Updated: 2022/12/08 02:24:57 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/18 19:53:24 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	clavier(int sig_num)
+void	clavier_quit(int sig_num)
+{
+	if (sig_num == SIGQUIT)
+		(printf("^\\Quit: 3\n"), g_minishell.exitcode = 131);
+}
+
+void	clavier_int2(int sig_num)
+{
+	if (sig_num == SIGINT)
+		(printf("^C\n"), g_minishell.exitcode = 130);
+}
+
+void	clavier_int(int sig_num)
 {
 	if (g_minishell.input)
 		g_minishell.exitcode = 130;
@@ -24,8 +36,8 @@ void	clavier(int sig_num)
 			rl_replace_line("", 0);
 			rl_on_new_line();
 			rl_redisplay();
+			g_minishell.exitcode = 1;
 		}
-		g_minishell.exitcode = 1;
 	}
 }
 

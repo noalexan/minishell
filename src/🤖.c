@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/12/18 10:40:21 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/18 19:43:57 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,30 +107,14 @@ void	ft_clear(t_input *s)
 	g_minishell.input = NULL;
 }
 
-void	ft_close_all(t_input *s)
-{
-	if (s)
-	{
-		if (s->in != STDIN)
-			close(s->in);
-		if (s->out != STDOUT)
-			close(s->out);
-		ft_close_all(s->next);
-	}
-}
-
-void	ft_wait_all(t_input *s)
-{
-	if (s)
-		(wait(NULL), ft_wait_all(s->next));
-}
-
 int	ft_minishell(const char *prompt)
 {
 	char	*line;
 
 	while (1)
 	{
+		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, clavier_int);
 		line = readline(prompt);
 		if (!line)
 			(printf("exit\n"), close(g_minishell.history_fd), exit(0));

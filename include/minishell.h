@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/18 13:44:12 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/18 21:06:50 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,9 @@ void	ft_addhistory(const char *str);
 
 // src/signal.c
 void	rl_replace_line(const char *text, int clear_undo);
-void	clavier(int sig_num);
+void	clavier_int(int sig_num);
+void	clavier_quit(int sig_num);
+void	clavier_int2(int sig_num);
 void	echo_control_seq(int c);
 
 // src/utils.c
@@ -112,6 +114,8 @@ void	ft_redirection(t_input *s);
 // src/operator/utils.c
 void	ft_open_file(t_input *s, t_token *t);
 void	ft_init_redirection_utils(t_input *s, t_token *t);
+void	ft_wait_all(t_input *s);
+void	ft_close_all(t_input *s);
 
 // src/operator/verify.c
 void	ft_verify(void);
@@ -154,7 +158,7 @@ void	ft_exit(t_token *token);
 // src/error/error.c
 void	error_export(const char *s1, const char *s2);
 int		error_unknown(const char *str);
-void	error_not_a_directory(const char *str, int b);
+void	error_not_a_directory(const char *s, const char *c, int b);
 void	error_cd_home_not_set(void);
 
 // src/error/lexer.c

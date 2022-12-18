@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 04:01:34 by BEBZ              #+#    #+#             */
-/*   Updated: 2022/12/18 10:50:10 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/18 19:47:52 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_execute(t_input *s)
 	argv[0] = ft_find_path(path, s->token->content);
 	if (!argv[0])
 		return (ft_free_execute(env, argv, path));
-	pid = fork();
+	(signal(SIGQUIT, clavier_quit), signal(SIGINT, clavier_int2), pid = fork());
 	if (pid == 0)
 	{
 		s->pid = pid;

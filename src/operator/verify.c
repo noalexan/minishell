@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 21:22:12 by Tiplouf           #+#    #+#             */
-/*   Updated: 2022/12/18 13:32:35 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/18 21:06:46 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ int	ft_verify_cmd(t_input *s, char **path)
 	if (s)
 	{
 		if (!s->token)
-		{
-			ft_error_redirection('|');
-			return (0);
-		}
+			return ((int) ft_error_redirection('|'));
 		a = s->token->content;
 		if (path)
 			cmd_path = ft_find_path(path, a);
@@ -34,9 +31,7 @@ int	ft_verify_cmd(t_input *s, char **path)
 			&& strcmp(a, "pwd") && strcmp(a, "exit")
 			&& /* DEBUG */ strcmp(a, "leaks") && strcmp(a, "heredoc") && strcmp(a, "re") && strcmp(a, "fre") && strcmp(a, "history-fd") && strcmp(a, "colors"))
 		{
-			error_unknown(a);
-			free(cmd_path);
-			ft_verify_cmd(s->next, path);
+			(error_unknown(a), free(cmd_path), ft_verify_cmd(s->next, path));
 			return (0);
 		}
 		free(cmd_path);

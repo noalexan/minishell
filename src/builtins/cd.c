@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 02:05:33 by MATHIAS           #+#    #+#             */
-/*   Updated: 2022/12/17 17:30:08 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/18 20:43:20 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	ft_goto(const char *to)
 	if (chdir(to) != 0)
 	{
 		if (access(to, F_OK) != 0)
-			return (error_not_a_directory(to, 0));
+			return (error_not_a_directory(to, "cd", 0));
 		else
-			return (error_not_a_directory(to, 1));
+			return (error_not_a_directory("cd", to, 1));
 	}
 	if (ft_get_var("PWD"))
 	{

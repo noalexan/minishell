@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 16:36:27 by Johanna 🌷        #+#    #+#             */
-/*   Updated: 2022/12/16 23:04:19 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/18 20:56:28 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	parse_arg(char **argv)
 	char	*line;
 
 	if (access(argv[1], F_OK) != 0)
-		return (error_not_a_directory(argv[1], 0), exit(1));
+		return (error_not_a_directory("minishell", argv[1], 3), exit(1));
 	else if (opendir(argv[1]))
-		return (error_not_a_directory(argv[1], 2), exit(1));
+		return (error_not_a_directory(argv[1], NULL, 2), exit(1));
 	fd = open(argv[1], O_RDONLY);
 	while (1)
 	{
