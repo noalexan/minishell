@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:48:56 by Keyblade          #+#    #+#             */
-/*   Updated: 2022/12/17 09:31:55 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/18 13:40:18 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,30 +56,9 @@ void	*ft_init_redirection(t_input *s, t_token *t)
 			// if (ft_strcmp(t->content, "<<"))
 			// 	ft_expend_token_list(t->next);  <- possible d'expend ici mais ca entraine des erreurs, il faut trouve le moyen d'expend QUE le prochain et non pas tout le reste
 			if (t->content[0] == '>')
-			{
-				if (s->out != STDOUT)
-					close(s->out);
-				if (t->content[1] == '>')
-					s->out = open(t->next->content,
-							O_CREAT | O_WRONLY | O_APPEND, 0600);
-				else
-					s->out = open(t->next->content,
-							O_CREAT | O_WRONLY | O_TRUNC, 0600);
-			}
+				ft_open_file(s, t);
 			else if (t->content[0] == '<')
-			{
-				if (s->in != STDIN)
-					close(s->in);
-				if (t->content[1] == '<')
-					s->in = ft_heredoc(t->next->content);
-				else
-				{
-					if (!access(t->next->content, 0400))
-						s->in = open(t->next->content, O_RDONLY, 0400);
-					else
-						return (ft_error_no_file(t->next->content));
-				}
-			}
+				ft_init_redirection_utils(s, t);
 			else
 				return (ft_init_redirection(s, t->next));
 			ft_init_redirection(s, t->next->next);

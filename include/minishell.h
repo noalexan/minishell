@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/17 00:23:28 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/18 13:44:12 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,10 @@ void	ft_pipe(t_token *t);
 
 // src/operator/redirection.c
 void	ft_redirection(t_input *s);
+
+// src/operator/utils.c
+void	ft_open_file(t_input *s, t_token *t);
+void	ft_init_redirection_utils(t_input *s, t_token *t);
 
 // src/operator/verify.c
 void	ft_verify(void);

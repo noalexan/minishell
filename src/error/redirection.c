@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:22:58 by noalexan          #+#    #+#             */
-/*   Updated: 2022/12/17 00:45:57 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/18 13:44:12 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	*ft_error_redirection_nl(void)
 {
 	ft_putstr_fd(
-		"\e[31;1m[minishell]: syntax error near unexpected token `newline'\e[0m",
+		"\e[31;1m[minishell]: syntax error near unexpected token `newline'\e[0m\n",
 		STDERR);
 	ft_clear(g_minishell.input);
 	g_minishell.exitcode = 258;

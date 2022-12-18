@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
+#    By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/12/17 00:22:01 by noalexan         ###   ########.fr        #
+#    Updated: 2022/12/18 13:41:57 by mayoub           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC		:=	src/🤖.c \
 \
 			src/operator/pipe.c \
 			src/operator/lexer.c \
+			src/operator/utils.c \
 			src/operator/verify.c \
 			src/operator/heredoc.c \
 			src/operator/expender.c \

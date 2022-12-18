@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:39:14 by noalexan          #+#    #+#             */
-/*   Updated: 2022/12/17 15:09:54 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/18 10:48:08 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_env	*ft_create_env(char **env)
 		tmp = ft_get_name(env[0]);
 		if (!ft_strcmp(tmp, "OLDPWD"))
 			lst = ft_create_env_var(
-				ft_get_name(env[0]), ft_get_content(NULL));
+					ft_get_name(env[0]), ft_get_content(NULL));
 		else
 			lst = ft_create_env_var(
 					ft_get_name(env[0]), ft_get_content(env[0]));

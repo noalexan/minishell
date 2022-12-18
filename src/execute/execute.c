@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 04:01:34 by BEBZ              #+#    #+#             */
-/*   Updated: 2022/12/11 09:29:04 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/18 10:50:10 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ int	ft_execute(t_input *s)
 	if (pid == 0)
 	{
 		s->pid = pid;
-		(dup2(s->in, 0), dup2(s->out, 1), ft_close_all(g_minishell.input), execve(argv[0], argv, env), exit(1));
+		(dup2(s->in, 0), dup2(s->out, 1), ft_close_all(g_minishell.input),
+			execve(argv[0], argv, env), exit(1));
 	}
 	else if (pid == -1)
 		printf("Error while fork\n");
-	ft_free_execute(env, argv, path);
-	g_minishell.exitcode = 0;
+	(ft_free_execute(env, argv, path), g_minishell.exitcode = 0);
 	return (1);
 }
