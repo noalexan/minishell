@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 13:37:50 by Tropico 🦜        #+#    #+#             */
-/*   Updated: 2022/12/18 20:01:35 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/19 16:39:33 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ void	ft_close_all(t_input *s)
 
 void	ft_wait_all(t_input *s)
 {
+	int	i;
+
 	if (s)
-		(wait(NULL), ft_wait_all(s->next));
+		(wait(&i), g_minishell.exitcode = i / 256, ft_wait_all(s->next));
 }
 
 void	ft_open_file(t_input *s, t_token *t)
@@ -42,7 +44,7 @@ void	ft_open_file(t_input *s, t_token *t)
 				O_CREAT | O_WRONLY | O_TRUNC, 0600);
 }
 
-void	ft_init_redirection_utils(t_input *s, t_token *t)
+int	ft_init_redirection_utils(t_input *s, t_token *t)
 {
 	if (s->in != STDIN)
 		close(s->in);
@@ -53,6 +55,10 @@ void	ft_init_redirection_utils(t_input *s, t_token *t)
 		if (!access(t->next->content, 0400))
 			s->in = open(t->next->content, O_RDONLY, 0400);
 		else
-			return ((void) ft_error_no_file(t->next->content));
+		{
+			error_not_a_directory("minishell", s->token->next->content, 3);
+			return (0);
+		}
 	}
+	return (1);
 }

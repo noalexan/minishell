@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/18 21:06:50 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/19 13:27:08 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_global
 {
 	int		exitcode;
 	int		history_fd;
+	int		pipe;
 	t_input	*input;
 	t_env	*env;
 }		t_global;
@@ -113,7 +114,7 @@ void	ft_redirection(t_input *s);
 
 // src/operator/utils.c
 void	ft_open_file(t_input *s, t_token *t);
-void	ft_init_redirection_utils(t_input *s, t_token *t);
+int		ft_init_redirection_utils(t_input *s, t_token *t);
 void	ft_wait_all(t_input *s);
 void	ft_close_all(t_input *s);
 

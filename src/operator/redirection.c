@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:48:56 by Keyblade          #+#    #+#             */
-/*   Updated: 2022/12/18 14:29:24 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/19 13:04:52 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ void	*ft_init_redirection(t_input *s, t_token *t)
 			if (t->content[0] == '>')
 				ft_open_file(s, t);
 			else if (t->content[0] == '<')
-				ft_init_redirection_utils(s, t);
+			{
+				if (ft_init_redirection_utils(s, t) == 0)
+					return (NULL);
+			}
 			else
 				return (ft_init_redirection(s, t->next));
 			ft_init_redirection(s, t->next->next);

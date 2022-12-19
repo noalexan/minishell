@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:55 by tle               #+#    #+#             */
-/*   Updated: 2022/12/18 21:06:40 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/19 14:59:50 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,25 @@
 
 void	ft_new_token(t_token **token, char *content)
 {
-	t_token	*new;
+	t_token		*new;
+	static int	j;
 
+	j = 0;
 	if (content && content[0])
 	{
 		new = ft_calloc(1, sizeof(t_token));
 		new->content = ft_strdup(content);
 		new->next = NULL;
+		if (j == 0 && !ft_strcmp(new->content, "|"))
+		{
+			g_minishell.pipe = 1;
+			j = 1;
+		}
+		else if (j == 0 && !ft_strcmp(new->content, ">"))
+		{
+			g_minishell.pipe = 2;
+			j = 1;
+		}
 		printf("\e[34;1m[DEBUG]\e[0m: \e[1;32m[lexer]: New token: \"%s\"\e[0m\n",
 			content);
 		ft_lstadd_back(token, new);

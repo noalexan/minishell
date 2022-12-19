@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 16:27:04 by Mel               #+#    #+#             */
-/*   Updated: 2022/12/18 19:53:24 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/19 11:31:50 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 void	clavier_quit(int sig_num)
 {
 	if (sig_num == SIGQUIT)
-		(printf("^\\Quit: 3\n"), g_minishell.exitcode = 131);
+		(printf("\e[1;31m[Bruhhhh wtf] \e[0m\e[1;30m^\\Quit: 3 💀\e[0m\n"),
+			g_minishell.exitcode = 131);
 }
 
 void	clavier_int2(int sig_num)
 {
 	if (sig_num == SIGINT)
-		(printf("^C\n"), g_minishell.exitcode = 130);
+		(printf("\e[1;31m[Bruhhhh wtf] \e[0m\e[1;30m^C 🥴\e[0m\n"),
+			g_minishell.exitcode = 130);
 }
 
 void	clavier_int(int sig_num)

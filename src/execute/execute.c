@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 04:01:34 by BEBZ              #+#    #+#             */
-/*   Updated: 2022/12/18 19:47:52 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/19 16:34:56 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,15 @@ int	ft_execute(t_input *s)
 	path = ft_get_path();
 	if (!path && access(argv[0], F_OK | X_OK) != 0)
 		return (ft_free_execute(env, argv, path));
-	free(argv[0]),
-	argv[0] = ft_find_path(path, s->token->content);
+	(free(argv[0]), argv[0] = ft_find_path(path, s->token->content));
 	if (!argv[0])
 		return (ft_free_execute(env, argv, path));
 	(signal(SIGQUIT, clavier_quit), signal(SIGINT, clavier_int2), pid = fork());
 	if (pid == 0)
 	{
-		s->pid = pid;
-		(dup2(s->in, 0), dup2(s->out, 1), ft_close_all(g_minishell.input),
-			execve(argv[0], argv, env), exit(1));
+		(dup2(s->in, 0), dup2(s->out, 1), ft_close_all(g_minishell.input));
+		execve(argv[0], argv, env);
+		exit(1);
 	}
 	else if (pid == -1)
 		printf("Error while fork\n");
