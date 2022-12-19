@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/12/18 19:43:57 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/19 17:03:38 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,41 +37,8 @@ void	ft_exec(t_input *s)
 {
 	if (s)
 	{
-		/* =========================================== DEBUG COMMAND ======================================== */
-		/**/	if (!ft_strcmp(s->token->content, "leaks"))													/**/
-		/**/		system("leaks minishell");																/**/
-		/**/	else if (!ft_strcmp(s->token->content, "re"))												/**/
-		/**/		(system("make run"), exit(EXIT_SUCCESS));												/**/
-		/**/	else if (!ft_strcmp(s->token->content, "fre"))												/**/
-		/**/		(system("make fclean run"), exit(EXIT_SUCCESS));										/**/
-		/**/	else if (!ft_strcmp(s->token->content, "history-fd"))										/**/
-		/**/		printf("history fd: %d\n", g_minishell.history_fd);										/**/
-		/**/	else if (!ft_strcmp(s->token->content, "colors"))											/**/
-		/**/	{																							/**/
-		/**/		int i = 0;																				/**/
-		/**/		while (++i <= 9)																		/**/
-		/**/		{																						/**/
-		/**/			printf(																				/**/
-		/**/				"\e[34;1m[DEBUG]\e[0m: [COLOR]: \"\\e[%d;%dm\"  -> \"\e[%d;%dmCOLOR\e[0m\"\n",	/**/
-		/**/				(s->token->next) ? ft_atoi(s->token->next->content) : 0, i,						/**/
-		/**/				(s->token->next) ? ft_atoi(s->token->next->content) : 0, i						/**/
-		/**/			);																					/**/
-		/**/		}																						/**/
-		/**/		i = 29;																					/**/
-		/**/		while (++i <= 47)																		/**/
-		/**/		{																						/**/
-		/**/			printf(																				/**/
-		/**/				"\e[34;1m[DEBUG]\e[0m: [COLOR]: \"\\e[%d;%dm\" -> \"\e[%d;%dmCOLOR\e[0m\"\n",	/**/
-		/**/				(s->token->next) ? ft_atoi(s->token->next->content) : 0, i,						/**/
-		/**/				(s->token->next) ? ft_atoi(s->token->next->content) : 0, i						/**/
-		/**/			);																					/**/
-		/**/		}																						/**/
-		/**/	}																							/**/
-		/**/	else																						/**/
-		/* ================================================================================================== */
 		if (!ft_builtins(s))
-			if (!ft_execute(s))
-				error_unknown(s->token->content);
+			ft_execute(s);
 		ft_exec(s->next);
 	}
 }

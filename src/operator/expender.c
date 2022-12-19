@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:38:30 by cjunker           #+#    #+#             */
-/*   Updated: 2022/12/18 10:52:00 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/19 16:51:31 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	ft_insert_var(t_token *t, int i)
 	len = ft_size_of_name(t->content + i + 1);
 	if (t->content[i + 1] == '?')
 	{
-		printf("\e[34;1m[DEBUG]\e[0m: \e[35;1m[variable]: exitcode = '%d'\e[0m\n", g_minishell.exitcode);
 		tmp = ft_itoa(g_minishell.exitcode);
 		ft_replace_seg(t, tmp, (int []){i, 2, 0});
 		free(tmp);
@@ -58,15 +57,10 @@ int	ft_insert_var(t_token *t, int i)
 	var = ft_get_var(tmp);
 	free(tmp);
 	if (var && var->content && var->content[0])
-	{
-		printf("\e[34;1m[DEBUG]\e[0m: \e[35;1m[variable]: name = \"%s\", content = \"%s\"\e[0m\n", var->name, var->content);
-		return (ft_replace_seg(t, var->content, (int []){i, len + 1, ft_strlen(var->content)}));
-	}
+		return (ft_replace_seg(t, var->content,
+				(int []){i, len + 1, ft_strlen(var->content)}));
 	else
-	{
-		printf("\e[34;1m[DEBUG]\e[0m: \e[35;1m[variable]: no variable or no content\e[0m\n");
 		return (ft_replace_seg(t, "", (int []){i, len + 1, 0}));
-	}
 }
 
 t_token	*ft_expend_token_list(t_token *t)

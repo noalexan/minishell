@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:48:56 by Keyblade          #+#    #+#             */
-/*   Updated: 2022/12/19 13:04:52 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/19 17:15:41 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void	ft_parse_redirecion(t_token *t, int s_q, int d_q, int j)
 	}
 }
 
-// t_token	*ft_expend_token_list(t_token *t); <- ca va avec l'expend tu peux supp les 3 lignes c'etait juste pour test
-
 void	*ft_init_redirection(t_input *s, t_token *t)
 {
 	if (t)
@@ -53,8 +51,6 @@ void	*ft_init_redirection(t_input *s, t_token *t)
 				return (ft_error_redirection_nl());
 			else if (t->next->content[0] == '>' || t->next->content[0] == '<')
 				return (ft_error_redirection(t->next->content[0]));
-			// if (ft_strcmp(t->content, "<<"))
-			// 	ft_expend_token_list(t->next);  <- possible d'expend ici mais ca entraine des erreurs, il faut trouve le moyen d'expend QUE le prochain et non pas tout le reste
 			if (t->content[0] == '>')
 				ft_open_file(s, t);
 			else if (t->content[0] == '<')
@@ -118,7 +114,6 @@ void	ft_redirection(t_input *s)
 		ft_pipe_redirection(s);
 		if (s->in < 0 || s->out < 0)
 			return ((void) ft_error_fd());
-		printf("\e[1;34m[DEBUG]\e[0m: \e[1;36m[redirection]: in = '%d', out = '%d'\e[0m\n", s->in, s->out);
 		ft_redirection(s->next);
 	}
 }

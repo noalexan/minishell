@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 04:01:34 by BEBZ              #+#    #+#             */
-/*   Updated: 2022/12/19 16:34:56 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/19 17:05:31 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int	ft_execute(t_input *s)
 	}
 	else if (pid == -1)
 		printf("Error while fork\n");
-	(ft_free_execute(env, argv, path), g_minishell.exitcode = 0);
+	(ft_free_execute(env, argv, path));
 	return (1);
 }

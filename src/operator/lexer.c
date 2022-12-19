@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:55 by tle               #+#    #+#             */
-/*   Updated: 2022/12/19 14:59:50 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/19 18:08:23 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	ft_new_token(t_token **token, char *content)
 			g_minishell.pipe = 2;
 			j = 1;
 		}
-		printf("\e[34;1m[DEBUG]\e[0m: \e[1;32m[lexer]: New token: \"%s\"\e[0m\n",
-			content);
 		ft_lstadd_back(token, new);
 	}
 }
@@ -98,7 +96,6 @@ void	ft_lexer(char *line)
 	if (line && line[i])
 	{
 		ft_addhistory(line);
-		printf("\e[34;1m[DEBUG]\e[0m: line\t  -> \"%s\"\n", line);
 		i += ft_skip_space(line);
 		if (line[i])
 			token = ft_generate_token(line, i);
