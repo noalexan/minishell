@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 02:05:33 by MATHIAS           #+#    #+#             */
-/*   Updated: 2022/12/18 20:43:20 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/19 19:38:05 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,8 @@ void	ft_goto(const char *to)
 	if (ft_get_var("PWD"))
 	{
 		if (ft_get_var("OLDPWD"))
-		{
-			free(ft_get_var("OLDPWD")->content);
-			ft_get_var("OLDPWD")->content
-			= ft_strdup(ft_get_var("PWD")->content);
-		}
+			(free(ft_get_var("OLDPWD")->content), ft_get_var("OLDPWD")->content
+				= ft_strdup(ft_get_var("PWD")->content));
 		(free(ft_get_var("PWD")->content), getcwd(buffer, 3000));
 		ft_get_var("PWD")->content = ft_strdup(buffer);
 	}

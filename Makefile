@@ -6,13 +6,13 @@
 #    By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/12/19 18:23:03 by mayoub           ###   ########.fr        #
+#    Updated: 2022/12/19 22:30:41 by mayoub           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compilation variables
 CC		:= gcc
-FLAGS	:= -Lvendor/readline/lib -lreadline -g # -fsanitize=address
+FLAGS	:= -Lvendor/readline/lib -lreadline -g -fsanitize=address
 CFLAGS	:= -Werror -Wextra -Wall -g
 
 # Name of the final executable
@@ -50,6 +50,7 @@ SRC		:=	src/🤖.c \
 \
 			src/execute/utils.c \
 			src/execute/execute.c \
+			src/execute/point_and_slash.c \
 \
 			src/fun/the_messager.c \
 
@@ -108,7 +109,7 @@ vendor:
 	@mkdir vendor
 
 # Default command to launch
-all: $(NAME) load
+all: $(NAME) # load
 
 # Compile and run minishell
 run: all

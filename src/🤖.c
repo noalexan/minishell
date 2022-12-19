@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:37:29 by Krystel           #+#    #+#             */
-/*   Updated: 2022/12/19 17:03:38 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/19 21:59:39 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ void	ft_exec(t_input *s)
 {
 	if (s)
 	{
-		if (!ft_builtins(s))
-			ft_execute(s);
+		if (s->token)
+			if (!ft_builtins(s))
+				ft_execute(s);
 		ft_exec(s->next);
 	}
 }

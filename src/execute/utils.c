@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:57:28 by Moulinette        #+#    #+#             */
-/*   Updated: 2022/12/08 02:02:20 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/19 19:48:56 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,25 +104,4 @@ char	**ft_get_path(void)
 			path[i][j] = '/';
 	}
 	return (path);
-}
-
-char	*ft_find_path(char **path, char *cmd)
-{
-	int		i;
-	char	*path_cmd;
-
-	i = -1;
-	if (!access(cmd, 00100))
-		return (ft_strdup(cmd));
-	else
-	{
-		while (path[++i])
-		{
-			path_cmd = ft_strjoin(path[i], cmd);
-			if (!access(path_cmd, 00100))
-				return (path_cmd);
-			free(path_cmd);
-		}
-	}
-	return (NULL);
 }

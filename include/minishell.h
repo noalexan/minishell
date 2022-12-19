@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/19 16:45:19 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/19 19:49:45 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,9 @@ int		ft_free_execute(char **env, char **argv, char **path);
 char	**ft_get_path(void);
 char	*ft_find_path(char **path, char *cmd);
 
+// src/execute/point_and_slash
+char	*ft_find_path(char **path, char *cmd);
+
 // src/builtins/echo.c
 void	ft_echo(t_token *token);
 void	ft_exec_echo(t_input *s);
@@ -157,6 +160,7 @@ void	ft_cd(t_token *token);
 void	ft_exit(t_token *token);
 
 // src/error/error.c
+void	*error_permission_denied(char *str);
 void	error_export(const char *s1, const char *s2);
 int		error_unknown(const char *str);
 void	error_not_a_directory(const char *s, const char *c, int b);

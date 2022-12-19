@@ -6,34 +6,87 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 21:22:12 by Tiplouf           #+#    #+#             */
-/*   Updated: 2022/12/19 18:22:23 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/20 00:00:16 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_verify_cmd(t_input *s, char **path)
+void	ft_absolute_path(t_input *s)
 {
-	char	*cdph;
+	if (!access(s->token->content, X_OK))
+	{
+		if (!access(s->token->content, X_OK))
+			s->token->content = ft_strdup_and_free(s->token->content);
+		if (opendir(s->token->content))
+		{
+			error_not_a_directory("minishell", s->token->content, 2);
+			(ft_lstclear(s->token), s->token = NULL);
+		}
+	}
+	else if (!access(s->token->content, F_OK))
+	{
+		error_permission_denied(s->token->content);
+		ft_lstclear(s->token);
+		s->token = NULL;
+	}
+}
+
+void	ft_search_in_path(t_input *s, char **path)
+{
+	int		i;
+	char	*a;
+
+	i = -1;
+	while (path[++i])
+	{
+		a = ft_strjoin(path[i], s->token->content);
+		if (!access(a, X_OK))
+		{
+			if (!opendir(a))
+			{
+				free(s->token->content);
+				s->token->content = ft_strdup_and_free(a);
+				return ;
+			}
+		}
+		else if (!access(a, F_OK))
+		{
+			error_permission_denied(a);
+			(ft_lstclear(s->token), s->token = NULL);
+			return ;
+		}
+		free(a);
+	}
+	(error_unknown(s->token->content), ft_lstclear(s->token), s->token = NULL);
+}
+
+void	ft_check_cmd(t_input *s, char **path)
+{
+	if (s->token->content[0] == '.' || s->token->content[0] == '/')
+		ft_absolute_path(s);
+	else if (path)
+		ft_search_in_path(s, path);
+}
+
+void	ft_verify_cmd(t_input *s, char **path)
+{
 	char	*a;
 
 	if (s)
 	{
-		if (!s->token)
-			return (0);
-		a = s->token->content;
-		if (path)
-			cdph = ft_find_path(path, a);
-		else
-			cdph = ft_calloc(1, sizeof(char));
-		if (!cdph && ft_strcmp(a, "echo") && strcmp(a, "env")
-			&& strcmp(a, "export") && strcmp(a, "unset") && strcmp(a, "cd")
-			&& strcmp(a, "pwd") && strcmp(a, "exit"))
-			error_unknown(a);
-		free(cdph);
-		return (ft_verify_cmd(s->next, path));
+		if (s->token)
+		{
+			a = s->token->content;
+			if (ft_strcmp(a, "cd") && strcmp(a, "env") && strcmp(a, "export")
+				&& strcmp(a, "pwd") && strcmp(a, "unset") && strcmp(a, "echo")
+				&& strcmp(a, "exit"))
+			{
+				ft_check_cmd(s, path);
+			}
+		}
+		ft_verify_cmd(s->next, path);
 	}
-	return (1);
 }
 
 void	ft_verify(void)
@@ -42,8 +95,7 @@ void	ft_verify(void)
 	int		i;
 
 	path = ft_get_path();
-	if (!ft_verify_cmd(g_minishell.input, path))
-		ft_clear(g_minishell.input);
+	ft_verify_cmd(g_minishell.input, path);
 	i = -1;
 	if (path)
 	{
