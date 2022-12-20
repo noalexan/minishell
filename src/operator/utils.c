@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 13:37:50 by Tropico 🦜        #+#    #+#             */
-/*   Updated: 2022/12/20 08:25:28 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/20 14:10:03 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,16 @@ void	ft_wait_all(t_input *s)
 	if (s && s->token)
 	{
 		a = s->token->content;
-		(wait(&i), ft_wait_all(s->next));
-		if (ft_strcmp(a, "cd"))
-			g_minishell.exitcode = i / 256;
+		wait(&i);
+		if (WIFEXITED(i))
+			g_minishell.exitcode = WEXITSTATUS(i);
+		else if (WIFSIGNALED(i))
+		{
+			g_minishell.exitcode = WTERMSIG(i);
+			if (g_minishell.exitcode - 1)
+				g_minishell.exitcode += 128;
+		}
+		ft_wait_all(s->next);
 	}
 }
 

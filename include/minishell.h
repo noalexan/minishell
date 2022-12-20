@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:25:14 by noah le BG        #+#    #+#             */
-/*   Updated: 2022/12/20 02:17:51 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/20 14:06:22 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,12 +128,8 @@ int		ft_execute(t_input *s);
 // src/execute/utils.c
 char	**ft_convert_env(void);
 char	**ft_convert_argv(t_token *token);
-int		ft_free_execute(char **env, char **argv, char **path);
+int		ft_free_execute(char **env, char **argv);
 char	**ft_get_path(void);
-char	*ft_find_path(char **path, char *cmd);
-
-// src/execute/point_and_slash
-char	*ft_find_path(char **path, char *cmd);
 
 // src/builtins/echo.c
 void	ft_echo(t_token *token);

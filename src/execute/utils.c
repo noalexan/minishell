@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:57:28 by Moulinette        #+#    #+#             */
-/*   Updated: 2022/12/19 19:48:56 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/20 12:54:22 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	**ft_convert_argv(t_token *token)
 	return (argv);
 }
 
-int	ft_free_execute(char **env, char **argv, char **path)
+int	ft_free_execute(char **env, char **argv)
 {
 	int	i;
 
@@ -73,13 +73,6 @@ int	ft_free_execute(char **env, char **argv, char **path)
 	while (argv[++i])
 		free(argv[i]);
 	free(argv);
-	i = -1;
-	if (path)
-	{
-		while (path[++i])
-			free(path[i]);
-		free(path);
-	}
 	return (0);
 }
 

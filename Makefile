@@ -6,7 +6,7 @@
 #    By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by Palmi             #+#    #+#              #
-#    Updated: 2022/12/20 08:18:53 by mayoub           ###   ########.fr        #
+#    Updated: 2022/12/20 14:16:11 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,6 @@ SRC		:=	src/🤖.c \
 \
 			src/execute/utils.c \
 			src/execute/execute.c \
-			src/execute/point_and_slash.c \
 \
 			src/fun/the_messager.c \
 

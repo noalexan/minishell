@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:49:50 by eallouch          #+#    #+#             */
-/*   Updated: 2022/12/19 19:37:34 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/20 10:33:53 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ void	ft_unset(t_token *token)
 	{
 		if (!parse_unset_name(token->content)
 			|| ft_strchr(token->content, '='))
-			return (error_export("unset", token->content),
-				ft_unset(token->next));
+			return (ft_unset(token->next));
 		name = ft_get_name(token->content);
 		var = ft_get_var(name);
 		free(name);

@@ -6,7 +6,7 @@
 /*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 21:22:12 by Tiplouf           #+#    #+#             */
-/*   Updated: 2022/12/20 00:00:16 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/20 13:59:47 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,15 @@ void	ft_absolute_path(t_input *s)
 		if (!access(s->token->content, X_OK))
 			s->token->content = ft_strdup_and_free(s->token->content);
 		if (opendir(s->token->content))
-		{
-			error_not_a_directory("minishell", s->token->content, 2);
-			(ft_lstclear(s->token), s->token = NULL);
-		}
+			(error_not_a_directory("minishell", s->token->content, 2),
+				ft_lstclear(s->token), s->token = NULL);
 	}
 	else if (!access(s->token->content, F_OK))
-	{
-		error_permission_denied(s->token->content);
-		ft_lstclear(s->token);
-		s->token = NULL;
-	}
+		(error_permission_denied(s->token->content), ft_lstclear(s->token),
+			s->token = NULL);
+	else
+		(error_not_a_directory("minishell", s->token->content, 3),
+			(ft_lstclear(s->token), s->token = NULL));
 }
 
 void	ft_search_in_path(t_input *s, char **path)
@@ -63,7 +61,8 @@ void	ft_search_in_path(t_input *s, char **path)
 
 void	ft_check_cmd(t_input *s, char **path)
 {
-	if (s->token->content[0] == '.' || s->token->content[0] == '/')
+	if (!path || !ft_strncmp(s->token->content, "./", 2)
+		|| s->token->content[0] == '/')
 		ft_absolute_path(s);
 	else if (path)
 		ft_search_in_path(s, path);
@@ -81,9 +80,7 @@ void	ft_verify_cmd(t_input *s, char **path)
 			if (ft_strcmp(a, "cd") && strcmp(a, "env") && strcmp(a, "export")
 				&& strcmp(a, "pwd") && strcmp(a, "unset") && strcmp(a, "echo")
 				&& strcmp(a, "exit"))
-			{
 				ft_check_cmd(s, path);
-			}
 		}
 		ft_verify_cmd(s->next, path);
 	}

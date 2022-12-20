@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:13:29 by Norminette        #+#    #+#             */
-/*   Updated: 2022/12/11 18:47:10 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/20 14:24:53 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	ft_sethistory(void)
 
 void	ft_addhistory(const char *str)
 {
-	ft_putendl_fd(str, g_minishell.history_fd);
+	if (g_minishell.history_fd > 2)
+		ft_putendl_fd(str, g_minishell.history_fd);
 	add_history(str);
 }
