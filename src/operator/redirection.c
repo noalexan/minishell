@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:48:56 by Keyblade          #+#    #+#             */
-/*   Updated: 2022/12/20 07:23:22 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/20 08:13:52 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void	ft_parse_redirecion(t_token *t, int s_q, int d_q, int j)
 		ft_parse_redirecion(t->next, FALSE, FALSE, -1);
 	}
 }
-
-// < 1 cat
 
 void	*ft_init_redirection(t_input *s, t_token *t)
 {
@@ -92,14 +90,24 @@ void	ft_pipe_redirection(t_input *s)
 
 t_token	*ft_clear_tokens(t_token *t)
 {
+	t_token	*tmp;
+
 	if (t)
 	{
 		if (t->content[0] == '<' || t->content[0] == '>')
 		{
+			tmp = t;
 			if (t->next)
+			{
 				t = ft_clear_tokens(t->next->next);
+				tmp->next->next = NULL;
+			}
 			else
+			{
 				t = ft_clear_tokens(t->next);
+				tmp->next = NULL;
+			}
+			ft_lstclear(tmp);
 		}
 		else
 			t->next = ft_clear_tokens(t->next);

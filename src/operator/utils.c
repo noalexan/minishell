@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 13:37:50 by Tropico 🦜        #+#    #+#             */
-/*   Updated: 2022/12/20 07:27:12 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/20 08:25:28 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,16 @@ void	ft_close_all(t_input *s)
 
 void	ft_wait_all(t_input *s)
 {
-	int	i;
+	char	*a;
+	int		i;
 
-	if (s)
-		(wait(&i), g_minishell.exitcode = i / 256, ft_wait_all(s->next));
+	if (s && s->token)
+	{
+		a = s->token->content;
+		(wait(&i), ft_wait_all(s->next));
+		if (ft_strcmp(a, "cd"))
+			g_minishell.exitcode = i / 256;
+	}
 }
 
 void	ft_open_file(t_input *s, t_token *t)
@@ -49,7 +55,7 @@ int	ft_init_redirection_utils(t_input *s, t_token *t)
 	if (s->in != STDIN)
 		close(s->in);
 	if (t->content[1] == '<')
-		ft_heredoc(t->next->content);
+		s->in = ft_heredoc(t->next->content);
 	else
 	{
 		if (!access(t->next->content, 0400))

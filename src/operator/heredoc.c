@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 22:38:09 by itaouil           #+#    #+#             */
-/*   Updated: 2022/12/20 07:25:14 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/12/20 08:15:34 by mayoub           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ int	ft_heredoc(char *limiter)
 	if (tmp / 256 == 5)
 		return (ft_clear(g_minishell.input), g_minishell.input = NULL,
 			close(p[IN]), close(p[OUT]), g_minishell.exitcode = 1, -2);
-	return (close(p[IN]), p[OUT]);
+	close(p[IN]);
+	return (p[OUT]);
 }
