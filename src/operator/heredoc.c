@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 22:38:09 by itaouil           #+#    #+#             */
-/*   Updated: 2022/12/19 16:17:55 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/20 07:25:14 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,14 @@ char	*ft_mini_expender(char *s)
 
 int	ft_heredoc(char *limiter)
 {
-	char	*line;
-	int		p[2];
-	int		tmp;
+	char		*line;
+	int			p[2];
+	int			tmp;
 
-	pipe(p);
-	tmp = fork();
+	(pipe(p), tmp = fork(), g_minishell.heredoc = 0);
 	if (tmp == 0)
 	{
-		(the_heredoc_donjon(), echo_control_seq(0),
-			signal(SIGINT, clavier_heredoc), close(p[OUT]));
+		(the_heredoc_donjon(), signal(SIGINT, clavier_heredoc), close(p[OUT]));
 		while (1)
 		{
 			line = readline("💀🐺 \e[1;30mHERE THE DOC 🗡 🛡\e[0m > ");
@@ -67,8 +65,8 @@ int	ft_heredoc(char *limiter)
 		(close(p[IN]), exit(0));
 	}
 	waitpid(tmp, &tmp, 0);
-	if (tmp == 5)
-		return (-2);
-	close(p[IN]);
-	return (p[OUT]);
+	if (tmp / 256 == 5)
+		return (ft_clear(g_minishell.input), g_minishell.input = NULL,
+			close(p[IN]), close(p[OUT]), g_minishell.exitcode = 1, -2);
+	return (close(p[IN]), p[OUT]);
 }

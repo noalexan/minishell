@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 13:37:50 by Tropico 🦜        #+#    #+#             */
-/*   Updated: 2022/12/19 16:39:33 by mayoub           ###   ########.fr       */
+/*   Updated: 2022/12/20 07:27:12 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,15 @@ int	ft_init_redirection_utils(t_input *s, t_token *t)
 	if (s->in != STDIN)
 		close(s->in);
 	if (t->content[1] == '<')
-		s->in = ft_heredoc(t->next->content);
+		ft_heredoc(t->next->content);
 	else
 	{
 		if (!access(t->next->content, 0400))
-			s->in = open(t->next->content, O_RDONLY, 0400);
+			s->in = open(t->next->content, 0400);
 		else
 		{
 			error_not_a_directory("minishell", s->token->next->content, 3);
+			(ft_clear(g_minishell.input), g_minishell.input = NULL);
 			return (0);
 		}
 	}
