@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayoub <mayoub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 13:37:50 by Tropico 🦜        #+#    #+#             */
-/*   Updated: 2022/12/20 14:10:03 by mayoub           ###   ########.fr       */
+/*   Updated: 2023/02/06 14:01:18 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,10 @@ void	ft_close_all(t_input *s)
 
 void	ft_wait_all(t_input *s)
 {
-	char	*a;
 	int		i;
 
 	if (s && s->token)
 	{
-		a = s->token->content;
 		wait(&i);
 		if (WIFEXITED(i))
 			g_minishell.exitcode = WEXITSTATUS(i);
